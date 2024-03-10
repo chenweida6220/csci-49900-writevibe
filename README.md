@@ -14,13 +14,13 @@
 [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 <!-- PROJECT LOGO -->
-<!-- <br />
+<br />
 <div align="center">
   <a href="https://github.com/chenweida6220/csci-49900-the-most-fun-writing-app">
     <img src="most-fun-writing-app/public/images/Most-Fun-Writing-App_logo.png" alt="Logo" width="80" height="80">
-  </a> -->
+  </a>
 
-![Most Fun Writing Application_logo](most-fun-writing-app/public/images/Most-Fun-Writing-App_logo.png)
+<!-- ![Most Fun Writing Application_logo](most-fun-writing-app/public/images/Most-Fun-Writing-App_logo.png) -->
 
 <h3 align="center">Most Fun Writing Application</h3>
   <p align="center">
@@ -66,7 +66,7 @@ Our strategy is to provide multiple kinds of features to combat understimulation
 The goal is that users should be able to use this web app for more than just note-taking and be able to create documents such as essays, manuscripts, academic papers, etc. Users should be able to customize the web app in a way that works for them and keep themselves engaged and focused on writing. 
 In order to improve people’s writing experience, our product will solve writers’ problems of motivation, distraction, or simply being bored of today’s current writing applications by giving them a new writing app that is fun to use and encouraging of productivity, while still being suitable for professional use. We know if our product works when we see users being able to successfully write up the documents they need, and growing numbers of users that enjoy using the application.
 
-
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 * [![ReactJs][React.dev]](https://react.dev/)
@@ -136,10 +136,10 @@ This software is provided "as is," without warranty of any kind, express or impl
 <!-- CONTACT -->
 ## Contact
 
-Amy Ta - <amy.ta59@myhunter.cuny.edu>
-Daniel Maxime - <daniel.maxime32@myhunter.cuny.edu>
-Uriel Trejo - <uriel.trejo71@myhunter.cuny.edu>
-Wei Da Chen - <weida.chen27@myhunter.cuny.edu>
+* Amy Ta - <amy.ta59@myhunter.cuny.edu>
+* Daniel Maxime - <daniel.maxime32@myhunter.cuny.edu>
+* Uriel Trejo - <uriel.trejo71@myhunter.cuny.edu>
+* Wei Da Chen - <weida.chen27@myhunter.cuny.edu>
 
 Project Link: [https://github.com/chenweida6220/csci-49900-the-most-fun-writing-app](https://github.com/chenweida6220/csci-49900-the-most-fun-writing-app)
 
