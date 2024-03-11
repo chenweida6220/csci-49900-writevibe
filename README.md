@@ -6,12 +6,15 @@
 <a name="readme-top"></a>
 
 <!-- Project Shields -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-<!-- [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url] -->
+<div align="center>
+  [![Contributors][contributors-shield]][contributors-url]
+  [![Forks][forks-shield]][forks-url]
+  [![Stargazers][stars-shield]][stars-url]
+  [![Issues][issues-shield]][issues-url]
+  <!-- [![MIT License][license-shield]][license-url]
+  [![LinkedIn][linkedin-shield]][linkedin-url] -->
+
+</div>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -99,6 +102,8 @@ This is an example of how to list things you need to use the software and how to
    npm install
    ```
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 <!-- USAGE EXAMPLES -->
@@ -107,6 +112,8 @@ This is an example of how to list things you need to use the software and how to
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -120,6 +127,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 See the [open issues](https://github.com/chenweida6220/csci-49900-the-most-fun-writing-app/issues) for a full list of proposed features (and known issues).
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 <!-- LICENSE -->
@@ -130,6 +139,8 @@ Licensed and distributed under Most Fun Writing Application (MFWA), version 1.0.
 You are free to use, modify, and distribute this software for personal and non-commercial purposes. However, any commercial use requires explicit permission from the author. Attribution is appreciated but not required.
 
 This software is provided "as is," without warranty of any kind, express or implied. The author shall not be liable for any damages resulting from the use of this software.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -143,6 +154,8 @@ This software is provided "as is," without warranty of any kind, express or impl
 
 Project Link: [https://github.com/chenweida6220/csci-49900-the-most-fun-writing-app](https://github.com/chenweida6220/csci-49900-the-most-fun-writing-app)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 <!-- ACKNOWLEDGMENTS -->
@@ -152,6 +165,8 @@ Project Link: [https://github.com/chenweida6220/csci-49900-the-most-fun-writing-
 * [Daniel Maxime](https://github.com/Danmaxime)
 * [Uriel Trejo](https://github.com/Utrejo1125)
 * [Wei Da Chen](https://github.com/chenweida6220)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
