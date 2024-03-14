@@ -4,6 +4,10 @@ import * as quillToWord from "quill-to-word";
 
 const Export = ({ delta }) => {
     const exportToDocx = async() => {
+        if (!delta || !delta.ops) {
+            alert("The editor is empty! Please add content.");
+            return;
+        }
         
         const quillToWordConfig = {
             exportAs: 'blob',

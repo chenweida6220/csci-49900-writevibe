@@ -3,7 +3,7 @@ import Quilljs from './Editor/main.js'
 
 function App() {
   return (
-    <Quilljs />
+        <Quilljs />
   );
 }
 

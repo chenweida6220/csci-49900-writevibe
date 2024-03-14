@@ -11,11 +11,14 @@ import styles from "./styles.module.css";
 // Importing Exporter
 import Export from "../Exporter/Export";
 
+// Importing Importer
+import Import from "../Importer/Import";
+
 const Editor = () => {
   // Editor state
   const [value, setValue] = useState("");
   // Editor state for exporting using Deltas
-  const [delta, setDelta] = useState("null");
+  const [delta, setDelta] = useState(null);
 
   // Editor ref
   const quill = useRef();
@@ -105,8 +108,15 @@ const Editor = () => {
     "clean",
   ];
 
+  //Import Functionality
+  const setEditorContent = (htmlContent) => {
+    const quillEditor = quill.current.getEditor();
+    quillEditor.clipboard.dangerouslyPasteHTML(htmlContent);
+  };
+
   return (
     <div className={styles.wrapper}>
+      <Import setEditorContent={setEditorContent} />
       <label className={styles.label}>Placeholder</label>
       <QuillEditor
         ref={(el) => (quill.current = el)}
