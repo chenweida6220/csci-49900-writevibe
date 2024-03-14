@@ -37,7 +37,7 @@ const Export = ({ delta }) => {
         saveAs(docAsBlob, `${userFileName}.docx`);
     };
 
-    return <button onClick={exportToDocx}>Export as DOCX</button>;
+    return <button onClick={exportToDocx}>Save As DOCX</button>;
 };
 
 export default Export;
