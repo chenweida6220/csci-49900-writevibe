@@ -2,9 +2,13 @@ import './App.css';
 import Quilljs from './Editor/main.js'
 import Background from './Background/Background';
 import { Box, ThemeProvider } from '@mui/material';
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 function App() {
+  const handle = useFullScreenHandle();
+
   return (
+    <FullScreen handle={handle}>
     <div className="App">
       <Background src = 'https://www.desktophut.com/files/1668458437-1668458437-lofi-girl-study-live-wallpaper.mp4'/>
       <header className="App-header"> 
@@ -38,7 +42,11 @@ function App() {
           </Box>
         </ThemeProvider>
         </header>
+        <button id="fullscreentoggle" onClick={!handle.active ? handle.enter : handle.exit}>
+          Toggle fullscreen (temp button)
+        </button>
     </div>
+    </FullScreen>
   );
 }
 

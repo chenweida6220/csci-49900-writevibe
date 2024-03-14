@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+/*temp for button positioning*/
+#fullscreentoggle {
+  position:fixed;
+  right: 1%;
+  bottom: 2%;
+}
