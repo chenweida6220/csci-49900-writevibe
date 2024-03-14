@@ -87,6 +87,7 @@ const Editor = () => {
   );
 
   const formats = [
+    "font",
     "header",
     "bold",
     "italic",
@@ -99,6 +100,8 @@ const Editor = () => {
     "link",
     "image",
     "color",
+    "background",
+    "align",
     "clean",
   ];
 
