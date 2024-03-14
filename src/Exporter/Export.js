@@ -6,7 +6,16 @@ const Export = ({ delta }) => {
     const exportToDocx = async() => {
         
         const quillToWordConfig = {
-            exportAs: 'blob'
+            exportAs: 'blob',
+            paragraphStyles: {
+                normal: {
+                    paragraph: {
+                        spacing: {
+                            line: 240,      //this determines the spacing of the export (this is 1.0)
+                        },
+                    },                
+                },
+            },
         };
 
         //generate the word doc as a blob
