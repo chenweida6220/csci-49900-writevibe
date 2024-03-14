@@ -1,0 +1,17 @@
+/*makes it so that when you zoom in/out, the size/position of the video does not change*/
+video {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    top: 0%;
+    z-index: -1;
+}
+
+/*makes it so that when you zoom in/out, the size/position of the image does not change*/
+img {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    top: 0%;
+    z-index: -1;
+}
