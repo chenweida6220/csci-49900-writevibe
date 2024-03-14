@@ -11,6 +11,7 @@
 .editor {
   margin-top: 1rem;
   height: 600px;
+  color: black; /*default font color in editor*/
 }
 
 .exportButton {
