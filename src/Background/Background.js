@@ -7,7 +7,7 @@ const Background = ({src, alt}) => {
 
     return (
         <div>     
-        { file_type == '.mp4' || file_type == '.mov' || file_type == '.webm' ? (    //check if the link is for a video
+        { file_type === '.mp4' || file_type === '.mov' || file_type === '.webm' ? (    //check if the link is for a video
            //if the link is for a video put a video
            <video className="backgroundstuff" src={src} autoPlay loop muted alt={alt}></video>
            ) : (
