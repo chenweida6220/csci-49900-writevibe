@@ -1,17 +1,20 @@
-/*makes it so that when you zoom in/out, the size/position of the video does not change*/
+/*makes it so that when you zoom in/out, the background video always covers the screen */
 video {
     display: flex;
-    width: 100%;
-    position: absolute;
-    top: 0%;
+    min-height: 100%;
+    min-width: 100%;
+    /*background-size: cover;*/
+    /*background-position: fixed;*/
+    position: fixed;
+    /*top: 0%;*/
     z-index: -1;
 }
 
-/*makes it so that when you zoom in/out, the size/position of the image does not change*/
+/*makes it so that when you zoom in/out, the background image always covers the screen*/
 img {
     display: flex;
-    width: 100%;
-    position: absolute;
-    top: 0%;
+    min-height: 100%;
+    min-width: 100%;
+    position: fixed;
     z-index: -1;
 }
