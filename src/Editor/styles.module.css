@@ -1,0 +1,18 @@
+.wrapper {
+  padding: 2rem 3rem;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.editor {
+  margin-top: 1rem;
+  height: 500px;
+}
+
+.exportButton {
+    align-self: center; /* Center button horizontally within the wrapper */
+    margin-top: 40px; /* Space between the editor and the button */
+}
