@@ -51,15 +51,17 @@ const Editor = () => {
     () => ({
       toolbar: {
         container: [
+          [{ font : []}],
           [{ header: [2, 3, 4, false] }],
           ["bold", "italic", "underline", "blockquote"],
-          [{ color: [] }],
+          [{ color: [] }], [{ background: [] }],
           [
             { list: "ordered" },
             { list: "bullet" },
             { indent: "-1" },
             { indent: "+1" },
           ],
+          [{ align: [] }], 
           ["link", "image"],
           ["clean"],
         ],
