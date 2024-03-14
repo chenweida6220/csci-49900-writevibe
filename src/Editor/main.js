@@ -8,9 +8,14 @@ import QuillEditor from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import styles from "./styles.module.css";
 
+// Importing Exporter
+import Export from "../Exporter/Export";
+
 const Editor = () => {
   // Editor state
   const [value, setValue] = useState("");
+  // Editor state for exporting using Deltas
+  const [delta, setDelta] = useState("null");
 
   // Editor ref
   const quill = useRef();
@@ -20,6 +25,12 @@ const Editor = () => {
   function handler() {
     console.log(value);
   }
+
+  // Handler to handle changes to the text box
+  const handleChange = (content, delta, source, editor) => {
+    setValue(content);              //update html content
+    setDelta(editor.getContents()); //update delta content
+  };
 
   const imageHandler = useCallback(() => {
     // Create an input element of type 'file'
@@ -47,8 +58,7 @@ const Editor = () => {
     };
   }, []);
 
-  const modules = useMemo(
-    () => ({
+  const modules = useMemo(() => ({
       toolbar: {
         container: [
           [{ font : []}],
@@ -102,8 +112,12 @@ const Editor = () => {
         value={value}
         formats={formats}
         modules={modules}
-        onChange={(value) => setValue(value)}
+        onChange={handleChange} //Use the handle change function
       />
+      {/*Export the delta to use in Exporter.js*/}
+      <div className={styles.exportButton}>
+        {delta && <Export delta={delta} />}
+      </div>
     </div>
   );
 };
