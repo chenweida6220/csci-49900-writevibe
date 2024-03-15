@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { saveAs } from "file-saver";
 import * as quillToWord from "quill-to-word";
 import './Export.css';
+import { Button } from "@mui/base";
 
 const Export = ({ delta }) => {
     const [fileName, setFileName] = useState('exported-document');
@@ -76,10 +77,20 @@ const Export = ({ delta }) => {
 
     return (
         <div>
-            <select className="exportSelect" onChange={(e) => setFormat(e.target.value)} value={format}>
-                <option value="docx">DOCX</option>
-                <option value="txt">TXT</option>
-            </select>
+            <div className="fileTypeExport">
+                <button 
+                    className={format === 'docx' ? 'active' : ''}
+                    onClick={() => setFormat('docx')}
+                >
+                    DOCX
+                </button>
+                <button 
+                    className={format === 'txt' ? 'active' : ''}
+                    onClick={() => setFormat('txt')}
+                >
+                    TXT
+                </button>
+            </div>
             <button className="exportButton" onClick={handleExport}>Export</button>
         </div>
     );

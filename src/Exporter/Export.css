@@ -1,17 +1,38 @@
-/* Export.css */
-.exportButton {
-    background-color: #4CAF50; /* Green */
-    color: white;
-    padding: 10px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.fileTypeExport {
+    display: inline-flex;
+    margin-top: 20px;
 }
 
-.exportSelect {
-    padding: 10px;
-    margin: 8px 0;
+.fileTypeExport button {
+    background-color: gray; /* Light grey background */
+    color: black; /* Blue text */
+    border: none;
+    padding: 10px 20px;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.fileTypeExport button.active {
+    background-color: red; /* Red background for active button */
+    color: black; /* Black text when button is active */
+}
+
+.exportButton {
+    display: inline-flex;
+    background-color: gray; /* Gray background on not hovered */
+    color: black;
+    padding: 10px 20px;
+    margin-left: 525px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.exportButton:hover {
+    background-color: red;
+    color: black;
+} 
