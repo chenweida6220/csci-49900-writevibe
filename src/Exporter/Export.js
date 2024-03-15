@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { saveAs } from "file-saver";
 import * as quillToWord from "quill-to-word";
+import './Export.css';
 
 const Export = ({ delta }) => {
     const [fileName, setFileName] = useState('exported-document');
@@ -75,11 +76,11 @@ const Export = ({ delta }) => {
 
     return (
         <div>
-            <select onChange={(e) => setFormat(e.target.value)} value={format}>
+            <select className="exportSelect" onChange={(e) => setFormat(e.target.value)} value={format}>
                 <option value="docx">DOCX</option>
                 <option value="txt">TXT</option>
             </select>
-            <button onClick={handleExport}>Export</button>
+            <button className="exportButton" onClick={handleExport}>Export</button>
         </div>
     );
 };
