@@ -129,7 +129,7 @@ const Editor = () => {
       />
       {/*Export the delta to use in Exporter.js*/}
       <div className={styles.exportButton}>
-        {delta && <Export delta={delta} />}
+        {<Export delta={delta} />}
       </div>
     </div>
   );

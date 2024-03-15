@@ -1,0 +1,25 @@
+.fileInputWrapper {
+    /* margin-right: 500px; */
+    margin-bottom: 10px; /* Space between the input and the editor */
+    display: inline-block; /* Align with other elements if necessary */
+}
+
+.customFileInput {
+    display: none; /* Hide the default file input */
+}
+
+.customFileInputLabel {
+    display: inline-block;
+    background-color: gray;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.customFileInputLabel:hover {
+    background-color: red; /* Red on hover */
+    color: black; /* Black text color on hover */
+}
