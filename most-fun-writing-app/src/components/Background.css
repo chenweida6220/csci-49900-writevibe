@@ -1,0 +1,43 @@
+/* Global white padding reset on background image */
+body, h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.harmattan-regular {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .harmattan-medium {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .harmattan-semibold {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .harmattan-bold {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-around; /* adjust as needed */
+    align-items: center; /* adjust as needed */
+  }
+  
+  .footerwords {
+    font-family: "Harmattan", sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+  }
