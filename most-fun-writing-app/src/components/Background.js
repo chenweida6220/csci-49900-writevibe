@@ -1,7 +1,9 @@
 import React from "react"; 
+// import { useHistory } from "react-router-dom"; // hook for navigation
 import './Background.css';
 import backgroundimage from '../images/Bubblebackground.png';
 import logoimage from '../images/Most-Fun-Writing-App_logo.png';
+import painterspaletteimage from '../images/Painterspalette.png';
 // import canvasimage from '../images/Textboxcanvas-1.png';
 
 const Background = () => {
@@ -23,6 +25,7 @@ const Background = () => {
     <div style={Backgroundstyle} className="background">
         <Canvas /> {/* For the canvas to be displayed on top of background */}
         <Footer /> {/* For the footer to be displayed on top of background */}
+        <Settings /> {/* For the settings to be displayed on top of background */}
     </div>
   );
 };
@@ -82,6 +85,36 @@ const Footer = () => {
         </footer>
     );
 };
+
+const Settings = () => {
+    const Settingsstyle = {
+        // backgroundImage: `url(${painterspaletteimage})`,
+        // backgroundColor: '#D3D3D3', // grey
+        backgroundColor: 'rgba(211, 211, 211, 0.5)', // rbga format instead of the opacity property to not affect image opacity
+        width: '150px',
+        height: '150px',
+        position: 'fixed',
+        bottom: '7%',
+        right: '0',
+        borderRadius: '50%', // make the div circular
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        margin: '10px',
+        padding: '10px',
+        // float: 'right', // has no effect on fixed position objects
+        // alignItems: 'right',
+        // alignContent: 'right',
+    }
+
+    return (
+        <div style={Settingsstyle} className="settings">
+            <img src={painterspaletteimage} alt="Painter's palette icon" style={{width: '80%', height: '80%', opacity: '1'}} />
+        </div>
+    )
+};
+
+
 
 export default Background;
 
