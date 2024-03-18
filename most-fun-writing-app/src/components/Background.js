@@ -1,5 +1,7 @@
 import React from "react"; 
-// import { useHistory } from "react-router-dom"; // hook for navigation
+// import { useHistory } from "react-router-dom"; // hook for navigation 
+import { useNavigate } from 'react-router-dom'; // hook for navigation (REPLACES USEHISTORY > react-router-dom v6)
+import { useState } from "react"; // hook for state changes
 import './Background.css';
 import backgroundimage from '../images/Bubblebackground.png';
 import logoimage from '../images/Most-Fun-Writing-App_logo.png';
@@ -25,7 +27,7 @@ const Background = () => {
     <div style={Backgroundstyle} className="background">
         <Canvas /> {/* For the canvas to be displayed on top of background */}
         <Footer /> {/* For the footer to be displayed on top of background */}
-        <Settings /> {/* For the settings to be displayed on top of background */}
+        <Settingsicon /> {/* For the settingsmenu to be displayed on top of background */}
     </div>
   );
 };
@@ -63,9 +65,9 @@ const Footer = () => {
         height: '7%',
         position: 'fixed',
         bottom: '0',
-        // display: 'flex',
-        // justifyContent: 'space-around', 
-        // alignItems: 'center', 
+        display: 'flex',
+        justifyContent: 'space-around', 
+        alignItems: 'center', 
     }
 
     return (
@@ -86,8 +88,30 @@ const Footer = () => {
     );
 };
 
-const Settings = () => {
-    const Settingsstyle = {
+const Settingsicon = () => {
+    let navigate = useNavigate(); // hook for navigation
+    const [isClicked, setIsClicked] = useState(false); // state for button click changes
+
+    // const handleClickToSettings = (e) => {
+    //     console.log("Settings button clicked", e)
+    //     navigate('/path/settings');
+    // }
+
+    const handleClickToSettings = (e) => {
+        console.log("Settings button clicked", e)
+        if (!isClicked) {
+            navigate('/path/settings'); // reroutes to settings page
+            setIsClicked(true);
+        } 
+        else {
+            // Perform second action here
+            console.log("Button clicked a second time");
+            navigate("/") // Reroutes to the background page
+            setIsClicked(false); // reset state if you want the cycle to repeat
+        }
+    }
+
+    const Settingsiconstyle = {
         // backgroundImage: `url(${painterspaletteimage})`,
         // backgroundColor: '#D3D3D3', // grey
         backgroundColor: 'rgba(211, 211, 211, 0.5)', // rbga format instead of the opacity property to not affect image opacity
@@ -108,8 +132,11 @@ const Settings = () => {
     }
 
     return (
-        <div style={Settingsstyle} className="settings">
-            <img src={painterspaletteimage} alt="Painter's palette icon" style={{width: '80%', height: '80%', opacity: '1'}} />
+        <div style={Settingsiconstyle} className="settingsicon">
+            {/* <img src={painterspaletteimage} alt="Painter's palette icon" style={{width: '80%', height: '80%', opacity: '1'}  } /> */}
+            <button style={{border: 'none', background: 'none'}} onClick={handleClickToSettings}>
+                <img src={painterspaletteimage} alt="Painter's palette icon" style={{width: '80%', height: '80%', opacity: '1'}} />
+            </button>
         </div>
     )
 };
