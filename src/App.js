@@ -14,7 +14,7 @@ function App() {
   return (
     <FullScreen handle={handle}>
     <div className="App">
-      <Background src="/videos/deep-space.mp4" />
+      <Background src="/videos/rainy-train.mp4" />
       <header className="App-header" style={{ opacity: opacity / 100}}> 
       <ThemeProvider
           theme={{
@@ -55,7 +55,7 @@ function App() {
         </button>
 
         {/* opacity slider*/}
-        <div style={{ position: 'fixed', left: '22%', top: '10%', color: 'black', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ position: 'fixed', left: '5%', top: '10%', color: 'black', display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
             <input
                 type="range"
                 min="0"

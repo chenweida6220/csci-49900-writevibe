@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { saveAs } from "file-saver";
 import * as quillToWord from "quill-to-word";
 import './Export.css';
-import { Button } from "@mui/base";
 
 const Export = ({ delta }) => {
     const [fileName, setFileName] = useState('exported-document');
@@ -26,6 +25,9 @@ const Export = ({ delta }) => {
             exportAs: 'blob',
             paragraphStyles: {
                 normal: {
+                    run: {
+                        color: 'color',    //default color
+                    },
                     paragraph: {
                         spacing: {
                             line: 240,      //this determines the spacing of the export (this is 1.0)
@@ -34,6 +36,19 @@ const Export = ({ delta }) => {
                 },
             },
         };
+
+        //Iterate over ops and customize the style based on the quill delta
+        delta.ops.forEach(op => {
+            if(op.insert && typeof op.insert === "string" && op.attributes && op.attributes.color) {
+                //convert quill's color from "#ffffff" to the regular "ffffff" that is expexted by a docx
+                const color = op.attributes.color.replace('#', '');     //replace the # with nothing
+
+                //map to different paragraphStyles based on the content
+                //this is a simplified approach applying color directly
+                //eventually i need to extend this logic to handle various types of text (e.g., headings, block quotes)
+                quillToWordConfig.paragraphStyles.normal.run.color = color;
+            }
+        });
 
         //generate the word doc as a blob
         const docAsBlob = await quillToWord.generateWord(delta, quillToWordConfig);

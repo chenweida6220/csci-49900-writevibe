@@ -1,5 +1,5 @@
 // Importing helper modules
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState, useEffect } from "react";
 
 // Importing core components
 import QuillEditor from "react-quill";
@@ -113,6 +113,20 @@ const Editor = () => {
     const quillEditor = quill.current.getEditor();
     quillEditor.clipboard.dangerouslyPasteHTML(htmlContent);
   };
+
+  //Save and Load content from local storage
+  //Load Content if any
+  useEffect(() => {
+    const savedContent = localStorage.getItem('editorContent');
+    if (savedContent) {
+        setEditorContent(savedContent);
+    }
+  }, []);
+
+  //Save Content
+  useEffect(() => {
+    localStorage.setItem('editorContent', value);
+  }, [value]);
 
   return (
     <div className={styles.wrapper}>
