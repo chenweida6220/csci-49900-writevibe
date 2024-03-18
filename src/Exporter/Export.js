@@ -32,6 +32,9 @@ const Export = ({ delta }) => {
                         spacing: {
                             line: 240,      //this determines the spacing of the export (this is 1.0)
                         },
+                        indent: {
+                            right: 150,    //how much space before until next line starts it's a weird measurement (twentieth's of a point)
+                        },
                     },                
                 },
             },

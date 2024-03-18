@@ -37,13 +37,13 @@ function App() {
               border: '3px solid primary.border',
               bgcolor: 'primary.main',
               padding: 3,
-              opacity: .95,
+            //   opacity: .95,
               }}
           >
               {/*second box contains the actual editor */}
               <Box sx={{ 
               bgcolor: 'white',
-              opacity: .9,
+            //   opacity: .9,
               }}>
                 <Quilljs />
               </Box>
