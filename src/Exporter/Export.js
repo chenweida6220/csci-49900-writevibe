@@ -24,6 +24,15 @@ const Export = ({ delta }) => {
 
         const quilToWordConfig = {
             exportAs: 'blob',
+            paragraphStyles: {
+                normal: {
+                    paragraph: {
+                        spacing: {
+                            line: 240,
+                        }
+                    }
+                }
+            }
         }
     
         //generate the word doc as a blob
