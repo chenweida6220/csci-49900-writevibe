@@ -3,22 +3,14 @@ import './Themes.css';
 
 const Themes = ({ onChangeTheme }) => {
 
-    const [format, setFormat] = useState('space')
+    const [format, setFormat] = useState('space');
 
     const handleThemes = (newFormat) => {
         console.log("Theme changed to:", newFormat);
         setFormat(newFormat);
-        if(newFormat === 'space'){
-            console.log("space theme");
-        }
-        if(newFormat === 'warm'){
-            console.log("warm theme");
-        }
-        if(newFormat === 'rain'){
-            console.log("rain theme");
-        }
         onChangeTheme(newFormat);
-    }
+    };
+
 
     return (
         <div className="fileTypeThemes">

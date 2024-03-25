@@ -14,7 +14,7 @@ import Export from "../Exporter/Export";
 // Importing Importer
 import Import from "../Importer/Import";
 
-const Editor = () => {
+const Editor = ({ editorBgColor }) => {
   // Editor state
   const [value, setValue] = useState("");
   // Editor state for exporting using Deltas
@@ -140,6 +140,7 @@ const Editor = () => {
         formats={formats}
         modules={modules}
         onChange={handleChange} //Use the handle change function
+        style={{ backgroundColor: editorBgColor }}
       />
       {/*Export the delta to use in Exporter.js*/}
       <div className={styles.exportButton}>

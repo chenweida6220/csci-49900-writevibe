@@ -14,19 +14,27 @@ function App() {
 
   const [background, setBackground] = useState('/videos/deep-space.mp4'); // Default background
 
-  const changeBackground = (theme) => {
-    switch(theme) {
-        case 'space':
-            setBackground('/videos/deep-space.mp4');
-            break;
-        case 'warm':
-            setBackground('/videos/fireplace.mp4');
-            break;
-        case 'rain':
-            setBackground('/videos/rainy-train.mp4');
-            break;
+  const [editorBgColor, setEditorBgColor] = useState('#20122b'); // Default Quill Editor Background Color
+
+  //function to update the editor's background color depending on the theme
+  const changeEditorTheme = (theme) => {
+    //map the themes with the respective colors
+    const themeColors = {
+        space: '#20122b',
+        warm: 'red',
+        rain: 'lightblue',
+    };
+    //update the background color
+    setEditorBgColor(themeColors[theme] || '#20122b');
+
+    const themeBackgrounds = {
+        space: '/videos/deep-space.mp4',
+        warm: '/videos/fireplace.mp4',
+        rain: '/videos/rainy-train.mp4',
     }
-  }
+
+    setBackground(themeBackgrounds[theme] || '/videos/deep-space.mp4');
+  };
 
   return (
     <FullScreen handle={handle}>
@@ -62,7 +70,7 @@ function App() {
               bgcolor: 'white',
             //   opacity: .9,
               }}>
-                <Quilljs />
+                <Quilljs editorBgColor={editorBgColor} />
               </Box>
           </Box>
         </ThemeProvider>
@@ -82,7 +90,7 @@ function App() {
             />
             <span>Adjust Editor Opacity</span>
         </div>
-        <Themes onChangeTheme={changeBackground}></Themes>
+        <Themes onChangeTheme={changeEditorTheme}></Themes>
     </div>
     </FullScreen>
   );
