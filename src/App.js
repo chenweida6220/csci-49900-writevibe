@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useState } from 'react'; // Make sure to import useState
 import Quilljs from './Editor/main.js'
 import Background from './Background/Background';
 import { Box, ThemeProvider } from '@mui/material';
@@ -7,11 +8,14 @@ import { FullScreen, useFullScreenHandle } from "react-full-screen";
 function App() {
   const handle = useFullScreenHandle();
 
+  //opacity slider
+  const [opacity, setOpacity] = useState(100);  //100 is default opacity
+
   return (
     <FullScreen handle={handle}>
     <div className="App">
-      <Background src = 'https://www.desktophut.com/files/1668458437-1668458437-lofi-girl-study-live-wallpaper.mp4'/>
-      <header className="App-header"> 
+      <Background src="/videos/rainy-train.mp4" />
+      <header className="App-header" style={{ opacity: opacity / 100}}> 
       <ThemeProvider
           theme={{
               palette: {
@@ -33,10 +37,14 @@ function App() {
               border: '3px solid primary.border',
               bgcolor: 'primary.main',
               padding: 3,
+            //   opacity: .95,
               }}
           >
               {/*second box contains the actual editor */}
-              <Box sx={{ bgcolor: 'white',}}>
+              <Box sx={{ 
+              bgcolor: 'white',
+            //   opacity: .9,
+              }}>
                 <Quilljs />
               </Box>
           </Box>
@@ -45,6 +53,19 @@ function App() {
         <button id="fullscreentoggle" onClick={!handle.active ? handle.enter : handle.exit}>
           Toggle fullscreen (temp button)
         </button>
+
+        {/* opacity slider*/}
+        <div style={{ position: 'fixed', left: '5%', top: '10%', color: 'black', display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
+            <input
+                type="range"
+                min="0"
+                max="100"
+                value={opacity}
+                onChange={(e) => setOpacity(e.target.value)}
+                style={{ '--value': opacity, marginBottom: '10px' }}
+            />
+            <span>Adjust Editor Opacity</span>
+        </div>
     </div>
     </FullScreen>
   );

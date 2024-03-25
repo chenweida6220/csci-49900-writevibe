@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { saveAs } from "file-saver";
 import * as quillToWord from "quill-to-word";
+import { pdfExporter } from "quill-to-pdf";
 import './Export.css';
-import { Button } from "@mui/base";
 
 const Export = ({ delta }) => {
     const [fileName, setFileName] = useState('exported-document');
@@ -21,22 +21,22 @@ const Export = ({ delta }) => {
         if(userFileName) {
             setFileName(userFileName);
         }
-        
-        const quillToWordConfig = {
+
+        const quilToWordConfig = {
             exportAs: 'blob',
             paragraphStyles: {
                 normal: {
                     paragraph: {
                         spacing: {
-                            line: 240,      //this determines the spacing of the export (this is 1.0)
-                        },
-                    },                
-                },
-            },
-        };
-
+                            line: 240,
+                        }
+                    }
+                }
+            }
+        }
+    
         //generate the word doc as a blob
-        const docAsBlob = await quillToWord.generateWord(delta, quillToWordConfig);
+        const docAsBlob = await quillToWord.generateWord(delta, quilToWordConfig);
 
         //Use file-saver to download the docx
         saveAs(docAsBlob, `${userFileName}.docx`);
@@ -61,6 +61,26 @@ const Export = ({ delta }) => {
         saveAs(blob, `${userFileName}.txt`);
     };
 
+    // Export the quill dela to PDF
+    const exportToPDF = async() => {
+        if (!delta || !delta.ops) {     // If there is no content to export
+            alert("The editor is empty! Please add content.");
+            return;
+        }
+
+        //ask user for file name
+        const userFileName = prompt("Please enter a name for your file: (.pdf)", fileName);
+        if(userFileName) {
+            setFileName(userFileName);
+        }
+
+        //generate the pdf as a blob
+        const pdfAsBlob = await pdfExporter.generatePdf(delta);
+
+        //Use file-saver to download the pdf
+        saveAs(pdfAsBlob, `${userFileName}.pdf`);
+    };
+
     const handleExport = () => {
         // Get name from exportToDocx
         const userFileName = (fileName);
@@ -72,6 +92,9 @@ const Export = ({ delta }) => {
         }
         else if (format === 'txt') {
             exportToTxt();
+        }
+        else if (format === 'pdf') {
+            exportToPDF();
         }
     };
 
@@ -89,6 +112,12 @@ const Export = ({ delta }) => {
                     onClick={() => setFormat('txt')}
                 >
                     TXT
+                </button>
+                <button 
+                    className={format === 'pdf' ? 'active' : ''}
+                    onClick={() => setFormat('pdf')}
+                >
+                    PDF
                 </button>
             </div>
             <button className="exportButton" onClick={handleExport}>Export</button>
