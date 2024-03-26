@@ -1,6 +1,5 @@
 .wrapper {
   padding: 2rem 3rem;
-  background-color: white;
   opacity: 90%;
 }
 
@@ -19,8 +18,4 @@
 .exportButton {
     align-self: center; /* Center button horizontally within the wrapper */
     margin-top: 40px; /*Space between the editor and the button*/
-}
-
-.ql-editor {
-    background-color: black !important;
 }
