@@ -35,6 +35,21 @@ const Editor = ({ editorBgColor }) => {
     setDelta(editor.getContents()); //update delta content
   };
 
+  // Change the quill border color
+  useEffect(() => {
+    if (quill.current) {
+      // Add the custom class to the Quill editor's container
+      const editorContainer = quill.current.getEditor().container;
+      editorContainer.classList.add(styles.customQuillBorder);
+
+      //Target the toolbar and change the border color of that too
+      const toolbarElement = editorContainer.previousSibling;
+      if (toolbarElement && toolbarElement.classList.contains('ql-toolbar')) {
+        toolbarElement.classList.add(styles.customToolbarBorder);
+      }
+    }
+  }, []); // Empty dependency array means this effect runs once on mount
+
   const imageHandler = useCallback(() => {
     // Create an input element of type 'file'
     const input = document.createElement("input");

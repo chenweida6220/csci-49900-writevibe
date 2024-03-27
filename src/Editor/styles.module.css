@@ -19,3 +19,11 @@
     align-self: center; /* Center button horizontally within the wrapper */
     margin-top: 40px; /*Space between the editor and the button*/
 }
+
+/* Testing Quill Border Color Changes */
+.customQuillBorder {
+  border-color: black !important; /* Use !important to override existing styles */
+}
+.customToolbarBorder {
+  border-color: black !important;
+}

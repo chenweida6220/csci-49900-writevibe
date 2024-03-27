@@ -26,7 +26,7 @@ function App() {
     const themeBackgrounds = {
         space: '/videos/deep-space.mp4',
         warm: '/videos/fireplace.mp4',
-        rain: '/videos/rainy-train.mp4',
+        rain: '/videos/rainy-window.mp4',
     };
     //update the background video
     setBackground(themeBackgrounds[theme] || '/videos/deep-space.mp4');
@@ -43,7 +43,7 @@ function App() {
     const themeOuter = {
       space: 'darkblue',
       warm: 'black',
-      rain: 'white',
+      rain: 'steelblue',
     };
     //update the outer box of the theme
     setEditorOuterColor(themeOuter[theme] || 'darkblue');
@@ -99,7 +99,7 @@ function App() {
           Toggle fullscreen (temp button)
         </button>
         {/* opacity slider*/}
-        <div style={{ position: 'fixed', left: '5%', top: '10%', color: 'black', display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
+        <div style={{ position: 'fixed', left: '5%', top: '10%', color: 'black', display: 'flex', flexDirection: 'column', alignItems: 'left', color: 'white' }}>
             <input
                 type="range"
                 min="0"
