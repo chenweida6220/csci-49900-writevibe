@@ -13,7 +13,7 @@ const Themes = ({ onChangeTheme }) => {
 
 
     return (
-        <div className="fileTypeThemes">
+        <div className="themeTypes">
             <button 
                 className={format === 'space' ? 'active' : ''}
                 onClick={() => handleThemes('space')}

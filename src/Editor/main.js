@@ -40,12 +40,12 @@ const Editor = ({ editorBgColor }) => {
     if (quill.current) {
       // Add the custom class to the Quill editor's container
       const editorContainer = quill.current.getEditor().container;
-      editorContainer.classList.add(styles.customQuillBorder);
+      editorContainer.classList.add(styles.customEditor);
 
       //Target the toolbar and change the border color of that too
       const toolbarElement = editorContainer.previousSibling;
       if (toolbarElement && toolbarElement.classList.contains('ql-toolbar')) {
-        toolbarElement.classList.add(styles.customToolbarBorder);
+        toolbarElement.classList.add(styles.customToolbar);
       }
     }
   }, []); // Empty dependency array means this effect runs once on mount
@@ -146,7 +146,7 @@ const Editor = ({ editorBgColor }) => {
   return (
     <div className={styles.wrapper}>
       <Import setEditorContent={setEditorContent} />
-      <label className={styles.label}>Placeholder</label>
+      <label className={styles.label}>Most Fun Writing App</label>
       <QuillEditor
         ref={(el) => (quill.current = el)}
         className={styles.editor}

@@ -17,6 +17,8 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    position: relative;
+    right: 312px;
 }
 
 .customFileInputLabel:hover {

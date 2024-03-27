@@ -1,41 +1,25 @@
-.fileTypeThemes {
+.themeTypes {
     position: fixed;
-    left: 0.5%;
+    left: 6%;
     top: 20%;
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
 }
 
-.fileTypeThemes button {
+.themeTypes button {
     background-color: gray; /* Light grey background */
-    color: black; /* Blue text */
+    color: black; /* Black text */
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 2px; /* Adds a space between buttons */
 }
 
-.fileTypeThemes button.active {
-    background-color: white; /* Red background for active button */
+.themeTypes button.active {
+    background-color: white; /* White background for active button */
     color: black; /* Black text when button is active */
 }
-
-.themesButton {
-    display: inline-flex;
-    background-color: gray; /* Gray background on not hovered */
-    color: black;
-    padding: 10px 20px;
-    margin-left: 525px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
-}
-
-.themesButton:hover {
-    background-color: white;
-    color: black;
-} 

@@ -94,7 +94,11 @@ function App() {
               <Box sx={{ 
               bgcolor: editorInnerColor,
               }}>
-                <Quilljs editorBgColor={ editorBgColor } />
+                <Quilljs 
+                    editorBgColor={ editorBgColor }
+                    // editorColorChange={themeColors[theme].editorColor}
+                    // toolbarColorChange={themeColors[theme].toolbarColor} 
+                />
               </Box>
           </Box>
         </ThemeProvider>
@@ -103,7 +107,7 @@ function App() {
           Toggle fullscreen (temp button)
         </button>
         {/* opacity slider*/}
-        <div style={{ position: 'fixed', left: '5%', top: '10%', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'left'}}>
+        <div style={{ position: 'fixed', left: '3.5%', top: '10%', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'left'}}>
             <input
                 type="range"
                 min="0"
