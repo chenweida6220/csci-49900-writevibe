@@ -27,6 +27,7 @@ function App() {
         space: '/videos/deep-space.mp4',
         warm: '/videos/fireplace.mp4',
         rain: '/videos/rainy-window.mp4',
+        cafe: '/images/cafe.jpg',
     };
     //update the background video
     setBackground(themeBackgrounds[theme] || '/videos/deep-space.mp4');
@@ -36,6 +37,7 @@ function App() {
       space: '#20122b',
       warm: 'darkred',
       rain: 'lightblue',
+      cafe: '#A28C6B',
     };
     //update the background color
     setEditorBgColor(themeColors[theme] || '#20122b');
@@ -44,6 +46,7 @@ function App() {
       space: 'darkblue',
       warm: 'black',
       rain: 'steelblue',
+      cafe: 'tan',
     };
     //update the outer box of the theme
     setEditorOuterColor(themeOuter[theme] || 'darkblue');
@@ -52,6 +55,7 @@ function App() {
       space: '#20122b',
       warm: 'darkred',
       rain: 'lightblue',
+      cafe: '#A28C6B',
     };
     //update the inner box of the theme
     setEditorInnerColor(themeInner[theme] || '#20122b');
@@ -99,7 +103,7 @@ function App() {
           Toggle fullscreen (temp button)
         </button>
         {/* opacity slider*/}
-        <div style={{ position: 'fixed', left: '5%', top: '10%', color: 'black', display: 'flex', flexDirection: 'column', alignItems: 'left', color: 'white' }}>
+        <div style={{ position: 'fixed', left: '5%', top: '10%', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'left'}}>
             <input
                 type="range"
                 min="0"

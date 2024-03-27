@@ -20,6 +20,6 @@
 }
 
 .customFileInputLabel:hover {
-    background-color: red; /* Red on hover */
+    background-color: white; /* Red on hover */
     color: black; /* Black text color on hover */
 }

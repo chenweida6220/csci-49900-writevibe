@@ -32,6 +32,12 @@ const Themes = ({ onChangeTheme }) => {
             >
                 Rain
             </button>
+            <button 
+                className={format === 'cafe' ? 'active' : ''}
+                onClick={() => handleThemes('cafe')}
+            >
+                Cafe
+            </button>
         </div>
     )
 };
