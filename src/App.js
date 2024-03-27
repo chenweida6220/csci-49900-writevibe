@@ -14,11 +14,13 @@ function App() {
 
   const [background, setBackground] = useState('/videos/deep-space.mp4'); // Default background
 
-  const [editorBgColor, setEditorBgColor] = useState('#20122b'); // Default Quill Editor Background Color
+  const [editorBgColor, setEditorBgColor] = useState('blue'); // Default Quill Editor Background Color
 
   const [editorOuterColor, setEditorOuterColor] = useState('darkblue'); // Default Outer Box Color
 
   const [editorInnerColor, setEditorInnerColor] = useState('#20122b'); // Default Inner Box Color
+
+  const [editorToolbarColor, setToolbarColor] = useState('darkblue'); // Default Toolbar Color
 
   //function to update the editor's background depending on the theme
   const changeEditorTheme = (theme) => {
@@ -34,10 +36,10 @@ function App() {
 
     //map the themes with the respective colors
     const themeColors = {
-      space: '#20122b',
-      warm: 'darkred',
-      rain: 'lightblue',
-      cafe: '#A28C6B',
+      space: 'blue',
+      warm: 'red',
+      rain: 'steelblue',
+      cafe: '#AC835C',
     };
     //update the background color
     setEditorBgColor(themeColors[theme] || '#20122b');
@@ -59,6 +61,15 @@ function App() {
     };
     //update the inner box of the theme
     setEditorInnerColor(themeInner[theme] || '#20122b');
+
+    const themeToolbar = {
+      space: 'darkblue',
+      warm: 'black',
+      rain: '#5CA9AC',
+      cafe: 'tan',
+    };
+    //update the toolbar color
+    setToolbarColor(themeToolbar[theme] || 'darkblue');
   };
 
   return (
@@ -96,8 +107,7 @@ function App() {
               }}>
                 <Quilljs 
                     editorBgColor={ editorBgColor }
-                    // editorColorChange={themeColors[theme].editorColor}
-                    // toolbarColorChange={themeColors[theme].toolbarColor} 
+                    editorToolbarColor={ editorToolbarColor } 
                 />
               </Box>
           </Box>

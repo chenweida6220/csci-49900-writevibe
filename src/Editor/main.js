@@ -14,7 +14,7 @@ import Export from "../Exporter/Export";
 // Importing Importer
 import Import from "../Importer/Import";
 
-const Editor = ({ editorBgColor }) => {
+const Editor = ({ editorBgColor, editorBorderColor, editorToolbarColor }) => {
   // Editor state
   const [value, setValue] = useState("");
   // Editor state for exporting using Deltas
@@ -38,17 +38,19 @@ const Editor = ({ editorBgColor }) => {
   // Change the quill border color
   useEffect(() => {
     if (quill.current) {
-      // Add the custom class to the Quill editor's container
       const editorContainer = quill.current.getEditor().container;
-      editorContainer.classList.add(styles.customEditor);
-
-      //Target the toolbar and change the border color of that too
       const toolbarElement = editorContainer.previousSibling;
-      if (toolbarElement && toolbarElement.classList.contains('ql-toolbar')) {
-        toolbarElement.classList.add(styles.customToolbar);
-      }
+  
+      // change the editor border color and background color, we can change this to be two seperate colors after
+      editorContainer.style.borderColor = editorBgColor;
+      editorContainer.style.backgroundColor = editorBgColor;
+
+      //change the toolbar border color and background color, we can change this to be two seperate colors after
+      toolbarElement.style.borderColor = editorToolbarColor;
+      toolbarElement.style.backgroundColor = editorToolbarColor;
     }
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, [editorBorderColor, editorToolbarColor]); // Re-run when these props change
+  
 
   const imageHandler = useCallback(() => {
     // Create an input element of type 'file'
