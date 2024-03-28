@@ -14,7 +14,7 @@ import Export from "../Exporter/Export";
 // Importing Importer
 import Import from "../Importer/Import";
 
-const Editor = ({ editorBgColor, editorBorderColor, editorToolbarColor }) => {
+const Editor = ({ editorBgColor, editorToolbarColor }) => {
   // Editor state
   const [value, setValue] = useState("");
   // Editor state for exporting using Deltas
@@ -45,11 +45,11 @@ const Editor = ({ editorBgColor, editorBorderColor, editorToolbarColor }) => {
       editorContainer.style.borderColor = editorBgColor;
       editorContainer.style.backgroundColor = editorBgColor;
 
-      //change the toolbar border color and background color, we can change this to be two seperate colors after
+      // change the toolbar border color and background color, we can change this to be two seperate colors after
       toolbarElement.style.borderColor = editorToolbarColor;
       toolbarElement.style.backgroundColor = editorToolbarColor;
     }
-  }, [editorBorderColor, editorToolbarColor]); // Re-run when these props change
+  }, [editorBgColor, editorToolbarColor]); // Re-run when these props change
   
 
   const imageHandler = useCallback(() => {
@@ -157,7 +157,6 @@ const Editor = ({ editorBgColor, editorBorderColor, editorToolbarColor }) => {
         formats={formats}
         modules={modules}
         onChange={handleChange} //Use the handle change function
-        style={{ backgroundColor: editorBgColor }}
       />
       {/*Export the delta to use in Exporter.js*/}
       <div className={styles.exportButton}>

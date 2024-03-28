@@ -40,10 +40,10 @@ function App() {
         },
         rain: {
             background: '/videos/rainy-window.mp4',
-            editorBgColor: 'blue',
+            editorBgColor: 'steelblue',
             editorOuterColor: 'steelblue',
             editorInnerColor: 'lightblue',
-            editorToolbarColor: '#5CA9AC',
+            editorToolbarColor: '#00FAFF',
         },
         cafe: {
             background: '/images/cafe.jpg',
