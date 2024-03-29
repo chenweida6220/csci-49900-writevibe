@@ -6,6 +6,14 @@ import { Box, ThemeProvider } from '@mui/material';
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import Themes from './Themes/Themes.js';
 
+//need to put this here so the keystrokes don't duplicate
+document.addEventListener('keydown', (e) => {
+    //document.keystrokeSfx.cloneNode(true).play();
+    //console.log(e.key);
+    document.getElementById('audio').cloneNode(true).play();
+    
+});
+
 function App() {
     const handle = useFullScreenHandle();
 
@@ -22,6 +30,10 @@ function App() {
 
     const [editorToolbarColor, setToolbarColor] = useState('darkblue'); // Default Toolbar Color
 
+    const [keystrokeSfx, setKeystrokeSfx] = useState('/audio/sparkle.wav');   // Default typing sound effect
+
+    const [bgAudio, setBgAudio] = useState(''); //Default background audio
+
     //function to update the editor's background depending on the theme
     const themeColors = {
         space: {
@@ -30,6 +42,8 @@ function App() {
             editorOuterColor: 'darkblue',
             editorInnerColor: '#20122B',
             editorToolbarColor: 'darkblue',
+            keystrokeSfx: '/audio/sparkle.wav',
+            
         },
         warm: {
             background: '/videos/fireplace.mp4',
@@ -37,13 +51,16 @@ function App() {
             editorOuterColor: 'black',
             editorInnerColor: 'darkred',
             editorToolbarColor: 'black',
+            keystrokeSfx: '/audio/keystroke.wav',
+            bgAudio: '/audio/fireplace.mp3',
         },
         rain: {
             background: '/videos/rainy-window.mp4',
             editorBgColor: 'steelblue',
             editorOuterColor: 'steelblue',
             editorInnerColor: 'lightblue',
-            editorToolbarColor: '#00FAFF',
+            editorToolbarColor: '#5CA9AC',
+            keystrokeSfx: '/audio/purple.wav',
         },
         cafe: {
             background: '/images/cafe.jpg',
@@ -51,6 +68,7 @@ function App() {
             editorOuterColor: 'tan',
             editorInnerColor: '#A28C6B',
             editorToolbarColor: 'tan',
+            keystrokeSfx: '/audio/f.wav',
         },
     };
 
@@ -65,12 +83,41 @@ function App() {
         setEditorInnerColor(themeColors[theme].editorInnerColor || '#20122b');
         //update the toolbar color
         setToolbarColor(themeColors[theme].editorToolbarColor || 'darkblue');
+        //update the typing sound
+        setKeystrokeSfx(themeColors[theme].keystrokeSfx || '/audio/f.wav');
+        //console.log(themeColors[theme]);
+        setBgAudio(themeColors[theme].bgAudio || '');
     }
+
+    //let fired = false; 
+    //document.addEventListener('keydown', (e) => {
+        //console.log(fired);
+        //console.log(event.key);
+        //if (!fired) {
+            //fired = true;
+            
+            /*
+            if (e.key === 'Enter') {
+            //document.getElementById('audio').cloneNode(true).play();
+            document.getElementById('audio').play();
+            }
+            
+            if (e.key === 'Backspace') {
+                document.getElementById('audio').play();
+            }
+            */
+
+            //document.getElementById('audio').cloneNode(true).play();
+    //});
+
 
     return (
         <FullScreen handle={handle}>
             <div className="App">
                 <Background src={background} />
+                <audio id='audio' src={keystrokeSfx}></audio>
+                <audio id='bgaudio' src={bgAudio} autoPlay loop></audio>
+                {/*<audio id='audio' src={enterSfx}></audio>*/}
                 <header className="App-header" style={{ opacity: opacity / 100 }}>
                     <ThemeProvider
                         theme={{
