@@ -61,6 +61,7 @@ function App() {
             editorInnerColor: 'lightblue',
             editorToolbarColor: '#5CA9AC',
             keystrokeSfx: '/audio/purple.wav',
+            bgAudio: '/audio/rain.mp3',
         },
         cafe: {
             background: '/images/cafe.jpg',
@@ -69,6 +70,7 @@ function App() {
             editorInnerColor: '#A28C6B',
             editorToolbarColor: 'tan',
             keystrokeSfx: '/audio/f.wav',
+            bgAudio: '/audio/cafe.mp3',
         },
     };
 
@@ -88,28 +90,6 @@ function App() {
         //console.log(themeColors[theme]);
         setBgAudio(themeColors[theme].bgAudio || '');
     }
-
-    //let fired = false; 
-    //document.addEventListener('keydown', (e) => {
-        //console.log(fired);
-        //console.log(event.key);
-        //if (!fired) {
-            //fired = true;
-            
-            /*
-            if (e.key === 'Enter') {
-            //document.getElementById('audio').cloneNode(true).play();
-            document.getElementById('audio').play();
-            }
-            
-            if (e.key === 'Backspace') {
-                document.getElementById('audio').play();
-            }
-            */
-
-            //document.getElementById('audio').cloneNode(true).play();
-    //});
-
 
     return (
         <FullScreen handle={handle}>
