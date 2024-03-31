@@ -7,13 +7,37 @@ import { ClassNames } from '@emotion/react';
 import { useState } from 'react'; // React hook for functional components
 
 import './background.css';
-import backgroundimage from '../images/Bubblebackground.png';
+// import backgroundimage from '../../public/user-customization/Bubbles_animation.gif';
 import logoimage from '../images/Most-Fun-Writing-App_logo.png';
 import settingsicon from '../images/Painterspalette.png';
-import settingsmenuimage from '../images/Settingscanvas-1.png';
+// import emberhaven from '../../public/preset-themes/Ember Haven.json'
+import emberhaven from '../preset-themes/Ember Haven.json';
+import bubblebliss from '../preset-themes/Bubble Bliss.json';
+
+// Preset Theme Selection
+// const themes = { bubblebliss, emberhaven };
+
+const themes = {
+  emberhaven: emberhaven,
+  bubblebliss: bubblebliss
+};
+
+const currentTheme = themes['bubblebliss']
+
+// Resolve the path of the background image
+// emberhaven.background = require('../content/' + emberhaven.background);
+
+// Use the properties of the current theme
+const background = currentTheme.background;
+const canvas = currentTheme.canvas;
+// const pageColor = currentTheme.pageColor;
+// const font = currentTheme.font;
+// const typingSound = currentTheme.typingSound;
+// const soundscape = currentTheme.soundscape;
 
 const BackgroundDiv = styled('div')({
-    backgroundImage: `url(${backgroundimage})`,
+    // backgroundImage: `url(${backgroundimage})`,
+    backgroundImage: `url(${process.env.PUBLIC_URL + "/user-customization/" + currentTheme.background})`, // Gathering public URL for the background image
     // backgroundAttachment: 'fixed',
     backgroundSize: 'cover',
     color: 'white',
@@ -49,7 +73,7 @@ const SettingsDiv = styled('div')({
   margin: '10px',
   padding: '10px',
   '&:hover': {
-    backgroundColor: 'rgba(50,135,164,0.7)', // change this to the color you want
+  backgroundColor: 'rgba(50,135,164,0.7)', // change this to the color you want
   },
 });
 
@@ -79,7 +103,7 @@ function Background() {
 
         <Settings />
         <Footer />
-        </BackgroundDiv>
+      </BackgroundDiv>
     );
   }
 
@@ -113,6 +137,13 @@ function Settings() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  // Handling state changes for preset themes
+  const [currentTheme, setCurrentTheme] = useState(bubblebliss);
+
+  const handleThemeChange = (event) => {
+    setCurrentTheme(themes[event.target.value]);
   };
 
   return (
@@ -161,10 +192,13 @@ function Settings() {
               </Grid>
               <Grid item xs={12} md={6}>
                 <HarmattanTypography variant="h6">Theme</HarmattanTypography>
-                <Select sx={{ width: '80%' }}>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                <Select sx={{ width: '80%' }}
+                value={currentTheme}
+                onChange={(event) => setCurrentTheme(themes[event.target.value])} // Update the current theme when the user selects a different theme
+                >
+                  <MenuItem value='emberhaven'>Ember Haven</MenuItem>
+                  <MenuItem value={2}>Twenty</MenuItem>
+                  <MenuItem value={3}>Thirty</MenuItem>
                 </Select>
               </Grid>
               <Grid item xs={12} md={6}>
