@@ -1,17 +1,17 @@
 .wrapper {
   padding: 2rem 3rem;
-  background-color: white;
   opacity: 90%;
 }
 
 .label {
   font-size: 1rem;
   font-weight: 500;
-  color:black;
+  color:white;
+  position: relative;
+  right: 60px;
 }
 
 .editor {
-  background-color: white;
   margin-top: 1rem;
   height: 600px;
   color: black; /*default font color in editor*/

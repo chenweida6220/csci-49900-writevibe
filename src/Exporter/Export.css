@@ -15,7 +15,7 @@
 }
 
 .fileTypeExport button.active {
-    background-color: red; /* Red background for active button */
+    background-color: white; /* Red background for active button */
     color: black; /* Black text when button is active */
 }
 
@@ -33,6 +33,6 @@
 }
 
 .exportButton:hover {
-    background-color: red;
+    background-color: white;
     color: black;
 } 

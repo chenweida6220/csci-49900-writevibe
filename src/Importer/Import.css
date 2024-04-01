@@ -17,9 +17,11 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    position: relative;
+    right: 275px;
 }
 
 .customFileInputLabel:hover {
-    background-color: red; /* Red on hover */
+    background-color: white; /* White on hover */
     color: black; /* Black text color on hover */
 }
