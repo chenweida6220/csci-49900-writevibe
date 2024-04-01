@@ -30,9 +30,9 @@ function App() {
 
     const [editorToolbarColor, setToolbarColor] = useState('grey'); // Default Toolbar Color
 
-    const [keystrokeSfx, setKeystrokeSfx] = useState('');   // Default typing sound effect
+    const [keystrokeSfx, setKeystrokeSfx] = useState('/audio/empty.wav');
 
-    const [bgAudio, setBgAudio] = useState(''); //Default background audio
+    const [bgAudio, setBgAudio] = useState('null.mp3'); //Default background audio
 
     //function to update the editor's background depending on the theme
     const themeColors = {
@@ -42,7 +42,7 @@ function App() {
             editorOuterColor: 'white',
             editorInnerColor: 'white',
             editorToolbarColor: 'grey',
-            keystrokeSfx: '',
+            keystrokeSfx: '/audio/empty.wav',
             
         },
         space: {
@@ -51,7 +51,7 @@ function App() {
             editorOuterColor: 'darkblue',
             editorInnerColor: '#20122B',
             editorToolbarColor: 'darkblue',
-            keystrokeSfx: '/audio/sparkle.wav',
+            keystrokeSfx: '/audio/purple.wav',
             
         },
         warm: {
