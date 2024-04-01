@@ -59,6 +59,13 @@ const Themes = ({ onChangeTheme }) => {
                     <label>Preset Themes: </label>
                     <select name="preset" id="preset">
                         <option 
+                            value="default"
+                            className={format === 'default' ? 'active' : ''}
+                            onClick={() => handleThemes('default')}
+                        >
+                            Default
+                        </option>
+                        <option 
                             value="space"
                             className={format === 'space' ? 'active' : ''}
                             onClick={() => handleThemes('space')}
