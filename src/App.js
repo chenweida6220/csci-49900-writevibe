@@ -20,22 +20,31 @@ function App() {
     //opacity slider
     const [opacity, setOpacity] = useState(90);  //100 is default opacity
 
-    const [background, setBackground] = useState('/videos/deep-space.mp4'); // Default background
+    const [background, setBackground] = useState('/images/default.jpg'); // Default background
 
-    const [editorBgColor, setEditorBgColor] = useState('blue'); // Default Quill Editor Background Color
+    const [editorBgColor, setEditorBgColor] = useState('#EEEEEE'); // Default Quill Editor Background Color
 
-    const [editorOuterColor, setEditorOuterColor] = useState('darkblue'); // Default Outer Box Color
+    const [editorOuterColor, setEditorOuterColor] = useState('white'); // Default Outer Box Color
 
-    const [editorInnerColor, setEditorInnerColor] = useState('#20122b'); // Default Inner Box Color
+    const [editorInnerColor, setEditorInnerColor] = useState('white'); // Default Inner Box Color
 
-    const [editorToolbarColor, setToolbarColor] = useState('darkblue'); // Default Toolbar Color
+    const [editorToolbarColor, setToolbarColor] = useState('grey'); // Default Toolbar Color
 
-    const [keystrokeSfx, setKeystrokeSfx] = useState('/audio/sparkle.wav');   // Default typing sound effect
+    const [keystrokeSfx, setKeystrokeSfx] = useState('');   // Default typing sound effect
 
     const [bgAudio, setBgAudio] = useState(''); //Default background audio
 
     //function to update the editor's background depending on the theme
     const themeColors = {
+        default: {
+            background: '/images/default.jpg',
+            editorBgColor: '#EEEEEE',
+            editorOuterColor: 'white',
+            editorInnerColor: 'white',
+            editorToolbarColor: 'grey',
+            keystrokeSfx: '',
+            
+        },
         space: {
             background: '/videos/deep-space.mp4',
             editorBgColor: 'blue',
