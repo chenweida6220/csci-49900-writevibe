@@ -24,7 +24,7 @@ function App() {
 
     const [editorBgColor, setEditorBgColor] = useState('#EEEEEE'); // Default Quill Editor Background Color
 
-    const [editorOuterColor, setEditorOuterColor] = useState('white'); // Default Outer Box Color
+    const [editorOuterColor, setEditorOuterColor] = useState('#EEEEEE'); // Default Outer Box Color
 
     const [editorInnerColor, setEditorInnerColor] = useState('white'); // Default Inner Box Color
 
@@ -39,7 +39,7 @@ function App() {
         default: {
             background: '/images/default.jpg',
             editorBgColor: '#EEEEEE',
-            editorOuterColor: 'white',
+            editorOuterColor: '#EEEEEE',
             editorInnerColor: 'white',
             editorToolbarColor: 'grey',
             keystrokeSfx: '/audio/empty.wav',
