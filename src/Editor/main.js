@@ -158,6 +158,9 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
         modules={modules}
         onChange={handleChange} //Use the handle change function
       />
+      <div className={styles.htmlOutput}>
+        <pre>{value}</pre>
+      </div>
       {/*Export the delta to use in Exporter.js*/}
       <div className={styles.exportButton}>
         {<Export delta={delta} />}
