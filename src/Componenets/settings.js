@@ -7,10 +7,10 @@ import { useState } from 'react'; // React hook for functional components
 
 import './background.css';
 // import backgroundimage from '../../public/user-customization/Bubbles_animation.gif';
-import settingsicon from '../images/Painterspalette.png';
+import settingsicon from '../Images/Painterspalette.png';
 // import emberhaven from '../../public/preset-themes/Ember Haven.json'
-import emberhaven from '../preset-themes/Ember Haven.json';
-import bubblebliss from '../preset-themes/Bubble Bliss.json';
+import emberhaven from '../PresetThemes/Ember Haven.json';
+import bubblebliss from '../PresetThemes/Bubble Bliss.json';
 
 
 

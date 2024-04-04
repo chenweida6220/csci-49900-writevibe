@@ -5,7 +5,7 @@ import Background from './Background/Background';
 import { Box, ThemeProvider } from '@mui/material';
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import Themes from './Themes/Themes.js';
-
+import Settings from './Componenets/settings.js';
 //need to put this here so the keystrokes don't duplicate
 document.addEventListener('keydown', (e) => {
     //document.keystrokeSfx.cloneNode(true).play();
@@ -161,6 +161,7 @@ function App() {
                 </div>
                 <Themes onChangeTheme={changeEditorTheme}></Themes>
             </div>
+          <Settings />
         </FullScreen>
     );
 }
