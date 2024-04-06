@@ -1,17 +1,12 @@
 import React from 'react';
-import { Typography, AppBar, Card, CardActions, CardContent, CardMedia, CssBaseline, 
-         Grid, Paper, Toolbar, Container, Link, Dialog, DialogContent, Box, InputLabel,
-         MenuItem, FormControl, Select, TextField } from '@mui/material';
+import { Typography, Grid, Dialog, DialogContent, Box,
+          MenuItem, Select, TextField } from '@mui/material';
 import { styled } from '@mui/system'; // replaces @mui/system/styles which is depreciated
-import { useState } from 'react'; // React hook for functional components
+import { useState, useContext } from 'react'; // React hook for functional components
 
 import './background.css';
-// import backgroundimage from '../../public/user-customization/Bubbles_animation.gif';
 import settingsicon from '../Images/Painterspalette.png';
-// import emberhaven from '../../public/preset-themes/Ember Haven.json'
-import emberhaven from '../PresetThemes/Ember Haven.json';
-import bubblebliss from '../PresetThemes/Bubble Bliss.json';
-
+import { ThemeHandlerContext } from '../Context/ContextProvider';
 
 
 const SettingsDiv = styled('div')({
@@ -33,11 +28,6 @@ const SettingsDiv = styled('div')({
 });
 
 
-const themes = {
-  emberhaven: emberhaven,
-  bubblebliss: bubblebliss
-};
-
 const HarmattanTypography = styled(Typography)({
   fontFamily: 'Harmattan, sans-serif',
   fontWeight: 600,
@@ -47,6 +37,7 @@ const HarmattanTypography = styled(Typography)({
 
 const Settings = () => {
   const [open, setOpen] = useState(false);
+  const { handleThemes } = useContext(ThemeHandlerContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -57,10 +48,11 @@ const Settings = () => {
   };
 
   // Handling state changes for preset themes
-  const [currentTheme, setCurrentTheme] = useState(bubblebliss);
+  const [currentTheme, setCurrentTheme] = useState('default');
 
   const handleThemeChange = (event) => {
-    setCurrentTheme(themes[event.target.value]);
+    handleThemes(event.target.value);
+    console.log("Attempting to change theme to: ", event.target.value);
   };
   
   return (
@@ -90,9 +82,6 @@ const Settings = () => {
               padding: 5, 
               overflow: 'auto', // Add a scrollbar if the content overflows
               paddingLeft: 8,
-              // display: 'flex',
-              // justifyContent: 'center',
-              // alignItems: 'center',
             }}>
             
             <Grid container rowSpacing={0.5} columnSpacing={5} justifyContent="center" alignItems="center">
@@ -107,15 +96,21 @@ const Settings = () => {
                   type="number"
                 />
               </Grid>
+              {/* Themes Selection */}
               <Grid item xs={12} md={6}>
                 <HarmattanTypography variant="h6">Theme</HarmattanTypography>
                 <Select sx={{ width: '80%' }}
-                value={currentTheme}
-                onChange={(event) => setCurrentTheme(themes[event.target.value])} // Update the current theme when the user selects a different theme
+                  label={currentTheme}
+                  value={currentTheme}
+                  //onChange={(event) => handleThemeChange(event)} // Update the current theme when the user selects a different theme
+                  onChange={(event) => handleThemeChange(event)}
                 >
-                  <MenuItem value='emberhaven'>Ember Haven</MenuItem>
-                  <MenuItem value={2}>Twenty</MenuItem>
-                  <MenuItem value={3}>Thirty</MenuItem>
+                  {/* Add more MenuItems with a name that corresponds to a theme name in Themes.js */}
+                  <MenuItem value='default'>Default</MenuItem>
+                  <MenuItem value='space'>Space</MenuItem>
+                  <MenuItem value='warm'>Warm</MenuItem>
+                  <MenuItem value='rain'>Rain</MenuItem>
+                  <MenuItem value='cafe'>Cafe</MenuItem>
                 </Select>
               </Grid>
               <Grid item xs={12} md={6}>
@@ -167,16 +162,11 @@ const Settings = () => {
                 </Select>
               </Grid>
             </Grid>
-          
-
-
           </Box>
         </DialogContent>
       </Dialog>
-
     </SettingsDiv>
   );
 };
-
 
 export default Settings;
