@@ -1,0 +1,30 @@
+.dialogContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+
+.settingsBox {
+  width: 50vw;
+  height: 50vh;
+  max-width: 600px;
+  max-height: 600px;
+  background-color: #dec9b5;
+  border-radius: 5%;
+  border: 2px solid black;
+  padding: 5px;
+  overflow: auto;
+}
+
+.settingsGridItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  padding-left: 10px;
+}

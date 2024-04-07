@@ -5,6 +5,7 @@ import { styled } from '@mui/system'; // replaces @mui/system/styles which is de
 import { useState, useContext } from 'react'; // React hook for functional components
 
 import './background.css';
+import './Settings.css';
 import settingsicon from '../Images/Painterspalette.png';
 import { ThemeHandlerContext } from '../Context/ContextProvider';
 
@@ -124,29 +125,8 @@ const Settings = () => {
 
       <Dialog open={open} onClose={handleClose} 
                     PaperProps={{ style: { backgroundColor: 'transparent', boxShadow: 'none' }}}>
-      <DialogContent sx={{ 
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          height: '100%',
-          overflow: 'hidden',
-        }}>
-          <Box sx={{ 
-              width: '50vw',
-              height: '50vh',
-              maxWidth: '600px',
-              maxHeight: '600px',
-              backgroundColor: '#dec9b5',
-              borderRadius: '15%',
-              border: '2px solid black',
-              padding: 5, 
-              overflow: 'auto', // Add a scrollbar if the content overflows
-              paddingLeft: 8,
-            }}
-              open={isOpen}
-              onClose={handleClose}>
-            
+      <DialogContent className="dialogContent" >
+          <Box className="settingsBox" open={isOpen} onClose={handleClose}>
             <Grid container rowSpacing={0.5} columnSpacing={5} justifyContent="center" alignItems="center">
               <Grid item xs={12}>
                 <HarmattanTypography variant="h4" align="center">Painter's Palette</HarmattanTypography>
