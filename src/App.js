@@ -5,7 +5,8 @@ import Background from './Background/Background';
 import { Box, ThemeProvider } from '@mui/material';
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import Themes from './Themes/Themes.js';
-
+import Settings from './Componenets/settings.js';
+import { ThemeHandlerContext } from './Context/ContextProvider';
 //need to put this here so the keystrokes don't duplicate
 document.addEventListener('keydown', (e) => {
     //document.keystrokeSfx.cloneNode(true).play();
@@ -33,6 +34,10 @@ function App() {
     const [keystrokeSfx, setKeystrokeSfx] = useState('/audio/empty.wav');
 
     const [bgAudio, setBgAudio] = useState('null.mp3'); //Default background audio
+
+    // Lifting up the state to change the theme
+    const [format, setFormat] = useState('space');
+
 
     //function to update the editor's background depending on the theme
     const themeColors = {
@@ -100,7 +105,15 @@ function App() {
         setBgAudio(themeColors[theme].bgAudio || '');
     }
 
+
+    const handleThemes = (newFormat) => {
+        console.log("Theme changed to:", newFormat);
+        setFormat(newFormat);
+        changeEditorTheme(newFormat);
+    };
+
     return (
+    <ThemeHandlerContext.Provider value={{handleThemes}}>
         <FullScreen handle={handle}>
             <div className="App">
                 <Background src={background} />
@@ -161,7 +174,9 @@ function App() {
                 </div>
                 <Themes onChangeTheme={changeEditorTheme}></Themes>
             </div>
+          <Settings />
         </FullScreen>
+      </ThemeHandlerContext.Provider>
     );
 }
 

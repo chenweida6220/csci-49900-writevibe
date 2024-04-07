@@ -1,0 +1,50 @@
+.dialogContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+
+.settingsBox {
+  width: 50vw;
+  height: 50vh;
+  max-width: 600px;
+  max-height: 600px;
+  background-color: #dec9b5;
+  border-radius: 5%;
+  border: 2px solid black;
+  padding: 5px;
+  overflow: auto;
+}
+
+.harmattan-regular {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .harmattan-medium {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .MuiLink-root.harmattan-semibold {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .MuiLink-root.harmattan-bold {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .FooterDiv img {
+    height: 100%;
+    width: auto;
+  }

@@ -1,0 +1,8 @@
+{
+    "background": "/Fireplace_animation.gif",
+    "canvas": "#f0e16c",
+    "pageColor": "#fef9d3",
+    "font": "Arial",
+    "typingSound": "typing_sound.mp3",
+    "soundscape": "soundscape_sound.mp3"
+  }
