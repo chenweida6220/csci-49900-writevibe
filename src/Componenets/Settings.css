@@ -20,11 +20,31 @@
   overflow: auto;
 }
 
-.settingsGridItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px;
-  padding-left: 10px;
-}
+.harmattan-regular {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .harmattan-medium {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .MuiLink-root.harmattan-semibold {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .MuiLink-root.harmattan-bold {
+    font-family: "Harmattan", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .FooterDiv img {
+    height: 100%;
+    width: auto;
+  }

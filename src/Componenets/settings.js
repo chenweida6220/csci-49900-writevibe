@@ -4,7 +4,6 @@ import { Typography, Grid, Dialog, DialogContent, Box,
 import { styled } from '@mui/system'; // replaces @mui/system/styles which is depreciated
 import { useState, useContext } from 'react'; // React hook for functional components
 
-import './background.css';
 import './Settings.css';
 import settingsicon from '../Images/Painterspalette.png';
 import { ThemeHandlerContext } from '../Context/ContextProvider';
@@ -37,7 +36,7 @@ const HarmattanTypography = styled(Typography)({
 
 function SettingsOption({ label, options, value, onChange }) {
   return (
-    <Grid item xs={12} md={6}>
+    <Grid className="settingsGridItem" item xs={12} md={6}>
       <HarmattanTypography variant="h6">{label}</HarmattanTypography>
       <Select sx={{ width: '80%' }} value={value} onChange={onChange}>
         {options.map((option) => (
