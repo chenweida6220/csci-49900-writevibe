@@ -34,34 +34,96 @@ const HarmattanTypography = styled(Typography)({
   fontStyle: 'bold',
 });
 
+function SettingsOption({ label, options, value, onChange }) {
+  return (
+    <Grid item xs={12} md={6}>
+      <HarmattanTypography variant="h6">{label}</HarmattanTypography>
+      <Select sx={{ width: '80%' }} value={value} onChange={onChange}>
+        {options.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+    </Grid>
+  );
+}
+
 
 const Settings = () => {
   const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+  const [background, setBackground] = useState('placeholder1');
+  const [canvas, setCanvas] = useState('placeholder2');
+  const [pageColor, setPageColor] = useState('placeholder3');
+  const [font, setFont] = useState('placeholder4');
+  const [typingSound, setTypingSound] = useState('placeholder5'); 
+  const [soundscape, setSoundscape] = useState('placeholder6');
+
   const { handleThemes } = useContext(ThemeHandlerContext);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
+    setIsOpen(false);
     setOpen(false);
   };
+  const handleClickOpen = () => {
+    setOpen(true);
+    setIsOpen(true);
+  };
+  
 
   // Handling state changes for preset themes
   const [currentTheme, setCurrentTheme] = useState('default');
 
   const handleThemeChange = (event) => {
     handleThemes(event.target.value);
+    setCurrentTheme(event.target.value);
+    setIsOpen(false);
+    setOpen(false);
     console.log("Attempting to change theme to: ", event.target.value);
   };
+
+  const themes = [
+    { value: 'default', label: 'Default' },
+    { value: 'space', label: 'Space' },
+    { value: 'warm', label: 'Warm' },
+    { value: 'rain', label: 'Rain' },
+    { value: 'cafe', label: 'Cafe' },
+    // Add more themes here
+  ];
   
+  const backgroundOptions = [
+    { value: 'placeholder1', label: 'Placeholder1' },
+  ];
+
+  const canvasOptions = [
+    { value: 'placeholder2', label: 'Placeholder2' },
+  ];
+
+  const pageColorOptions = [
+    { value: 'placeholder3', label: 'Placeholder3' },
+  ];
+
+  const fontOptions = [
+    { value: 'placeholder4', label: 'Placeholder4' },
+  ];
+
+  const typingSoundOptions = [
+    { value: 'placeholder5', label: 'Placeholder5' },
+  ];
+
+  const soundscapeOptions = [
+    { value: 'placeholder6', label: 'Placeholder6' },
+  ];
+
   return (
     <SettingsDiv>
       <button style={{border: 'none', background: 'none'}} onClick={handleClickOpen}>
         <img src={settingsicon} alt="Painter's palette icon" style={{width: '80%', height: '80%', opacity: '1'}} />
       </button>
 
-      <Dialog open={open} onClose={handleClose} PaperProps={{ style: { backgroundColor: 'transparent', boxShadow: 'none' }}}>
+      <Dialog open={open} onClose={handleClose} 
+                    PaperProps={{ style: { backgroundColor: 'transparent', boxShadow: 'none' }}}>
       <DialogContent sx={{ 
           display: 'flex',
           justifyContent: 'center',
@@ -70,12 +132,12 @@ const Settings = () => {
           height: '100%',
           overflow: 'hidden',
         }}>
-
+        { isOpen && (
           <Box sx={{ 
               width: '50vw',
               height: '50vh',
-              maxWidth: '500px',
-              maxHeight: '500px',
+              maxWidth: '600px',
+              maxHeight: '600px',
               backgroundColor: '#dec9b5',
               borderRadius: '15%',
               border: '2px solid black',
@@ -96,73 +158,51 @@ const Settings = () => {
                   type="number"
                 />
               </Grid>
-              {/* Themes Selection */}
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Theme</HarmattanTypography>
-                <Select sx={{ width: '80%' }}
-                  label={currentTheme}
-                  value={currentTheme}
-                  //onChange={(event) => handleThemeChange(event)} // Update the current theme when the user selects a different theme
-                  onChange={(event) => handleThemeChange(event)}
-                >
-                  {/* Add more MenuItems with a name that corresponds to a theme name in Themes.js */}
-                  <MenuItem value='default'>Default</MenuItem>
-                  <MenuItem value='space'>Space</MenuItem>
-                  <MenuItem value='warm'>Warm</MenuItem>
-                  <MenuItem value='rain'>Rain</MenuItem>
-                  <MenuItem value='cafe'>Cafe</MenuItem>
-                </Select>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Background</HarmattanTypography>
-                <Select sx={{ width: '80%' }}>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Canvas</HarmattanTypography>
-                <Select sx={{ width: '80%' }}>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Page Color</HarmattanTypography>
-                <Select sx={{ width: '80%' }}>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Font</HarmattanTypography>
-                <Select sx={{ width: '80%' }}>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Typing Sound</HarmattanTypography>
-                <Select sx={{ width: '80%' }}>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Soundscape (Music)</HarmattanTypography>
-                <Select sx={{ width: '80%' }}>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </Grid>
+              <SettingsOption
+                label="Theme"
+                options={themes}
+                value={currentTheme}
+                onChange={handleThemeChange}
+              />
+              <SettingsOption
+                label="Background"
+                options={backgroundOptions}
+                value={background}
+                onChange={setBackground}
+              />
+              <SettingsOption 
+                label="Canvas"
+                options={canvasOptions}
+                value={canvas}
+                onChange={setCanvas}
+              />
+              <SettingsOption
+                label="Page Color"
+                options={pageColorOptions}
+                value={pageColor}
+                onChange={setPageColor}
+              />
+              <SettingsOption
+                label="Font"
+                options={fontOptions}
+                value={font}
+                onChange={setFont}
+              />
+              <SettingsOption
+                label="Typing Sound"
+                options={typingSoundOptions}
+                value={typingSound}
+                onChange={setTypingSound}
+              />
+              <SettingsOption
+                label="Soundscape (Music)"
+                options={soundscapeOptions}
+                value={soundscape}
+                onChange={setSoundscape}
+              />
             </Grid>
           </Box>
+          )} {/* End of isOpen */ }
         </DialogContent>
       </Dialog>
     </SettingsDiv>
