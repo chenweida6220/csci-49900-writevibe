@@ -132,7 +132,6 @@ const Settings = () => {
           height: '100%',
           overflow: 'hidden',
         }}>
-        { isOpen && (
           <Box sx={{ 
               width: '50vw',
               height: '50vh',
@@ -144,7 +143,9 @@ const Settings = () => {
               padding: 5, 
               overflow: 'auto', // Add a scrollbar if the content overflows
               paddingLeft: 8,
-            }}>
+            }}
+              open={isOpen}
+              onClose={handleClose}>
             
             <Grid container rowSpacing={0.5} columnSpacing={5} justifyContent="center" alignItems="center">
               <Grid item xs={12}>
@@ -202,7 +203,6 @@ const Settings = () => {
               />
             </Grid>
           </Box>
-          )} {/* End of isOpen */ }
         </DialogContent>
       </Dialog>
     </SettingsDiv>
