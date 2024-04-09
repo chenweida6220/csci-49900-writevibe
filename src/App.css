@@ -28,6 +28,19 @@
   color: #61dafb;
 }
 
+/*Line spacing CSS */
+.myQuillEditor-1\.42 .ql-editor {
+  line-height: 1.42;
+}
+
+.myQuillEditor-2\.13 .ql-editor {
+  line-height: 2.13;
+}
+
+.myQuillEditor-2\.84 .ql-editor {
+  line-height: 2.84;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
