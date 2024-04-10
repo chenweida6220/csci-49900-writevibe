@@ -1,24 +1,30 @@
-import React, { useState, useContext, useRef } from 'react';
-import { ReactComponent as LineSpacingLogo } from "../line-spacing.svg"
+import React, { useContext } from 'react';
 import '../styles.module.css'
 import { EditorStyleContext } from "../../Context/ContextProvider";
-import LineSpacingIcon from './LineSpacingIconSVG';
 
 const LineSpacing = () => {
- // const [lineHeight, setLineHeight] = useState('1.5');
-  const [ selectValue, setSelectValue ] = useState("");
-  const selectRef = useRef();
-  const { editorStyle, changeStyle } = useContext(EditorStyleContext);
 
-  const handleChange = (selectValue) => {
-    setSelectValue(selectValue);
-    const newLineHeight = selectValue;
-    changeStyle('lineHeight', newLineHeight);
-  }
+  const { editorStyle, changeStyle, changeLineSpacing } = useContext(EditorStyleContext);
+ 
   const handleButtonClick = () => {
-    const newLineHeight = editorStyle.lineHeight === '1.42' ? '2.13' :  editorStyle.lineHeight ===  '2.13' ? '2.84' : '1.42';
+    let newLineHeight;
+    let newLineSpacing;
+
+    if (editorStyle.lineHeight === '1.42') {
+      newLineHeight = '2.13';
+      newLineSpacing = 360;
+    } else if (editorStyle.lineHeight === '2.13') {
+      newLineHeight = '2.84';
+      newLineSpacing = 480;
+    } else {
+      newLineHeight = '1.42';
+      newLineSpacing = 240;
+    }
+
     changeStyle('lineHeight', newLineHeight);
+    changeLineSpacing(newLineSpacing);
   }; 
+
   return (
     <>
     <span className="ql-formats">

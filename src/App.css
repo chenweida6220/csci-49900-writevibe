@@ -41,6 +41,10 @@
   line-height: 2.84;
 }
 
+.ql-toolbar button {
+  color: white;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

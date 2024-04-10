@@ -16,14 +16,21 @@ export function EditorStyleProvider({ children }) {
     // Add more styles here as needed
   });
 
+  const [lineSpacing, setLineSpacing] = useState(240);
+
   const changeStyle = (styleName, newValue) => {
     setEditorStyle(prevStyle => ({
       ...prevStyle,
       [styleName]: newValue,
     }));
   };
+
+  const changeLineSpacing = (value) => {
+    setLineSpacing(value);
+  };
+
   return (
-    <EditorStyleContext.Provider value={{ editorStyle, changeStyle }}>
+    <EditorStyleContext.Provider value={{ editorStyle, changeStyle, lineSpacing, changeLineSpacing }}>
       {children}
     </EditorStyleContext.Provider>
   );

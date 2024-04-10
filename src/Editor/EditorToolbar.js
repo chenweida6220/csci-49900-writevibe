@@ -24,22 +24,6 @@ import  LineSpacing from "./ToolbarComponents/LineSpacing.js"
   const Background = Quill.import("formats/background");
   Quill.register(Background, true);
 
-  //const BorderColor = Quill.import("formats/borderColor");
-  //Quill.register(BorderColor, true);
-
-  
-  const LineSpacingIcon = () => {
-    return (
-      <span className="ql-formats"> 
-        <button className="ql-spacing" defaultValue={"1"} style={{ width: '30px', height: '24px' }} >
-            <option value="1">1</option>
-            <option value="1.5">1.5</option>
-            <option value="2">2</option>
-        </button>
-      </span>
-    )
-  }
-
   export const modules  = {
       toolbar: {
         container: "#my-custom-toolbar",
@@ -100,7 +84,7 @@ import  LineSpacing from "./ToolbarComponents/LineSpacing.js"
           <option value="3">Normal</option>
         </select>
       </span>
-      <span className="ql-formats" style= {{ marginRight: '1px'}}>
+      <span className="ql-formats" style= {{ marginRight: '1px' }}>
         <button className="ql-bold" />
         <button className="ql-italic" />
         <button className="ql-underline" />
