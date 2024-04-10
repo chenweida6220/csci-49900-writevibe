@@ -6,7 +6,7 @@ import  LineSpacing from "./ToolbarComponents/LineSpacing.js"
 
   // Add sizes to whitelist and register them
   const Size = Quill.import("formats/size");
-  Size.whitelist = ["extra-small", "small", "medium", "large"];
+  Size.whitelist = ["1", "2", "3", "4"];
   Quill.register(Size, true);
 
   // Add fonts to whitelist and register them
@@ -42,7 +42,7 @@ import  LineSpacing from "./ToolbarComponents/LineSpacing.js"
 
   export const modules  = {
       toolbar: {
-        container: "#toolbar",
+        container: "#my-custom-toolbar",
           handlers: {
 
           }
@@ -77,8 +77,8 @@ import  LineSpacing from "./ToolbarComponents/LineSpacing.js"
   ];
 
 
- export const EditorToolbar = () => (
-    <div id="toolbar">
+ export const EditorToolbar = ( { editorToolbarColor } ) => (
+    <div id="my-custom-toolbar" style={{ backgroundColor: editorToolbarColor }}>
       <span className="ql-formats" style= {{ marginRight: '1px'}} >
         <select className="ql-font" defaultValue="arial">
           <option value="arial">Arial</option>

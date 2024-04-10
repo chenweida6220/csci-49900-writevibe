@@ -30,7 +30,6 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
 
   // Editor ref
   const quill = useRef();
-
   // Handler to handle button clicked
   // keeping this around for now just because we may add a button that needs to, well, be handled...
   function handler() {
@@ -42,23 +41,6 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
     setValue(content);              //update html content
     setDelta(editor.getContents()); //update delta content
   };
-
-  // Change the quill border color
-  useEffect(() => {
-    if (quill.current) {
-      const editorContainer = quill.current.getEditor().container;
-      const toolbarElement = editorContainer.previousSibling;
-  
-      // change the editor border color and background color, we can change this to be two seperate colors after
-      editorContainer.style.borderColor = editorBgColor;
-      editorContainer.style.backgroundColor = editorBgColor;
-
-      // change the toolbar border color and background color, we can change this to be two seperate colors after
-      toolbarElement.style.borderColor = editorToolbarColor;
-      toolbarElement.style.backgroundColor = editorToolbarColor;
-    }
-  }, [editorBgColor, editorToolbarColor]); // Re-run when these props change
-  
 
   const imageHandler = useCallback(() => {
     // Create an input element of type 'file'
@@ -110,11 +92,12 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
     <div className={styles.wrapper}>
       <Import setEditorContent={setEditorContent} />
       <label className={styles.label}>Most Fun Writing App</label>
-      <EditorToolbar />
+      <EditorToolbar editorToolbarColor= {editorToolbarColor } />
       <QuillEditor
         ref={(el) => (quill.current = el)}
         className={`${styles.editor} myQuillEditor-${editorStyle.lineHeight}`}
         theme="snow"
+        style={{ backgroundColor: editorBgColor }}
         value={value}
         formats={formats}
         modules={modules}
