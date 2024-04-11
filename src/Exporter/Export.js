@@ -23,7 +23,7 @@ const Export = ({ delta }) => {
         if(userFileName) {
             setFileName(userFileName);
         }
-
+        
         const quilToWordConfig = {
             exportAs: 'blob',
             paragraphStyles: {
