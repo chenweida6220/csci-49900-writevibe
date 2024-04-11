@@ -1,34 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { saveAs } from "file-saver";
 import * as quillToWord from "quill-to-word";
 import { pdfExporter } from "quill-to-pdf";
 import './Export.css';
+import { EditorStyleContext } from "../Context/ContextProvider";
+
 
 const Export = ({ delta }) => {
     const [fileName, setFileName] = useState('exported-document');
 
     const [format, setFormat] = useState('docx');
-    
+    const { lineSpacing } = useContext(EditorStyleContext); 
+
     //export the quill delta to docx
     const exportToDocx = async() => {
         if (!delta || !delta.ops) {
             alert("The editor is empty! Please add content.");
             return;
         }
-
         //ask user for file name
         const userFileName = prompt("Please enter a name for your file: (.docx)", fileName);
         if(userFileName) {
             setFileName(userFileName);
         }
-
+        
         const quilToWordConfig = {
             exportAs: 'blob',
             paragraphStyles: {
                 normal: {
                     paragraph: {
                         spacing: {
-                            line: 240,
+                            line: lineSpacing,
                         }
                     }
                 }

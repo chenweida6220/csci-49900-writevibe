@@ -6,7 +6,7 @@ import { Box, ThemeProvider } from '@mui/material';
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import Themes from './Themes/Themes.js';
 import Settings from './Componenets/settings.js';
-import { ThemeHandlerContext } from './Context/ContextProvider';
+import { ThemeHandlerContext, EditorStyleProvider } from './Context/ContextProvider';
 //need to put this here so the keystrokes don't duplicate
 document.addEventListener('keydown', (e) => {
     //document.keystrokeSfx.cloneNode(true).play();
@@ -149,10 +149,12 @@ function App() {
                             <Box sx={{
                                 bgcolor: editorInnerColor,
                             }}>
+                              <EditorStyleProvider>
                                 <Quilljs
                                     editorBgColor={editorBgColor}
                                     editorToolbarColor={editorToolbarColor}
                                 />
+                              </EditorStyleProvider>
                             </Box>
                         </Box>
                     </ThemeProvider>

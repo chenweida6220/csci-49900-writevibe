@@ -1,5 +1,6 @@
 // Importing helper modules
-import { useCallback, useMemo, useRef, useState, useEffect } from "react";
+import React, { useCallback, useMemo, useRef, 
+                useState, useEffect, useContext } from "react";
 
 // Importing core components
 import QuillEditor from "react-quill";
@@ -7,6 +8,7 @@ import QuillEditor from "react-quill";
 // Importing styles
 import "react-quill/dist/quill.snow.css";
 import styles from "./styles.module.css";
+import { EditorStyleContext } from "../Context/ContextProvider.js";
 
 // Importing Exporter
 import Export from "../Exporter/Export";
@@ -14,15 +16,20 @@ import Export from "../Exporter/Export";
 // Importing Importer
 import Import from "../Importer/Import";
 
+// Importing Editor Toolbar
+import EditorToolbar, { modules, formats } from "./EditorToolbar";
+
 const Editor = ({ editorBgColor, editorToolbarColor }) => {
   // Editor state
   const [value, setValue] = useState("");
   // Editor state for exporting using Deltas
   const [delta, setDelta] = useState(null);
 
+  // Editor Style Context
+  const { editorStyle } = React.useContext(EditorStyleContext);
+
   // Editor ref
   const quill = useRef();
-
   // Handler to handle button clicked
   // keeping this around for now just because we may add a button that needs to, well, be handled...
   function handler() {
@@ -34,23 +41,6 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
     setValue(content);              //update html content
     setDelta(editor.getContents()); //update delta content
   };
-
-  // Change the quill border color
-  useEffect(() => {
-    if (quill.current) {
-      const editorContainer = quill.current.getEditor().container;
-      const toolbarElement = editorContainer.previousSibling;
-  
-      // change the editor border color and background color, we can change this to be two seperate colors after
-      editorContainer.style.borderColor = editorBgColor;
-      editorContainer.style.backgroundColor = editorBgColor;
-
-      // change the toolbar border color and background color, we can change this to be two seperate colors after
-      toolbarElement.style.borderColor = editorToolbarColor;
-      toolbarElement.style.backgroundColor = editorToolbarColor;
-    }
-  }, [editorBgColor, editorToolbarColor]); // Re-run when these props change
-  
 
   const imageHandler = useCallback(() => {
     // Create an input element of type 'file'
@@ -78,53 +68,6 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
     };
   }, []);
 
-  const modules = useMemo(() => ({
-      toolbar: {
-        container: [
-          [{ font : []}],
-          [{ header: [1, 2, false] }],
-          ["bold", "italic", "underline", "blockquote"],
-          [{ color: [] }], [{ background: [] }],
-          [
-            { list: "ordered" },
-            { list: "bullet" },
-            { indent: "-1" },
-            { indent: "+1" },
-          ],
-          [{ align: [] }], 
-          ["link", "image"],
-          ["clean"],
-        ],
-        handlers: {
-          image: imageHandler,
-        },
-      },
-      clipboard: {
-        matchVisual: true,
-      },
-    }),
-    [imageHandler]
-  );
-
-  const formats = [
-    "font",
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-    "color",
-    "background",
-    "align",
-    "clean",
-  ];
-
   //Import Functionality
   const setEditorContent = (htmlContent) => {
     const quillEditor = quill.current.getEditor();
@@ -149,16 +92,18 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
     <div className={styles.wrapper}>
       <Import setEditorContent={setEditorContent} />
       <label className={styles.label}>Most Fun Writing App</label>
+      <EditorToolbar editorToolbarColor= {editorToolbarColor } />
       <QuillEditor
         ref={(el) => (quill.current = el)}
-        className={styles.editor}
+        className={`${styles.editor} myQuillEditor-${editorStyle.lineHeight}`}
         theme="snow"
+        style={{ backgroundColor: editorBgColor }}
         value={value}
         formats={formats}
         modules={modules}
         onChange={handleChange} //Use the handle change function
-      />
-      {/*Export the delta to use in Exporter.js*/}
+        placeholder={"Write something awesome..."}
+      />      {/*Export the delta to use in Exporter.js*/}
       <div className={styles.exportButton}>
         {<Export delta={delta} />}
       </div>
