@@ -23,6 +23,10 @@ const Export = ({ delta }) => {
         if(userFileName) {
             setFileName(userFileName);
         }
+        else {
+            alert("Export Canceled!");
+            return;
+        }
         
         const quilToWordConfig = {
             exportAs: 'blob',
@@ -63,7 +67,7 @@ const Export = ({ delta }) => {
         saveAs(blob, `${userFileName}.txt`);
     };
 
-    // Export the quill dela to PDF
+    // Export the quill delta to PDF
     const exportToPDF = async() => {
         if (!delta || !delta.ops) {     // If there is no content to export
             alert("The editor is empty! Please add content.");
