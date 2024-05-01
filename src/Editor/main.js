@@ -69,9 +69,8 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
   }, []);
 
   //Import Functionality
-  const setEditorContent = (htmlContent) => {
-    const quillEditor = quill.current.getEditor();
-    quillEditor.clipboard.dangerouslyPasteHTML(htmlContent);
+  const handleSetContent = (htmlContent) => {
+    setValue(htmlContent);
   };
 
   //Save and Load content from local storage
@@ -79,7 +78,7 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
   useEffect(() => {
     const savedContent = localStorage.getItem('editorContent');
     if (savedContent) {
-        setEditorContent(savedContent);
+        handleSetContent(savedContent);
     }
   }, []);
 
@@ -90,7 +89,6 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
 
   return (
     <div className={styles.wrapper}>
-      <Import setEditorContent={setEditorContent} />
       <label className={styles.label}>Most Fun Writing App</label>
       <EditorToolbar editorToolbarColor= {editorToolbarColor } />
       <QuillEditor
@@ -107,6 +105,7 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
       <div className={styles.exportButton}>
         {<Export delta={delta} />}
       </div>
+      <Import onContentChange={handleSetContent} />
     </div>
   );
 };

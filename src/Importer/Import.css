@@ -1,3 +1,7 @@
+.preformatted-text {
+    white-space: pre;   /* preserves the formatting when importing .txt */
+}
+
 .fileInputWrapper {
     /* margin-right: 500px; */
     margin-bottom: 10px; /* Space between the input and the editor */
@@ -8,20 +12,37 @@
     display: none; /* Hide the default file input */
 }
 
-.customFileInputLabel {
-    display: inline-block;
-    background-color: gray;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
-    position: relative;
-    right: 275px;
+.file-input-container {
+    padding: 0px;
+    text-align: center;
 }
 
-.customFileInputLabel:hover {
-    background-color: white; /* White on hover */
-    color: black; /* Black text color on hover */
+.file-input {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    color: grey;
+    position: relative;
+    right: 250px;
+    bottom: 800px;
 }
+
+.import-button {
+    background-color: gray; /* Light grey background */
+    color: black; /* Black text */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    right: 250px;
+    bottom: 799px;
+}
+
+.import-button:hover {
+    background-color: #dddddd;
+    color: black;
+} 

@@ -1,6 +1,5 @@
 .fileTypeExport {
     display: inline-flex;
-    margin-top: 20px;
 }
 
 .fileTypeExport button {
@@ -15,7 +14,7 @@
 }
 
 .fileTypeExport button.active {
-    background-color: white; /* Red background for active button */
+    background-color: #dddddd; /* grey background for active button */
     color: black; /* Black text when button is active */
 }
 
@@ -33,6 +32,6 @@
 }
 
 .exportButton:hover {
-    background-color: white;
+    background-color: #dddddd;
     color: black;
 } 
