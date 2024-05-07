@@ -29,7 +29,7 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
   const { editorStyle } = React.useContext(EditorStyleContext);
 
   // Editor ref
-  const quill = useRef();
+  const quillRef = useRef(null);
   // Handler to handle button clicked
   // keeping this around for now just because we may add a button that needs to, well, be handled...
   function handler() {
@@ -57,7 +57,7 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
       // Read the selected file as a data URL
       reader.onload = () => {
         const imageUrl = reader.result;
-        const quillEditor = quill.current.getEditor();
+        const quillEditor = quillRef.current.getEditor();
 
         // Get the current selection range and insert the image at that index
         const range = quillEditor.getSelection(true);
@@ -92,7 +92,7 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
       <label className={styles.label}>Most Fun Writing App</label>
       <EditorToolbar editorToolbarColor= {editorToolbarColor } />
       <QuillEditor
-        ref={(el) => (quill.current = el)}
+        ref={quillRef}
         className={`${styles.editor} myQuillEditor-${editorStyle.lineHeight}`}
         theme="snow"
         style={{ backgroundColor: editorBgColor }}
@@ -103,7 +103,7 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
         placeholder={"Write something awesome..."}
       />      {/*Export the delta to use in Exporter.js*/}
       <div className={styles.exportButton}>
-        {<Export delta={delta} />}
+        {<Export delta={delta} quillRef={quillRef} />}
       </div>
       <Import onContentChange={handleSetContent} />
     </div>

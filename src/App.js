@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react'; // Make sure to import useState
+import React, { useState, useEffect } from 'react'; // Make sure to import useState
 import Quilljs from './Editor/main.js';
 import Background from './Background/Background';
 import { Box, ThemeProvider } from '@mui/material';
@@ -7,13 +7,7 @@ import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import Themes from './Themes/Themes.js';
 import Settings from './Componenets/settings.js';
 import { ThemeHandlerContext, EditorStyleProvider } from './Context/ContextProvider';
-//need to put this here so the keystrokes don't duplicate
-document.addEventListener('keydown', (e) => {
-    //document.keystrokeSfx.cloneNode(true).play();
-    //console.log(e.key);
-    document.getElementById('audio').cloneNode(true).play();
-    
-});
+import Audio from './Audio/Audio.js';
 
 function App() {
     const handle = useFullScreenHandle();
@@ -31,9 +25,11 @@ function App() {
 
     const [editorToolbarColor, setToolbarColor] = useState('grey'); // Default Toolbar Color
 
-    const [keystrokeSfx, setKeystrokeSfx] = useState('/audio/empty.wav');
+    const [keystrokeSfx, setKeystrokeSfx] = useState('/audio/empty.wav');   // Default Keyboard Sfx
+    const [sfxVolume, setSfxVolume] = useState(0.5);    // Volume Control for Sfx
 
-    const [bgAudio, setBgAudio] = useState('null.mp3'); //Default background audio
+    const [bgAudio, setBgAudio] = useState('null.mp3'); // Default background audio
+    const [bgVolume, setBgVolume] = useState(0.5);  // Volume Control for Background
 
     // Lifting up the state to change the theme
     const [format, setFormat] = useState('space');
@@ -117,8 +113,12 @@ function App() {
         <FullScreen handle={handle}>
             <div className="App">
                 <Background src={background} />
-                <audio id='audio' src={keystrokeSfx}></audio>
-                <audio id='bgaudio' src={bgAudio} autoPlay loop></audio>
+                <Audio
+                    keystrokeSfx={keystrokeSfx}
+                    sfxVolume={sfxVolume}
+                    bgAudio={bgAudio}
+                    bgVolume={bgVolume}
+                />
                 {/*<audio id='audio' src={enterSfx}></audio>*/}
                 <header className="App-header" style={{ opacity: opacity / 100 }}>
                     <ThemeProvider
@@ -173,6 +173,32 @@ function App() {
                         style={{ '--value': opacity, marginBottom: '10px' }}
                     />
                     <span>Adjust Editor Opacity</span>
+                </div>
+                {/* volume slider for background */}
+                <div style={{ position: 'fixed', left: '3.5%', top: '20%', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={bgVolume}
+                        onChange={(e) => setBgVolume(e.target.value)}
+                        style={{ '--value': bgVolume * 100, marginBottom: '10px' }}
+                    />
+                    <span>Adjust Background Volume</span>
+                </div>
+                {/* volume slider for keystroke sfx */}
+                <div style={{ position: 'fixed', left: '3.5%', top: '30%', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={sfxVolume}
+                        onChange={(e) => setSfxVolume(e.target.value)}
+                        style={{ '--value': sfxVolume * 100, marginBottom: '10px' }}
+                    />
+                    <span>Adjust Keystroke SFX Volume</span>
                 </div>
                 <Themes onChangeTheme={changeEditorTheme}></Themes>
             </div>

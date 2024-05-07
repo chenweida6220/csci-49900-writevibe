@@ -4,7 +4,7 @@ import './Import.css';
 
 function Import ({ onContentChange }) {
     const [file, setFile] = useState(null);
-    const convertApi = ConvertApi.auth('ow8KvwVUY1UytJ91'); // Api key
+    const convertApi = ConvertApi.auth('wmigeWMXxVJojbqk'); // Api key
     
 
     const handleFileChange = (event) => {

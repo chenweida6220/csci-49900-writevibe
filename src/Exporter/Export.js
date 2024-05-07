@@ -4,27 +4,62 @@ import * as quillToWord from "quill-to-word";
 import { pdfExporter } from "quill-to-pdf";
 import './Export.css';
 import { EditorStyleContext } from "../Context/ContextProvider";
+import ConvertApi from 'convertapi-js';
 
-
-const Export = ({ delta }) => {
+const Export = ({ quillRef, delta }) => {
     const [fileName, setFileName] = useState('exported-document');
-
     const [format, setFormat] = useState('docx');
     const { lineSpacing } = useContext(EditorStyleContext); 
 
-    //export the quill delta to docx
-    const exportToDocx = async() => {
-        if (!delta || !delta.ops) {
+    const convertApi = ConvertApi.auth('wmigeWMXxVJojbqk'); // Authenticate
+
+    // For testing purposes
+    const exportToHTML = async () => {
+        if (!quillRef.current) {
+            alert("The editor is not properly initialized.");
+            return;
+        }
+
+        // Check if there is content in the editor
+        const editor = quillRef.current.getEditor();
+        const editorElement = editor.root.innerHTML; // Accessing the innerHTML directly from the editor's root
+        if (!editorElement.trim()) {  // Check if the HTML is just whitespace
             alert("The editor is empty! Please add content.");
             return;
         }
+
+        // Ask user for file name
+        const userFileName = prompt("Please enter a name for your file: (.html)", fileName);
+        if (userFileName) {
+            setFileName(userFileName);
+        }
+        else {
+            return; // Editor did not receive a filename, cancel export
+        }
+
+        // Create a Blob object containing the HTML content
+        const blob = new Blob([editorElement], { type: "text/html;charset=utf-8" });
+
+        // Use file-saver to prompt the user to save the file
+        saveAs(blob, `${userFileName}.html`);
+    };
+
+
+
+    //export the quill delta to docx
+    const exportToDocx = async () => {
+        if (!quillRef.current) {
+            alert("The editor is not properly initialized.");
+            return;
+        }
+
         //ask user for file name
         const userFileName = prompt("Please enter a name for your file: (.docx)", fileName);
         if(userFileName) {
             setFileName(userFileName);
         }
-        else {
-            alert("Export Canceled!");
+        else
+        {
             return;
         }
         
@@ -50,15 +85,18 @@ const Export = ({ delta }) => {
 
     //export the quill delta to plain text
     const exportToTxt = () => {
-        if(!delta || !delta.ops) {
+        if (!delta || !delta.ops) {
             alert("The editor is empty! Please add content.");
             return;
         }
 
         //Ask user for file name
         const userFileName = prompt("Please enter a name for your file: (.txt)", fileName);
-        if(userFileName) {
+        if (userFileName) {
             setFileName(userFileName);
+        }
+        else {
+            return; // Editor did not receive a filename, cancel export
         }
 
         //convert delta to plain text
@@ -68,7 +106,7 @@ const Export = ({ delta }) => {
     };
 
     // Export the quill delta to PDF
-    const exportToPDF = async() => {
+    const exportToPDF = async () => {
         if (!delta || !delta.ops) {     // If there is no content to export
             alert("The editor is empty! Please add content.");
             return;
@@ -76,8 +114,11 @@ const Export = ({ delta }) => {
 
         //ask user for file name
         const userFileName = prompt("Please enter a name for your file: (.pdf)", fileName);
-        if(userFileName) {
+        if (userFileName) {
             setFileName(userFileName);
+        }
+        else {
+            return; // Editor did not receive a filename, cancel export
         }
 
         //generate the pdf as a blob
@@ -102,28 +143,37 @@ const Export = ({ delta }) => {
         else if (format === 'pdf') {
             exportToPDF();
         }
+        else if (format === 'html') {
+            exportToHTML();
+        }
     };
 
     return (
         <div>
             <div className="fileTypeExport">
-                <button 
+                <button
                     className={format === 'docx' ? 'active' : ''}
                     onClick={() => setFormat('docx')}
                 >
                     DOCX
                 </button>
-                <button 
+                <button
                     className={format === 'txt' ? 'active' : ''}
                     onClick={() => setFormat('txt')}
                 >
                     TXT
                 </button>
-                <button 
+                <button
                     className={format === 'pdf' ? 'active' : ''}
                     onClick={() => setFormat('pdf')}
                 >
                     PDF
+                </button>
+                <button
+                    className={format === 'html' ? 'active' : ''}
+                    onClick={() => setFormat('html')}
+                >
+                    HTML
                 </button>
             </div>
             <button className="exportButton" onClick={handleExport}>Export</button>
