@@ -1,6 +1,6 @@
 import React from 'react';
-import { Typography, Grid, Dialog, DialogContent, Box,
-          MenuItem, Select, TextField } from '@mui/material';
+import { Typography, Grid, Dialog, DialogContent, Tabs, Tab, Box,
+          Button, MenuItem, Select, TextField } from '@mui/material';
 import { styled } from '@mui/system'; // replaces @mui/system/styles which is depreciated
 import { useState, useContext } from 'react'; // React hook for functional components
 
@@ -23,12 +23,11 @@ const SettingsDiv = styled('div')({
   margin: '10px',
   padding: '10px',
   '&:hover': {
-  backgroundColor: 'rgba(50,135,164,0.7)', // change this to the color you want
+  backgroundColor: 'rgba(50,135,164,0.7)', 
   },
 });
 
-
-const HarmattanTypography = styled(Typography)({
+const BoldHarmattanTypography = styled(Typography)({
   fontFamily: 'Harmattan, sans-serif',
   fontWeight: 600,
   fontStyle: 'bold',
@@ -36,8 +35,9 @@ const HarmattanTypography = styled(Typography)({
 
 function SettingsOption({ label, options, value, onChange }) {
   return (
-    <Grid className="settingsGridItem" item xs={12} md={6}>
-      <HarmattanTypography variant="h6">{label}</HarmattanTypography>
+    <Grid className="settingsGridItem" item xs={12} md={6}
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <BoldHarmattanTypography variant="h6">{label}</BoldHarmattanTypography>
       <Select sx={{ width: '80%' }} value={value} onChange={onChange}>
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>
@@ -70,8 +70,13 @@ const Settings = () => {
     setOpen(true);
     setIsOpen(true);
   };
-  
 
+  const [value, setValue] = React.useState(0);
+
+  const handleTabSwitch = (event, newValue) => {
+    setValue(newValue);
+  };
+  
   // Handling state changes for preset themes
   const [currentTheme, setCurrentTheme] = useState('default');
 
@@ -123,21 +128,15 @@ const Settings = () => {
       </button>
 
       <Dialog open={open} onClose={handleClose} 
-                    PaperProps={{ style: { backgroundColor: 'transparent', boxShadow: 'none' }}}>
-      <DialogContent className="dialogContent" >
-          <Box className="settingsBox" open={isOpen} onClose={handleClose}>
-            <Grid container rowSpacing={0.5} columnSpacing={5} justifyContent="center" alignItems="center">
-              <Grid item xs={12}>
-                <HarmattanTypography variant="h4" align="center">Painter's Palette</HarmattanTypography>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Word Count Goal</HarmattanTypography>
-                <TextField 
-                  variant="outlined" 
-                  sx={{ width: '80%' }} 
-                  type="number"
-                />
-              </Grid>
+        PaperProps={{ style: { backgroundColor: 'transparent', boxShadow: 'none' }}}>
+        <DialogContent className="settingsBox">
+          <Tabs value={value} onChange={handleTabSwitch} centered>
+            <Tab label="Customization" className="MuiLink-root harmattan-bold" />
+            <Tab label="General" className="MuiLink-root harmattan-bold" />
+          </Tabs>
+
+          {value === 0 && 
+          <Grid container rowSpacing={0.5} columnSpacing={5} justifyContent="center" alignItems="center">
               <SettingsOption
                 label="Theme"
                 options={themes}
@@ -180,11 +179,54 @@ const Settings = () => {
                 value={soundscape}
                 onChange={setSoundscape}
               />
+          
+          </Grid>}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          {value === 1 && 
+          <Grid container rowSpacing={0.5} columnSpacing={5} item xs={12} 
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+
+            {/* OPACITY SLIDER */}
+
+
+            <Grid item xs={12}>
+              <Button variant="outlined">Upload File</Button>
             </Grid>
-          </Box>
+          
+          
+          </Grid>}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </DialogContent>
       </Dialog>
     </SettingsDiv>
+
   );
 };
 
