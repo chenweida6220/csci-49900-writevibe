@@ -5,7 +5,7 @@ import Background from './Background/Background';
 import { Box, ThemeProvider } from '@mui/material';
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import Themes from './Themes/Themes.js';
-import Settings from './Componenets/settings.js';
+import Settings from './Components/settings.js';
 import { ThemeHandlerContext } from './Context/ContextProvider';
 //need to put this here so the keystrokes don't duplicate
 document.addEventListener('keydown', (e) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Grid, Dialog, DialogContent, Tabs, Tab, Box,
-          Button, MenuItem, Select, TextField } from '@mui/material';
+          Button, Slider, Stack, IconButton, MenuItem, Select } from '@mui/material';
 import { styled } from '@mui/system'; // replaces @mui/system/styles which is depreciated
 import { useState, useContext } from 'react'; // React hook for functional components
 
@@ -8,6 +8,10 @@ import './Settings.css';
 import settingsicon from '../Images/Painterspalette.png';
 import { ThemeHandlerContext } from '../Context/ContextProvider';
 
+import OpacityIcon from '@mui/icons-material/Opacity';
+import InvertColorsOffIcon from '@mui/icons-material/InvertColorsOff';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import GetAppIcon from '@mui/icons-material/GetApp';
 
 const SettingsDiv = styled('div')({
   backgroundColor: 'rgba(211, 211, 211, 0.5)', // rbga format instead of the opacity property to not affect image opacity
@@ -71,11 +75,26 @@ const Settings = () => {
     setIsOpen(true);
   };
 
-  const [value, setValue] = React.useState(0);
-
-  const handleTabSwitch = (event, newValue) => {
-    setValue(newValue);
+  // Handling settings tab switch
+  const [tab, setTab] = React.useState(0);
+  const handleTabSwitch = (event, newTab) => {
+    setTab(newTab);
   };
+
+  // Handling opacity slider
+  const [opacityvalue, setOpacityValue] = React.useState(30);
+  // Handles both numbers and event objects
+  const handleOpacity = (newOpacityValue) => {
+    if (typeof newOpacityValue === 'number') {
+      setOpacityValue(newOpacityValue);
+    } 
+    else if (newOpacityValue && newOpacityValue.target) {
+      setOpacityValue(newOpacityValue.target.value);
+    }
+  };
+
+  // Handling button active state
+  const [selectedButton, setSelectedButton] = useState(null);
   
   // Handling state changes for preset themes
   const [currentTheme, setCurrentTheme] = useState('default');
@@ -130,12 +149,13 @@ const Settings = () => {
       <Dialog open={open} onClose={handleClose} 
         PaperProps={{ style: { backgroundColor: 'transparent', boxShadow: 'none' }}}>
         <DialogContent className="settingsBox">
-          <Tabs value={value} onChange={handleTabSwitch} centered>
+          <Tabs value={tab} onChange={handleTabSwitch} centered>
             <Tab label="Customization" className="MuiLink-root harmattan-bold" />
             <Tab label="General" className="MuiLink-root harmattan-bold" />
           </Tabs>
 
-          {value === 0 && 
+          {/* Customization Tab */}
+          {tab === 0 && 
           <Grid container rowSpacing={0.5} columnSpacing={5} justifyContent="center" alignItems="center">
               <SettingsOption
                 label="Theme"
@@ -184,27 +204,45 @@ const Settings = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-          {value === 1 && 
-          <Grid container rowSpacing={0.5} columnSpacing={5} item xs={12} 
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          {/* General Tab */}
+          {tab === 1 && 
+          <Grid container rowSpacing={2} columnSpacing={5} item xs={12} 
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
 
             {/* OPACITY SLIDER */}
+            <Grid item sx={{ width: 300 }}>
+              <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+                <IconButton aria-label="opacity 0%">
+                  <InvertColorsOffIcon onClick={() => handleOpacity(0)} />
+                </IconButton>
+
+                <Slider aria-label="Volume" value={opacityvalue} onChange={handleOpacity} />
+
+                <IconButton aria-label="opacity 100%">
+                  <OpacityIcon onClick={() => handleOpacity(100)}/>
+                </IconButton>
+              </Stack>
+            </Grid>
 
 
             <Grid item xs={12}>
-              <Button variant="outlined">Upload File</Button>
+              <Button variant='contained' startIcon={<CloudUploadIcon />}>Upload File</Button>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Button variant={selectedButton === 'DOCX' ? "contained" : "outlined"}
+                onClick={() => setSelectedButton('DOCX')}>
+                  DOCX
+              </Button>
+              <Button variant={selectedButton === 'TXT' ? "contained" : "outlined"}
+                onClick={() => setSelectedButton('TXT')}>
+                  TXT
+              </Button>
+              <Button variant={selectedButton === 'PDF' ? "contained" : "outlined"}
+                onClick={() => setSelectedButton('PDF')}>
+                  PDF
+              </Button>
+              <Button variant="contained" endIcon={<GetAppIcon />}>Export File</Button>
             </Grid>
           
           
