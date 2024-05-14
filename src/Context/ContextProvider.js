@@ -53,4 +53,25 @@ export const ThemeContextProvider = ({ children }) => {
   );
 };
 
+// Progress context stuff here because idk what i'm doing
+const ProgressContext = createContext();
+export const ProgressHandlerContext = createContext();
+
+export const useWordGoal = () => useContext(ProgressContext);
+
+export const ProgressContextProvider = ({ children }) => {
+  const [wordGoal, setWordGoal] = useState(0);
+  const [goalEnabled, setGoalEnabled] = useState(false);
+
+  return (
+    <ProgressContext.Provider value={{ wordGoal, setWordGoal, goalEnabled, setGoalEnabled }}>
+      {children}
+    </ProgressContext.Provider>
+  )
+}
+
+//const IndividualThemeContext = createContext();
+//export const IndividualThemeHandlerContext = createContext();
+
+
 

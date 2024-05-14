@@ -6,7 +6,9 @@ import { Box, ThemeProvider } from '@mui/material';
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import Themes from './Themes/Themes.js';
 import Settings from './Componenets/settings.js';
-import { ThemeHandlerContext, EditorStyleProvider } from './Context/ContextProvider';
+import { ThemeHandlerContext, EditorStyleProvider, ProgressHandlerContext } from './Context/ContextProvider';
+import { SnackbarProvider } from 'notistack';
+
 //need to put this here so the keystrokes don't duplicate
 document.addEventListener('keydown', (e) => {
     //document.keystrokeSfx.cloneNode(true).play();
@@ -36,8 +38,10 @@ function App() {
     const [bgAudio, setBgAudio] = useState('null.mp3'); //Default background audio
 
     // Lifting up the state to change the theme
-    const [format, setFormat] = useState('space');
+    const [format, setFormat] = useState('default');
 
+    const [wordGoal, setWordGoal] = useState(0);
+    const [goalEnabled, setGoalEnabled] = useState(false);
 
     //function to update the editor's background depending on the theme
     const themeColors = {
@@ -48,6 +52,7 @@ function App() {
             editorInnerColor: 'white',
             editorToolbarColor: 'grey',
             keystrokeSfx: '/audio/empty.wav',
+            bgAudio: '/audio/empty.wav',
             
         },
         space: {
@@ -57,6 +62,7 @@ function App() {
             editorInnerColor: '#20122B',
             editorToolbarColor: 'darkblue',
             keystrokeSfx: '/audio/purple.wav',
+            bgAudio: '/audio/empty.wav',
             
         },
         warm: {
@@ -112,9 +118,23 @@ function App() {
         changeEditorTheme(newFormat);
     };
 
+    const changeBackground = (theme) => {
+        setBackground(themeColors[theme].background);
+    }
+
+    const changeKeystrokeSfx = (theme) => {
+        setKeystrokeSfx(themeColors[theme].keystrokeSfx);
+    }
+
+    const changeSoundscape = (theme) => {
+        setBgAudio(themeColors[theme].bgAudio);
+    }
+
     return (
     <ThemeHandlerContext.Provider value={{handleThemes}}>
+        <ProgressHandlerContext.Provider value={{wordGoal, setWordGoal, goalEnabled, setGoalEnabled}}>
         <FullScreen handle={handle}>
+            <SnackbarProvider>
             <div className="App">
                 <Background src={background} />
                 <audio id='audio' src={keystrokeSfx}></audio>
@@ -125,10 +145,14 @@ function App() {
                         theme={{
                             palette: {
                                 primary: {
-                                    //main: '#65B6EF',
-                                    main: '#EEEEEE',
                                     border: '#000000',
-                                },
+                                    //passing stuff to progress bar
+                                    main: format == "default" ? '#EEEEEE' : 
+                                          format == "space" ? '#422ee8' : 
+                                          format == "warm" ? '#AA0000' : 
+                                          format == "rain" ? '#8eeffd' : 
+                                          format == "cafe" ? '#fde494' : ''
+                                }
                             },
                         }}
                     >
@@ -176,8 +200,14 @@ function App() {
                 </div>
                 <Themes onChangeTheme={changeEditorTheme}></Themes>
             </div>
-          <Settings />
+            </SnackbarProvider>
+          <Settings 
+            onChangeBackground={changeBackground}
+            onChangeKeystrokeSfx={changeKeystrokeSfx}
+            onChangeSoundscape={changeSoundscape}
+          />
         </FullScreen>
+        </ProgressHandlerContext.Provider>
       </ThemeHandlerContext.Provider>
     );
 }

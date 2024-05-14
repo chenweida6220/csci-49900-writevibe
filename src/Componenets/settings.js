@@ -6,7 +6,7 @@ import { useState, useContext } from 'react'; // React hook for functional compo
 
 import './Settings.css';
 import settingsicon from '../Images/Painterspalette.png';
-import { ThemeHandlerContext } from '../Context/ContextProvider';
+import { ThemeHandlerContext, ProgressHandlerContext } from '../Context/ContextProvider';
 
 
 const SettingsDiv = styled('div')({
@@ -50,7 +50,7 @@ function SettingsOption({ label, options, value, onChange }) {
 }
 
 
-const Settings = () => {
+const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}) => {
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const [background, setBackground] = useState('placeholder1');
@@ -71,6 +71,10 @@ const Settings = () => {
     setIsOpen(true);
   };
   
+  // Set word goal
+  //const [wordGoal, setWordGoal] = useState(0);
+  const { wordGoal, setWordGoal } = useContext(ProgressHandlerContext);
+  const { goalEnabled, setGoalEnabled } = useContext(ProgressHandlerContext);
 
   // Handling state changes for preset themes
   const [currentTheme, setCurrentTheme] = useState('default');
@@ -83,6 +87,44 @@ const Settings = () => {
     console.log("Attempting to change theme to: ", event.target.value);
   };
 
+  const handleBackgroundChange = (event) => {
+    //console.log(event.target.value);
+    onChangeBackground(event.target.value);
+    setIsOpen(false);
+    setOpen(false);
+  }
+
+  const handleKeystrokeSfxChange = (event) => {
+    onChangeKeystrokeSfx(event.target.value);
+    setIsOpen(false);
+    setOpen(false);
+  }
+
+  const handleSoundscapeChange = (event) => {
+    onChangeSoundscape(event.target.value);
+    setIsOpen(false);
+    setOpen(false);
+  }
+  
+  const handleWordGoal = () => {
+    console.log(wordGoal);
+    setWordGoal(document.getElementById('goalvalue').value);
+    console.log(document.getElementById('goalvalue').value);
+
+    setGoalEnabled(true);
+    console.log(goalEnabled);
+    //setGoalEnabled(!goalEnabled);
+    //setGoalEnabled(false);
+    //console.log(goalEnabled);
+
+    var bar = document.getElementById('progress-bar');
+    //bar.style.display = 'inline';
+    bar.style.display = 'inherit';
+
+    setIsOpen(false);
+    setOpen(false);
+  }
+
   const themes = [
     { value: 'default', label: 'Default' },
     { value: 'space', label: 'Space' },
@@ -93,7 +135,13 @@ const Settings = () => {
   ];
   
   const backgroundOptions = [
-    { value: 'placeholder1', label: 'Placeholder1' },
+    //{ value: 'placeholder1', label: 'Placeholder1' },
+    { value: 'default', label: 'Default' },
+    { value: 'space', label: 'Galaxy' },
+    { value: 'warm', label: 'Fireplace' },
+    { value: 'rain', label: 'Raindrops' },
+    { value: 'cafe', label: 'Cafe Interior' },
+
   ];
 
   const canvasOptions = [
@@ -109,11 +157,22 @@ const Settings = () => {
   ];
 
   const typingSoundOptions = [
-    { value: 'placeholder5', label: 'Placeholder5' },
+    //{ value: 'placeholder5', label: 'Placeholder5' },
+    { value: 'default', label: 'Default' },
+    { value: 'space', label: 'Sparkly' },
+    { value: 'warm', label: 'Typewriter' },
+    { value: 'rain', label: 'Keyboard 1' },
+    { value: 'cafe', label: 'Keyboard 2' },
   ];
 
   const soundscapeOptions = [
-    { value: 'placeholder6', label: 'Placeholder6' },
+    //{ value: 'placeholder6', label: 'Placeholder6' },
+    { value: 'default', label: 'Default' },
+    { value: 'space', label: 'Space (no sound)' },
+    { value: 'warm', label: 'Fireplace' },
+    { value: 'rain', label: 'Raindrops' },
+    { value: 'cafe', label: 'Cafe Interior' },
+
   ];
 
   return (
@@ -136,7 +195,9 @@ const Settings = () => {
                   variant="outlined" 
                   sx={{ width: '80%' }} 
                   type="number"
+                  id='goalvalue'
                 />
+                <button onClick={handleWordGoal}>Set Goal</button>
               </Grid>
               <SettingsOption
                 label="Theme"
@@ -148,7 +209,8 @@ const Settings = () => {
                 label="Background"
                 options={backgroundOptions}
                 value={background}
-                onChange={setBackground}
+                //onChange={setBackground}
+                onChange={handleBackgroundChange}
               />
               <SettingsOption 
                 label="Canvas"
@@ -172,13 +234,13 @@ const Settings = () => {
                 label="Typing Sound"
                 options={typingSoundOptions}
                 value={typingSound}
-                onChange={setTypingSound}
+                onChange={handleKeystrokeSfxChange}
               />
               <SettingsOption
                 label="Soundscape (Music)"
                 options={soundscapeOptions}
                 value={soundscape}
-                onChange={setSoundscape}
+                onChange={handleSoundscapeChange}
               />
             </Grid>
           </Box>
