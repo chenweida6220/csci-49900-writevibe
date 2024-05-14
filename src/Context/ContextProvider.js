@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 // Create a Context object
 const ThemeContext = createContext();
 
-export const ThemeHandlerContext = createContext();
+export const ContextHandler = createContext();
 
 // Create a custom hook that allows easy access to the theme
 export const useTheme = () => useContext(ThemeContext);
@@ -36,7 +36,7 @@ export function EditorStyleProvider({ children }) {
   );
 }
 
-export const useThemeHandler = () => useContext(ThemeHandlerContext);
+export const useThemeHandler = () => useContext(ContextHandler);
 // Create a provider component that wraps your app and makes the theme available to all components
 export const ThemeContextProvider = ({ children }) => {
   const [theme, setTheme] = useState('default');

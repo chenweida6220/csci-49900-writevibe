@@ -5,8 +5,8 @@ import Background from './Background/Background';
 import { Box, ThemeProvider } from '@mui/material';
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import Themes from './Themes/Themes.js';
-import Settings from './Componenets/settings.js';
-import { ThemeHandlerContext, EditorStyleProvider } from './Context/ContextProvider';
+import Settings from './Components/settings.js';
+import { ContextHandler, EditorStyleProvider } from './Context/ContextProvider';
 //need to put this here so the keystrokes don't duplicate
 document.addEventListener('keydown', (e) => {
     //document.keystrokeSfx.cloneNode(true).play();
@@ -112,8 +112,17 @@ function App() {
         changeEditorTheme(newFormat);
     };
 
+    const handleOpacity = (opacity) => {
+    if (typeof opacity === 'number') {
+        setOpacity(opacity);
+    }
+    else if (opacity && opacity.target) {
+        setOpacity(opacity.target.value);
+    }
+  }
+
     return (
-    <ThemeHandlerContext.Provider value={{handleThemes}}>
+    <ContextHandler.Provider value={{handleThemes, handleOpacity}}>
         <FullScreen handle={handle}>
             <div className="App">
                 <Background src={background} />
@@ -178,7 +187,7 @@ function App() {
             </div>
           <Settings />
         </FullScreen>
-      </ThemeHandlerContext.Provider>
+      </ContextHandler.Provider>
     );
 }
 

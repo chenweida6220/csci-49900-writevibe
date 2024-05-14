@@ -1,13 +1,17 @@
 import React from 'react';
-import { Typography, Grid, Dialog, DialogContent, Box,
-          MenuItem, Select, TextField } from '@mui/material';
+import { Typography, Grid, Dialog, DialogContent, Box, Tabs, Tab,
+          Button, Slider, Stack, IconButton, MenuItem, Select, TextField } from '@mui/material';
 import { styled } from '@mui/system'; // replaces @mui/system/styles which is depreciated
 import { useState, useContext } from 'react'; // React hook for functional components
 
 import './Settings.css';
 import settingsicon from '../Images/Painterspalette.png';
-import { ThemeHandlerContext } from '../Context/ContextProvider';
+import { ContextHandler } from '../Context/ContextProvider';
 
+import OpacityIcon from '@mui/icons-material/Opacity';
+import InvertColorsOffIcon from '@mui/icons-material/InvertColorsOff';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import GetAppIcon from '@mui/icons-material/GetApp';
 
 const SettingsDiv = styled('div')({
   backgroundColor: 'rgba(211, 211, 211, 0.5)', // rbga format instead of the opacity property to not affect image opacity
@@ -60,8 +64,7 @@ const Settings = () => {
   const [typingSound, setTypingSound] = useState('placeholder5'); 
   const [soundscape, setSoundscape] = useState('placeholder6');
 
-  const { handleThemes } = useContext(ThemeHandlerContext);
-
+  const { handleThemes, handleOpacity } = useContext(ContextHandler);
   const handleClose = () => {
     setIsOpen(false);
     setOpen(false);
@@ -71,6 +74,23 @@ const Settings = () => {
     setIsOpen(true);
   };
   
+  // Handling settings tab switch
+  const [tab, setTab] = React.useState(0);
+  const handleTabSwitch = (event, newTab) => {    
+    setTab(newTab);  
+  };
+  
+  
+  // Handling Opacity Slider
+  const [opacityValue, setOpacityValue] = React.useState(90);
+  // Handle both numbers and event objects
+  const handleOpacityChange = (opacityValue) => {
+      handleOpacity(opacityValue.target.value);
+      setOpacityValue(opacityValue.target.value);
+  }
+
+  // Handling button active state
+  const [selectedButton, setSelectedButton] = useState(null);
 
   // Handling state changes for preset themes
   const [currentTheme, setCurrentTheme] = useState('default');
@@ -124,20 +144,13 @@ const Settings = () => {
 
       <Dialog open={open} onClose={handleClose} 
                     PaperProps={{ style: { backgroundColor: 'transparent', boxShadow: 'none' }}}>
-      <DialogContent className="dialogContent" >
-          <Box className="settingsBox" open={isOpen} onClose={handleClose}>
+      <DialogContent className="settingsBox" >
+          <Tabs value={tab} onChange={handleTabSwitch} centered>
+            <Tab label="Customization" className="MuiLink-root harmatton-bold" />
+            <Tab label="General" className="MuiLink-root harmatton-bold" />
+          </Tabs>
+          { tab === 0 && 
             <Grid container rowSpacing={0.5} columnSpacing={5} justifyContent="center" alignItems="center">
-              <Grid item xs={12}>
-                <HarmattanTypography variant="h4" align="center">Painter's Palette</HarmattanTypography>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Word Count Goal</HarmattanTypography>
-                <TextField 
-                  variant="outlined" 
-                  sx={{ width: '80%' }} 
-                  type="number"
-                />
-              </Grid>
               <SettingsOption
                 label="Theme"
                 options={themes}
@@ -181,7 +194,43 @@ const Settings = () => {
                 onChange={setSoundscape}
               />
             </Grid>
-          </Box>
+          } {/* tab === 0 */}
+      {/* General Tab */}
+      { tab === 1 && 
+      <Grid container rowSpacing={2} columnSpacing={5} item xs={12}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <Grid item sx={{ width:300 }}>
+          <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+            <IconButton aria-label="opacity 0%">
+              <InvertColorsOffIcon onClick={() => handleOpacityChange({ target : {value: 0}})} />
+            </IconButton>
+
+            <Slider aria-label="Volume" value={opacityValue} onChange={handleOpacityChange} />
+
+           <IconButton aria-label="opacity 100%"> 
+              <OpacityIcon onClick={() => handleOpacityChange({ target : {value: 100}})}/>
+           </IconButton>
+          </Stack>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Button variant='contained' startIcon={<CloudUploadIcon />}>Upload File </Button>
+        </Grid>
+
+            <Grid item xs={12}>
+            <Button variant={selectedButton === 'DOCX' ? "contained" : "outlined"}
+              onCLick={() => setSelectedButton('DOCX')}>DOCX</Button>
+
+            <Button variant={selectedButton === 'TXT' ? "contained" : "outlined"}
+              onCLick={() => setSelectedButton('TXT')}>TXT</Button>
+
+            <Button variant={selectedButton === 'PDF' ? "contained" : "outlined"}
+              onCLick={() => setSelectedButton('PDF')}>PDF</Button>
+
+            <Button variant="contained" endIcon={<GetAppIcon />}>Export File</Button>
+        </Grid>
+      </Grid>
+      } {/* tab === 1 */}
         </DialogContent>
       </Dialog>
     </SettingsDiv>
