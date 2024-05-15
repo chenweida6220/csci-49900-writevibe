@@ -54,17 +54,17 @@ function SettingsOption({ label, options, value, onChange }) {
 }
 
 
-const Settings = () => {
+const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}) => {
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
-  const [background, setBackground] = useState('placeholder1');
+  const [background, setBackground] = useState('default');
   const [canvas, setCanvas] = useState('placeholder2');
   const [pageColor, setPageColor] = useState('placeholder3');
   const [font, setFont] = useState('placeholder4');
-  const [typingSound, setTypingSound] = useState('placeholder5'); 
-  const [soundscape, setSoundscape] = useState('placeholder6');
+  const [typingSound, setTypingSound] = useState('default'); 
+  const [soundscape, setSoundscape] = useState('default');
 
-  const { handleThemes, handleOpacity } = useContext(ContextHandler);
+  const { handleThemes, handleOpacity, wordGoal, setWordGoal, goalEnabled, setGoalEnabled } = useContext(ContextHandler);
   const handleClose = () => {
     setIsOpen(false);
     setOpen(false);
@@ -98,10 +98,45 @@ const Settings = () => {
   const handleThemeChange = (event) => {
     handleThemes(event.target.value);
     setCurrentTheme(event.target.value);
+    setBackground(event.target.value);
+    setTypingSound(event.target.value);
+    setSoundscape(event.target.value);
     setIsOpen(false);
     setOpen(false);
     console.log("Attempting to change theme to: ", event.target.value);
-  };
+  }
+
+  const handleBackgroundChange = (event) => {
+    onChangeBackground(event.target.value);
+    setBackground(event.target.value);
+    setIsOpen(false);
+    setOpen(false);
+  }
+
+  const handleKeystrokeSfxChange = (event) => {
+    onChangeKeystrokeSfx(event.target.value);
+    setTypingSound(event.target.value);
+    setIsOpen(false);
+    setOpen(false);
+  }
+
+  const handleSoundscapeChange = (event) => {
+    onChangeSoundscape(event.target.value);
+    setSoundscape(event.target.value);
+    setIsOpen(false);
+    setOpen(false);
+  }
+
+  const handleWordGoal = () => {
+    setWordGoal(document.getElementById('goalvalue').value);
+    setGoalEnabled(true);
+
+    var bar = document.getElementById('progress-bar');
+    bar.style.display = 'inherit';
+
+    setIsOpen(false);
+    setOpen(false);
+  }
 
   const themes = [
     { value: 'default', label: 'Default' },
@@ -113,11 +148,31 @@ const Settings = () => {
   ];
   
   const backgroundOptions = [
-    { value: 'placeholder1', label: 'Placeholder1' },
+    { value: 'default' , label: 'Default' },
+    { value: 'space', label: 'Space' },
+    { value: 'warm', label: 'Warm' },
+    { value: 'rain', label: 'Rain' },
+    { value: 'cafe', label: 'Cafe' },
   ];
 
   const canvasOptions = [
     { value: 'placeholder2', label: 'Placeholder2' },
+  ];
+
+  const typingSoundOptions = [
+    { value: 'default', label: 'Default' },
+    { value: 'space', label: 'Sparkly' },
+    { value: 'warm', label: 'Typewriter' },
+    { value: 'rain', label: 'Keyboard 1' },
+    { value: 'cafe', label: 'Keyboard 2' },
+  ];
+
+  const soundscapeOptions = [
+    { value: 'default', label: 'Default' },
+    { value: 'space', label: 'Space (No Sound)' },
+    { value: 'warm', label: 'Fireplace' },
+    { value: 'rain', label: 'Raindrops' },
+    { value: 'cafe', label: 'Cafe Interior' },
   ];
 
   const pageColorOptions = [
@@ -126,14 +181,6 @@ const Settings = () => {
 
   const fontOptions = [
     { value: 'placeholder4', label: 'Placeholder4' },
-  ];
-
-  const typingSoundOptions = [
-    { value: 'placeholder5', label: 'Placeholder5' },
-  ];
-
-  const soundscapeOptions = [
-    { value: 'placeholder6', label: 'Placeholder6' },
   ];
 
   return (
@@ -151,6 +198,16 @@ const Settings = () => {
           </Tabs>
           { tab === 0 && 
             <Grid container rowSpacing={0.5} columnSpacing={5} justifyContent="center" alignItems="center">
+              <Grid item xs={12} md={6}>
+                <HarmattanTypography variant="h6">Word Count Goal</HarmattanTypography>
+                <TextField
+                  variant="outlined"
+                  sx={{ width: '80%' }}
+                  type="number"
+                  id='goalvalue'
+                />
+                <button onClick={handleWordGoal}>Set Goal</button>
+              </Grid>
               <SettingsOption
                 label="Theme"
                 options={themes}
@@ -161,7 +218,7 @@ const Settings = () => {
                 label="Background"
                 options={backgroundOptions}
                 value={background}
-                onChange={setBackground}
+                onChange={handleBackgroundChange}
               />
               <SettingsOption 
                 label="Canvas"
@@ -185,13 +242,13 @@ const Settings = () => {
                 label="Typing Sound"
                 options={typingSoundOptions}
                 value={typingSound}
-                onChange={setTypingSound}
+                onChange={handleKeystrokeSfxChange}
               />
               <SettingsOption
                 label="Soundscape (Music)"
                 options={soundscapeOptions}
                 value={soundscape}
-                onChange={setSoundscape}
+                onChange={handleSoundscapeChange}
               />
             </Grid>
           } {/* tab === 0 */}

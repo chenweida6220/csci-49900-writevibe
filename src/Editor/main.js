@@ -19,11 +19,18 @@ import Import from "../Importer/Import";
 // Importing Editor Toolbar
 import EditorToolbar, { modules, formats } from "./EditorToolbar";
 
+// Import Progress Bar
+import Progress from "../Progress/Progress";
+
 const Editor = ({ editorBgColor, editorToolbarColor }) => {
   // Editor state
   const [value, setValue] = useState("");
   // Editor state for exporting using Deltas
   const [delta, setDelta] = useState(null);
+
+  const wordCount = value
+    .split(/\s+/)
+    .filter(Boolean).length;
 
   // Editor Style Context
   const { editorStyle } = React.useContext(EditorStyleContext);
@@ -106,6 +113,7 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
       />      {/*Export the delta to use in Exporter.js*/}
       <div className={styles.exportButton}>
         {<Export delta={delta} />}
+        <Progress wordCount={wordCount} />
       </div>
     </div>
   );
