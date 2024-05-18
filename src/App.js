@@ -10,14 +10,6 @@ import { ContextHandler, EditorStyleProvider } from './Context/ContextProvider';
 import { SnackbarProvider } from 'notistack';
 import Audio from './Audio/Audio.js';
 
-//need to put this here so the keystrokes don't duplicate
-document.addEventListener('keydown', (e) => {
-//   //document.keystrokeSfx.cloneNode(true).play();
-//    //console.log(e.key);
-    document.getElementById('Audio').cloneNode(true).play();
-   
-});
-
 function App() {
     const handle = useFullScreenHandle();
 
@@ -171,7 +163,7 @@ function App() {
           <SnackbarProvider>
             <div className="App">
                 <Background src={background} />
-                <Audio id="audio"
+                <Audio
                     keystrokeSfx={keystrokeSfx}
                     sfxVolume={sfxVolume}
                     bgAudio={bgAudio}
