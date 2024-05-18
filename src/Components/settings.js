@@ -69,6 +69,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
   const [font, setFont] = useState('placeholder4');
   const [typingSound, setTypingSound] = useState('default'); 
   const [soundscape, setSoundscape] = useState('default');
+  const [wordGoalInputValue, setWordGoalInputValue] = useState('');
 
   const { handleThemes, handleOpacity, wordGoal, setWordGoal, goalEnabled, setGoalEnabled } = useContext(ContextHandler);
   const { handleBgVolume, handleSfxVolume } = useContext(ContextHandler);
@@ -157,6 +158,11 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
     setOpen(false);
   }
 
+  const handleInputChange = (event) => {
+    // Update the inputValue state when the TextField changes
+    setWordGoalInputValue(event.target.value);
+  };
+
   const themes = [
     { value: 'default', label: 'Default' },
     { value: 'space', label: 'Space' },
@@ -224,6 +230,8 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
                   sx={{ width: '80%' }}
                   type="number"
                   id='goalvalue'
+                  value={wordGoalInputValue}
+                  onChange={handleInputChange}
                 />
                 <button onClick={handleWordGoal}>Set Goal</button>
               </Grid>
