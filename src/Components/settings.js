@@ -12,6 +12,10 @@ import { ContextHandler } from '../Context/ContextProvider';
 
 import OpacityIcon from '@mui/icons-material/Opacity';
 import InvertColorsOffIcon from '@mui/icons-material/InvertColorsOff';
+import MusicOffIcon from '@mui/icons-material/MusicOff';
+import AudiotrackIcon from '@mui/icons-material/Audiotrack';
+import PianoOffIcon from '@mui/icons-material/PianoOff';
+import PianoIcon from '@mui/icons-material/Piano';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import GetAppIcon from '@mui/icons-material/GetApp';
 
@@ -67,6 +71,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
   const [soundscape, setSoundscape] = useState('default');
 
   const { handleThemes, handleOpacity, wordGoal, setWordGoal, goalEnabled, setGoalEnabled } = useContext(ContextHandler);
+  const { handleBgVolume, handleSfxVolume } = useContext(ContextHandler);
   const handleClose = () => {
     setIsOpen(false);
     setOpen(false);
@@ -89,6 +94,18 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
   const handleOpacityChange = (opacityValue) => {
       handleOpacity(opacityValue.target.value);
       setOpacityValue(opacityValue.target.value);
+  }
+
+  const [bgVolumeValue, setBgVolumeValue] = React.useState(0.5);
+  const handleBg = (bgVolume) => {
+    handleBgVolume(bgVolume.target.value);
+    setBgVolumeValue(bgVolume.target.value);
+  }
+
+  const [sfxVolumeValue, setSfxVolumeValue] = React.useState(0.5);
+  const handleSfx = (sfxVolume) => {
+    handleSfxVolume(sfxVolume.target.value);
+    setSfxVolumeValue(sfxVolume.target.value);
   }
 
   // Handling button active state
@@ -269,29 +286,33 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
            <IconButton aria-label="opacity 100%"> 
               <OpacityIcon onClick={() => handleOpacityChange({ target : {value: 100}})}/>
            </IconButton>
+           
+          </Stack>
+          <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+            <IconButton aria-label="Background Volume 0%">
+              <MusicOffIcon onClick={() => handleBg({ target : {value: 0}})} />
+           </IconButton>
+
+            <Slider aria-label="Background Volume" min={0} max={1} step={0.01} value={bgVolumeValue} onChange={handleBg} />
+
+           <IconButton aria-label="Background Volume 100%"> 
+              <AudiotrackIcon onClick={() => handleBg({ target : {value: 1}})}/>
+           </IconButton> 
+          </Stack>
+          <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+            <IconButton aria-label="Keystroke Volume 0%">
+              <PianoOffIcon onClick={() => handleSfx({ target : {value: 0}})} />
+           </IconButton>
+
+            <Slider aria-label="Keystroke Volume" min={0} max={1} step={0.01} value={sfxVolumeValue} onChange={handleSfx} />
+
+           <IconButton aria-label="Keystroke Volume 100%"> 
+              <PianoIcon onClick={() => handleSfx({ target : {value: 1}})}/>
+           </IconButton> 
           </Stack>
         </Grid>
-        {/*
-        <Grid item xs={12}>
-          <Button variant='contained' startIcon={<CloudUploadIcon />}>Upload File </Button>
-        </Grid>
-        */}
         <Import />
         <Export selectedButton={selectedButton} setSelectedButton={setSelectedButton}/>
-        {/*
-        <Grid item xs={12}>
-          <Button variant={selectedButton === 'DOCX' ? "contained" : "outlined"}
-            onCLick={() => setSelectedButton('DOCX')}>DOCX</Button>
-
-          <Button variant={selectedButton === 'TXT' ? "contained" : "outlined"}
-            onCLick={() => setSelectedButton('TXT')}>TXT</Button>
-
-          <Button variant={selectedButton === 'PDF' ? "contained" : "outlined"}
-            onCLick={() => setSelectedButton('PDF')}>PDF</Button>
-
-          <Button variant="contained" endIcon={<GetAppIcon />} onClick={handleExport}>Export File</Button>
-        </Grid>
-            */}    
       </Grid>
       } {/* tab === 1 */}
         </DialogContent>

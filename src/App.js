@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react'; // Make sure to import useState
+import React, { useState, useEffect } from 'react'; // Make sure to import useState
 import Quilljs from './Editor/main.js';
 import Background from './Background/Background';
 import { Box, ThemeProvider } from '@mui/material';
@@ -8,12 +8,14 @@ import Themes from './Themes/Themes.js';
 import Settings from './Components/settings.js';
 import { ContextHandler, EditorStyleProvider } from './Context/ContextProvider';
 import { SnackbarProvider } from 'notistack';
+import Audio from './Audio/Audio.js';
+
 //need to put this here so the keystrokes don't duplicate
 document.addEventListener('keydown', (e) => {
-    //document.keystrokeSfx.cloneNode(true).play();
-    //console.log(e.key);
-    document.getElementById('audio').cloneNode(true).play();
-    
+//   //document.keystrokeSfx.cloneNode(true).play();
+//    //console.log(e.key);
+    document.getElementById('Audio').cloneNode(true).play();
+   
 });
 
 function App() {
@@ -33,8 +35,10 @@ function App() {
     const [editorToolbarColor, setToolbarColor] = useState('grey'); // Default Toolbar Color
 
     const [keystrokeSfx, setKeystrokeSfx] = useState('/audio/empty.wav');
+    const [sfxVolume, setSfxVolume] = useState(0.5); 
 
     const [bgAudio, setBgAudio] = useState('null.mp3'); //Default background audio
+    const [bgVolume, setBgVolume] = useState(0.5);
 
     // Lifting up the state to change the theme
     const [format, setFormat] = useState('default');
@@ -139,18 +143,40 @@ function App() {
     }
   }
 
+  const handleBgVolume = (volume) => {
+    if (typeof volume === 'number') {
+      setBgVolume(volume);
+    }
+    else if (volume && volume.target) {
+      setBgVolume(volume.target.value);
+    }
+  }
+  
+  const handleSfxVolume = (volume) => {
+    if (typeof volume === 'number') {
+      setSfxVolume(volume);
+    }
+    else if (volume && volume.target) {
+      setSfxVolume(volume.target.value);
+    }
+  }
+
     return (
     <ContextHandler.Provider 
       value={{ handleThemes, handleOpacity, wordGoal, setWordGoal, 
               goalEnabled, setGoalEnabled, delta, setDelta, quillEditor, 
-              setQuillEditor }}>
+              setQuillEditor, handleBgVolume, handleSfxVolume }}>
         <FullScreen handle={handle}> 
         <EditorStyleProvider>
           <SnackbarProvider>
             <div className="App">
                 <Background src={background} />
-                <audio id='audio' src={keystrokeSfx}></audio>
-                <audio id='bgaudio' src={bgAudio} autoPlay loop></audio>
+                <Audio id="audio"
+                    keystrokeSfx={keystrokeSfx}
+                    sfxVolume={sfxVolume}
+                    bgAudio={bgAudio}
+                    bgVolume={bgVolume}
+                />
                 {/*<audio id='audio' src={enterSfx}></audio>*/}
                 <header className="App-header" style={{ opacity: opacity / 100 }}>
                   <div className="ContainerSurrounder" style={{ width: '75%' }}>
@@ -198,19 +224,6 @@ function App() {
                 <button id="fullscreentoggle" onClick={!handle.active ? handle.enter : handle.exit}>
                     Toggle fullscreen (temp button)
                 </button>
-                {/* opacity slider
-                <div style={{ position: 'fixed', left: '3.5%', top: '10%', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
-                    <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        value={opacity}
-                        onChange={(e) => setOpacity(e.target.value)}
-                        style={{ '--value': opacity, marginBottom: '10px' }}
-                    />
-                    <span>Adjust Editor Opacity</span>
-                </div>
-                */}
                 <Themes onChangeTheme={changeEditorTheme}></Themes>
             </div>
             </SnackbarProvider>
