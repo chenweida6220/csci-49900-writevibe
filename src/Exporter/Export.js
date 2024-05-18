@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import { saveAs } from "file-saver";
 import * as quillToWord from "quill-to-word";
 import { pdfExporter } from "quill-to-pdf";
 import './Export.css';
-import { EditorStyleContext } from "../Context/ContextProvider";
+import { EditorStyleContext, ContextHandler } from "../Context/ContextProvider";
 
 
 const Export = ({ delta }) => {
@@ -11,9 +11,9 @@ const Export = ({ delta }) => {
 
     const [format, setFormat] = useState('docx');
     const { lineSpacing } = useContext(EditorStyleContext); 
-
+ 
     //export the quill delta to docx
-    const exportToDocx = async() => {
+    const exportToDocx = async () => {
         if (!delta || !delta.ops) {
             alert("The editor is empty! Please add content.");
             return;
@@ -42,8 +42,7 @@ const Export = ({ delta }) => {
 
         //Use file-saver to download the docx
         saveAs(docAsBlob, `${userFileName}.docx`);
-    };
-
+    }
     //export the quill delta to plain text
     const exportToTxt = () => {
         if(!delta || !delta.ops) {
@@ -64,7 +63,7 @@ const Export = ({ delta }) => {
     };
 
     // Export the quill dela to PDF
-    const exportToPDF = async() => {
+    const exportToPDF = async () => {
         if (!delta || !delta.ops) {     // If there is no content to export
             alert("The editor is empty! Please add content.");
             return;

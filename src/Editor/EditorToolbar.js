@@ -5,8 +5,8 @@ import { Quill } from "react-quill";
 import  LineSpacing from "./ToolbarComponents/LineSpacing.js"
 
   // Add sizes to whitelist and register them
-  const Size = Quill.import("formats/size");
-  Size.whitelist = ["1", "2", "3", "4"];
+  const Size = Quill.import('attributors/style/size');
+  Size.whitelist = ['4px', '6px', '8px', '10px', '12px', '14px', '16px', '18px', '20px'];
   Quill.register(Size, true);
 
   // Add fonts to whitelist and register them
@@ -16,8 +16,14 @@ import  LineSpacing from "./ToolbarComponents/LineSpacing.js"
     "comic-sans",
     "courier-new",
     "georgia",
-    "helvetica",
-    "lucida"
+    "lucida",
+    "mirza",
+    "monospace",
+    "oxygen",
+    "times-new-roman",
+    "roboto",
+    "sans-serif",
+    "ubuntu"
   ];
   Quill.register(Font, true);
 
@@ -26,9 +32,8 @@ import  LineSpacing from "./ToolbarComponents/LineSpacing.js"
 
   export const modules  = {
       toolbar: {
-        container: "#my-custom-toolbar",
+        container:  "#my-custom-toolbar",
           handlers: {
-
           }
       },
       clipboard: {
@@ -69,21 +74,28 @@ import  LineSpacing from "./ToolbarComponents/LineSpacing.js"
           <option value="comic-sans">Comic Sans</option>
           <option value="courier-new">Courier New</option>
           <option value="georgia">Georgia</option>
-          <option value="helvetica">Helvetica</option>
           <option value="lucida">Lucida</option>
+          <option value="mirza">Mirza</option>
+          <option value="monospace">Monospace</option>
+          <option value="oxygen">Oxygen</option>
+          <option value="times-new-roman">Times New Roman</option>
+          <option value="roboto">Roboto</option>
+          <option value="sans-serif">Sans Serif</option>
+          <option value="ubuntu">Ubuntu</option>
         </select>
         <select className="ql-size" defaultValue="medium">
-          <option value="extra-small">Size 1</option>
-          <option value="small">Size 2</option>
-          <option value="medium">Size 3</option>
-          <option value="large">Size 4</option>
-        </select>
-        <select className="ql-header" defaultValue="3">
-          <option value="1">Heading</option>
-          <option value="2">Subheading</option>
-          <option value="3">Normal</option>
-        </select>
+          <option value="4px">2</option>
+          <option value="6px">4</option>
+          <option value="8px">6</option>
+          <option value="10px">8</option>
+          <option value="12px">10</option>
+          <option value="14px">12</option>
+          <option value="16px">14</option>
+          <option value="18px">16</option>
+          <option value="20px">18</option>
+        </select>    
       </span>
+      <LineSpacing />
       <span className="ql-formats" style= {{ marginRight: '1px' }}>
         <button className="ql-bold" />
         <button className="ql-italic" />
@@ -116,7 +128,6 @@ import  LineSpacing from "./ToolbarComponents/LineSpacing.js"
         { /* <button className="ql-code-block" /> */ }
         <button className="ql-clean" />
       </span>
-    <LineSpacing />
     </div>
   );   
 

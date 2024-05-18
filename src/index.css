@@ -8,6 +8,85 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', Arial, 'Times New Roman', 'Aref Ruqaa'
+    monospace, Roboto, Oxygen, Ubuntu, 'Sans-Serif';
+}
+
+
+/* Set default font-family */
+#editor {
+  font-family: 'Arial';  
+  font-size: 18px;
+  height: 375px;
+}
+/* Set dropdown font-families */
+#my-custom-toolbar .ql-font span[data-label='Arial']::before {
+  font-family: 'Arial';
+}
+#my-custom-toolbar .ql-font span[data-lavel='Comic Sans']::before {
+  font-family: 'Comic Sans';
+}
+#my-custom-toolbar .ql-font span[data-label='Courier New']::before {
+  font-family: 'Courier New';
+}
+#my-custom-toolbar .ql-font span[data-label='Georgia']::before {
+  font-family: 'Georgia';
+}
+#my-custom-toolbar .ql-font span[data-label='Lucida']::before {
+  font-family: 'Lucida';
+}
+#my-custom-toolbar .ql-font span[data-label='Mirza']::before {
+  font-family: 'Mirza';
+}
+#my-custom-toolbar .ql-font span[data-label='Monospace']::before {
+  font-family: 'Monospace';
+}
+#my-custom-toolbar .ql-font span[data-label='Oxygen']::before {
+  font-family: 'Oxygen';
+}
+#my-custom-toolbar .ql-font span[data-label='Times New Roman']::before {
+  font-family: 'Times New Roman';
+}
+#my-custom-toolbar .ql-font span[data-label='Roboto']::before {
+  font-family: 'Roboto';
+}
+#my-custom-toolbar .ql-font span[data-label='Sans-Serif']::before {
+  font-family: 'Sans-Serif';
+}
+#my-custom-toolbar .ql-font span[data-label='Ubuntu']::before {
+  font-family: 'Ubuntu';
+}
+/* Set content font-families */
+.ql-font-arial {
+  font-family: 'Arial';
+}
+.ql-font-comic-sans {
+  font-family: 'Comic Sans';
+}
+.ql-font-courier-new {
+  font-family: 'Courier New';
+}
+.ql-font-georgia {
+  font-family: 'Georgia';
+}
+.ql-font-lucida {
+  font-family: 'Lucida';
+}
+.ql-font-mirza {
+  font-family: 'Mirza';
+}
+.ql-font-monospace {
+  font-family: 'Monospace';
+}
+.ql-font-oxygen {
+  font-family: 'Oxygen';
+}
+.ql-font-times-new-roman {
+  font-family: 'Times New Roman';
+}
+.ql-font-roboto {
+  font-family: 'Roboto';
+}
+.ql-font-ubuntu {
+  font-family: 'Ubuntu';
 }

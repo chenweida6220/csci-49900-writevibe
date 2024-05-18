@@ -284,7 +284,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
             <Button variant={selectedButton === 'PDF' ? "contained" : "outlined"}
               onCLick={() => setSelectedButton('PDF')}>PDF</Button>
 
-            <Button variant="contained" endIcon={<GetAppIcon />}>Export File</Button>
+            <Button variant="contained" endIcon={<GetAppIcon />} onClick={handleExport}>Export File</Button>
         </Grid>
       </Grid>
       } {/* tab === 1 */}

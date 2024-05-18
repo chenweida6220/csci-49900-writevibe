@@ -38,6 +38,7 @@ function App() {
 
     // Lifting up the state to change the theme
     const [format, setFormat] = useState('default');
+    const [exportFunctions, setExportFunctions] = useState({});
 
     const [wordGoal, setWordGoal] = useState(0);
     const [goalEnabled, setGoalEnabled] = useState(false);
@@ -137,7 +138,7 @@ function App() {
   }
 
     return (
-    <ContextHandler.Provider value={{handleThemes, handleOpacity, wordGoal, setWordGoal, goalEnabled, setGoalEnabled}}>
+    <ContextHandler.Provider value={{handleThemes, handleOpacity, wordGoal, setWordGoal, goalEnabled, setGoalEnabled, setExportFunctions, exportFunctions}}>
         <FullScreen handle={handle}>
           <SnackbarProvider>
             <div className="App">
@@ -146,6 +147,7 @@ function App() {
                 <audio id='bgaudio' src={bgAudio} autoPlay loop></audio>
                 {/*<audio id='audio' src={enterSfx}></audio>*/}
                 <header className="App-header" style={{ opacity: opacity / 100 }}>
+                  <div className="ContainerSurrounder" style={{ width: '75%' }}>
                     <ThemeProvider
                         theme={{
                             palette: {
@@ -182,16 +184,18 @@ function App() {
                                 <Quilljs
                                     editorBgColor={editorBgColor}
                                     editorToolbarColor={editorToolbarColor}
+                                    setExportFunctions={setExportFunctions}
                                 />
                               </EditorStyleProvider>
                             </Box>
                         </Box>
                     </ThemeProvider>
+                  </div>
                 </header>
                 <button id="fullscreentoggle" onClick={!handle.active ? handle.enter : handle.exit}>
                     Toggle fullscreen (temp button)
                 </button>
-                {/* opacity slider*/}
+                {/* opacity slider
                 <div style={{ position: 'fixed', left: '3.5%', top: '10%', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
                     <input
                         type="range"
@@ -203,6 +207,7 @@ function App() {
                     />
                     <span>Adjust Editor Opacity</span>
                 </div>
+                */}
                 <Themes onChangeTheme={changeEditorTheme}></Themes>
             </div>
             </SnackbarProvider>
