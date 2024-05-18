@@ -2,13 +2,14 @@ import './App.css';
 import React, { useState, useEffect } from 'react'; // Make sure to import useState
 import Quilljs from './Editor/main.js';
 import Background from './Background/Background';
-import { Box, ThemeProvider } from '@mui/material';
+import { Box, ThemeProvider, IconButton } from '@mui/material';
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import Themes from './Themes/Themes.js';
 import Settings from './Components/settings.js';
 import { ContextHandler, EditorStyleProvider } from './Context/ContextProvider';
 import { SnackbarProvider } from 'notistack';
 import Audio from './Audio/Audio.js';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 
 function App() {
     const handle = useFullScreenHandle();
@@ -213,9 +214,9 @@ function App() {
                     </ThemeProvider>
                   </div>
                 </header>
-                <button id="fullscreentoggle" onClick={!handle.active ? handle.enter : handle.exit}>
-                    Toggle fullscreen (temp button)
-                </button>
+                <IconButton id="fullscreentoggle" aria-label="Keystroke Volume 0%">
+                  <FullscreenIcon onClick={!handle.active ? handle.enter : handle.exit} />
+                </IconButton>
                 <Themes onChangeTheme={changeEditorTheme}></Themes>
             </div>
             </SnackbarProvider>
