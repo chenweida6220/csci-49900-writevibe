@@ -4,45 +4,11 @@ import * as quillToWord from "quill-to-word";
 import { pdfExporter } from "quill-to-pdf";
 import './Export.css';
 import { EditorStyleContext } from "../Context/ContextProvider";
-import ConvertApi from 'convertapi-js';
 
 const Export = ({ quillRef, delta }) => {
     const [fileName, setFileName] = useState('exported-document');
     const [format, setFormat] = useState('docx');
     const { lineSpacing } = useContext(EditorStyleContext); 
-
-    const convertApi = ConvertApi.auth('wmigeWMXxVJojbqk'); // Authenticate
-
-    // For testing purposes
-    const exportToHTML = async () => {
-        if (!quillRef.current) {
-            alert("The editor is not properly initialized.");
-            return;
-        }
-
-        // Check if there is content in the editor
-        const editor = quillRef.current.getEditor();
-        const editorElement = editor.root.innerHTML; // Accessing the innerHTML directly from the editor's root
-        if (!editorElement.trim()) {  // Check if the HTML is just whitespace
-            alert("The editor is empty! Please add content.");
-            return;
-        }
-
-        // Ask user for file name
-        const userFileName = prompt("Please enter a name for your file: (.html)", fileName);
-        if (userFileName) {
-            setFileName(userFileName);
-        }
-        else {
-            return; // Editor did not receive a filename, cancel export
-        }
-
-        // Create a Blob object containing the HTML content
-        const blob = new Blob([editorElement], { type: "text/html;charset=utf-8" });
-
-        // Use file-saver to prompt the user to save the file
-        saveAs(blob, `${userFileName}.html`);
-    };
 
 
 
@@ -143,9 +109,6 @@ const Export = ({ quillRef, delta }) => {
         else if (format === 'pdf') {
             exportToPDF();
         }
-        else if (format === 'html') {
-            exportToHTML();
-        }
     };
 
     return (
@@ -168,12 +131,6 @@ const Export = ({ quillRef, delta }) => {
                     onClick={() => setFormat('pdf')}
                 >
                     PDF
-                </button>
-                <button
-                    className={format === 'html' ? 'active' : ''}
-                    onClick={() => setFormat('html')}
-                >
-                    HTML
                 </button>
             </div>
             <button className="exportButton" onClick={handleExport}>Export</button>
