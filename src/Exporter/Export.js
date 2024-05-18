@@ -3,17 +3,19 @@ import { saveAs } from "file-saver";
 import * as quillToWord from "quill-to-word";
 import { pdfExporter } from "quill-to-pdf";
 import './Export.css';
-import { EditorStyleContext } from "../Context/ContextProvider";
+import { EditorStyleContext, ContextHandler } from "../Context/ContextProvider";
 
+import { Grid, Button } from '@mui/material';
 
-const Export = ({ delta }) => {
+import GetAppIcon from '@mui/icons-material/GetApp';
+const Export = ({ selectedButton, setSelectedButton}) => {
     const [fileName, setFileName] = useState('exported-document');
 
     const [format, setFormat] = useState('docx');
     const { lineSpacing } = useContext(EditorStyleContext); 
-
+    const { delta } = useContext(ContextHandler);
     //export the quill delta to docx
-    const exportToDocx = async() => {
+    const exportToDocx = async () => {
         if (!delta || !delta.ops) {
             alert("The editor is empty! Please add content.");
             return;
@@ -42,8 +44,7 @@ const Export = ({ delta }) => {
 
         //Use file-saver to download the docx
         saveAs(docAsBlob, `${userFileName}.docx`);
-    };
-
+    }
     //export the quill delta to plain text
     const exportToTxt = () => {
         if(!delta || !delta.ops) {
@@ -64,7 +65,7 @@ const Export = ({ delta }) => {
     };
 
     // Export the quill dela to PDF
-    const exportToPDF = async() => {
+    const exportToPDF = async () => {
         if (!delta || !delta.ops) {     // If there is no content to export
             alert("The editor is empty! Please add content.");
             return;
@@ -81,6 +82,11 @@ const Export = ({ delta }) => {
 
         //Use file-saver to download the pdf
         saveAs(pdfAsBlob, `${userFileName}.pdf`);
+    };
+    
+    const testButton = () => {
+      console.log("Button clicked, Selected Button: "+ selectedButton);
+      console.log("Format: "+ format);
     };
 
     const handleExport = () => {
@@ -101,29 +107,20 @@ const Export = ({ delta }) => {
     };
 
     return (
-        <div>
-            <div className="fileTypeExport">
-                <button 
-                    className={format === 'docx' ? 'active' : ''}
-                    onClick={() => setFormat('docx')}
-                >
-                    DOCX
-                </button>
-                <button 
-                    className={format === 'txt' ? 'active' : ''}
-                    onClick={() => setFormat('txt')}
-                >
-                    TXT
-                </button>
-                <button 
-                    className={format === 'pdf' ? 'active' : ''}
-                    onClick={() => setFormat('pdf')}
-                >
-                    PDF
-                </button>
-            </div>
-            <button className="exportButton" onClick={handleExport}>Export</button>
-        </div>
+    <> 
+      <Grid item xs={12}>
+        <Button variant={selectedButton === 'DOCX' ? "contained" : "outlined"}
+          onClick={() => { setSelectedButton('DOCX'); setFormat('docx')}}>DOCX</Button>
+
+        <Button variant={selectedButton === 'TXT' ? "contained" : "outlined"}
+          onClick={() => { setSelectedButton('TXT'); setFormat('txt')}}>TXT</Button>
+
+        <Button variant={selectedButton === 'PDF' ? "contained" : "outlined"}
+          onClick={() => { setSelectedButton('PDF'); setFormat('pdf')}}>PDF</Button>
+
+        <Button variant="contained" endIcon={<GetAppIcon />} onClick={handleExport}>Export File</Button>
+      </Grid>
+    </>
     );
 };
 

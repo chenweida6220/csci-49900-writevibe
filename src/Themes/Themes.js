@@ -36,6 +36,7 @@ const Themes = ({ onChangeTheme }) => {
 
     return (
         <div className="themeTypes">
+        {/*
             <PaletteIcon 
                 id="paletteIcon" 
                 onClick={handleOpen}
@@ -43,7 +44,7 @@ const Themes = ({ onChangeTheme }) => {
                 sx={{ color: 'white' }}
             >
             </PaletteIcon>  
-
+            */}
             <Modal
                 open={open}
                 onClose={handleClose}
