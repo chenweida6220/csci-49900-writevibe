@@ -1,5 +1,5 @@
 // Importing helper modules
-import React, { useCallback, useMemo, useRef, 
+import React, { useCallback, useRef, 
                 useState, useEffect, useContext } from "react";
 
 // Importing core components
@@ -9,12 +9,6 @@ import QuillEditor from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import styles from "./styles.module.css";
 import { EditorStyleContext, ContextHandler } from "../Context/ContextProvider.js";
-
-// Importing Exporter
-import Export from "../Exporter/Export";
-
-// Importing Importer
-import Import from "../Importer/Import";
 
 // Importing Editor Toolbar
 import EditorToolbar, { modules, formats } from "./EditorToolbar";
@@ -31,8 +25,8 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
     .filter(Boolean).length;
 
   // Editor Style Context
-  const { editorStyle } = React.useContext(EditorStyleContext);
-  const { setDelta } = React.useContext(ContextHandler);
+  const { editorStyle } = useContext(EditorStyleContext);
+  const { setDelta, setQuillEditor } = useContext(ContextHandler);
   // Editor ref
   const quill = useRef();
   // Handler to handle button clicked
@@ -73,20 +67,16 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
     };
   }, []);
 
-  //Import Functionality
-  const setEditorContent = (htmlContent) => {
-    const quillEditor = quill.current.getEditor();
-    quillEditor.clipboard.dangerouslyPasteHTML(htmlContent);
-  };
-
   //Save and Load content from local storage
   //Load Content if any
   useEffect(() => {
     const savedContent = localStorage.getItem('editorContent');
     if (savedContent) {
-        setEditorContent(savedContent);
+        //setEditorContent(savedContent);
+        quill.current.getEditor().clipboard.dangerouslyPasteHTML(savedContent);
+        setQuillEditor(quill.current.getEditor());
     }
-  }, []);
+  }, [setQuillEditor]);
 
   //Save Content
   useEffect(() => {
@@ -95,7 +85,6 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
 
   return (
     <div className={styles.wrapper}>
-      <Import setEditorContent={setEditorContent} />
       <label className={styles.label}>Most Fun Writing App</label>
       <EditorToolbar editorToolbarColor= {editorToolbarColor } />
       <QuillEditor
@@ -109,12 +98,6 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
         onChange={handleChange} //Use the handle change function
         placeholder={"Write something awesome..."}
       />      
-      {/* Export the delta to use in Exporter.js
-      <div className={styles.exportButton}>
-        {<Export delta={delta} />}
-        <Progress wordCount={wordCount} />
-      </div>
-      */}
     </div>
   );
 };

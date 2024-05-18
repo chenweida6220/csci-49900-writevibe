@@ -38,7 +38,7 @@ function App() {
 
     // Lifting up the state to change the theme
     const [format, setFormat] = useState('default');
-    const [exportFunctions, setExportFunctions] = useState({});
+    const [ quillEditor, setQuillEditor] = useState(null);
 
     const [wordGoal, setWordGoal] = useState(0);
     const [goalEnabled, setGoalEnabled] = useState(false);
@@ -140,7 +140,10 @@ function App() {
   }
 
     return (
-    <ContextHandler.Provider value={{ handleThemes, handleOpacity, wordGoal, setWordGoal, goalEnabled, setGoalEnabled, delta, setDelta }}>
+    <ContextHandler.Provider 
+      value={{ handleThemes, handleOpacity, wordGoal, setWordGoal, 
+              goalEnabled, setGoalEnabled, delta, setDelta, quillEditor, 
+              setQuillEditor }}>
         <FullScreen handle={handle}> 
         <EditorStyleProvider>
           <SnackbarProvider>

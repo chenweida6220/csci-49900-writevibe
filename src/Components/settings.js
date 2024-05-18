@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Grid, Dialog, DialogContent, Box, Tabs, Tab,
+import { Typography, Grid, Dialog, DialogContent, Tabs, Tab,
           Button, Slider, Stack, IconButton, MenuItem, Select, TextField } from '@mui/material';
 import { styled } from '@mui/system'; // replaces @mui/system/styles which is depreciated
 import { useState, useContext } from 'react'; // React hook for functional components
@@ -7,6 +7,7 @@ import { useState, useContext } from 'react'; // React hook for functional compo
 import './Settings.css';
 import settingsicon from '../Images/Painterspalette.png';
 import Export from '../Exporter/Export';
+import Import from '../Importer/Import'
 import { ContextHandler } from '../Context/ContextProvider';
 
 import OpacityIcon from '@mui/icons-material/Opacity';
@@ -270,10 +271,12 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
            </IconButton>
           </Stack>
         </Grid>
-
+        {/*
         <Grid item xs={12}>
           <Button variant='contained' startIcon={<CloudUploadIcon />}>Upload File </Button>
         </Grid>
+        */}
+        <Import />
         <Export selectedButton={selectedButton} setSelectedButton={setSelectedButton}/>
         {/*
         <Grid item xs={12}>
