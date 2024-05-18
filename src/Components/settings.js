@@ -6,6 +6,7 @@ import { useState, useContext } from 'react'; // React hook for functional compo
 
 import './Settings.css';
 import settingsicon from '../Images/Painterspalette.png';
+import Export from '../Exporter/Export';
 import { ContextHandler } from '../Context/ContextProvider';
 
 import OpacityIcon from '@mui/icons-material/Opacity';
@@ -273,19 +274,21 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
         <Grid item xs={12}>
           <Button variant='contained' startIcon={<CloudUploadIcon />}>Upload File </Button>
         </Grid>
+        <Export selectedButton={selectedButton} setSelectedButton={setSelectedButton}/>
+        {/*
+        <Grid item xs={12}>
+          <Button variant={selectedButton === 'DOCX' ? "contained" : "outlined"}
+            onCLick={() => setSelectedButton('DOCX')}>DOCX</Button>
 
-            <Grid item xs={12}>
-            <Button variant={selectedButton === 'DOCX' ? "contained" : "outlined"}
-              onCLick={() => setSelectedButton('DOCX')}>DOCX</Button>
+          <Button variant={selectedButton === 'TXT' ? "contained" : "outlined"}
+            onCLick={() => setSelectedButton('TXT')}>TXT</Button>
 
-            <Button variant={selectedButton === 'TXT' ? "contained" : "outlined"}
-              onCLick={() => setSelectedButton('TXT')}>TXT</Button>
+          <Button variant={selectedButton === 'PDF' ? "contained" : "outlined"}
+            onCLick={() => setSelectedButton('PDF')}>PDF</Button>
 
-            <Button variant={selectedButton === 'PDF' ? "contained" : "outlined"}
-              onCLick={() => setSelectedButton('PDF')}>PDF</Button>
-
-            <Button variant="contained" endIcon={<GetAppIcon />} onClick={handleExport}>Export File</Button>
+          <Button variant="contained" endIcon={<GetAppIcon />} onClick={handleExport}>Export File</Button>
         </Grid>
+            */}    
       </Grid>
       } {/* tab === 1 */}
         </DialogContent>

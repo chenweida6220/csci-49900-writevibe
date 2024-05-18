@@ -8,7 +8,7 @@ import QuillEditor from "react-quill";
 // Importing styles
 import "react-quill/dist/quill.snow.css";
 import styles from "./styles.module.css";
-import { EditorStyleContext } from "../Context/ContextProvider.js";
+import { EditorStyleContext, ContextHandler } from "../Context/ContextProvider.js";
 
 // Importing Exporter
 import Export from "../Exporter/Export";
@@ -25,8 +25,6 @@ import Progress from "../Progress/Progress";
 const Editor = ({ editorBgColor, editorToolbarColor }) => {
   // Editor state
   const [value, setValue] = useState("");
-  // Editor state for exporting using Deltas
-  const [delta, setDelta] = useState(null);
 
   const wordCount = value
     .split(/\s+/)
@@ -34,7 +32,7 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
 
   // Editor Style Context
   const { editorStyle } = React.useContext(EditorStyleContext);
-
+  const { setDelta } = React.useContext(ContextHandler);
   // Editor ref
   const quill = useRef();
   // Handler to handle button clicked
@@ -110,11 +108,13 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
         modules={modules}
         onChange={handleChange} //Use the handle change function
         placeholder={"Write something awesome..."}
-      />      {/*Export the delta to use in Exporter.js*/}
+      />      
+      {/* Export the delta to use in Exporter.js
       <div className={styles.exportButton}>
         {<Export delta={delta} />}
         <Progress wordCount={wordCount} />
       </div>
+      */}
     </div>
   );
 };

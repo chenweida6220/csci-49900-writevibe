@@ -43,6 +43,8 @@ function App() {
     const [wordGoal, setWordGoal] = useState(0);
     const [goalEnabled, setGoalEnabled] = useState(false);
 
+    const [delta, setDelta] = useState(null);
+
     //function to update the editor's background depending on the theme
     const themeColors = {
         default: {
@@ -138,8 +140,9 @@ function App() {
   }
 
     return (
-    <ContextHandler.Provider value={{handleThemes, handleOpacity, wordGoal, setWordGoal, goalEnabled, setGoalEnabled, setExportFunctions, exportFunctions}}>
-        <FullScreen handle={handle}>
+    <ContextHandler.Provider value={{ handleThemes, handleOpacity, wordGoal, setWordGoal, goalEnabled, setGoalEnabled, delta, setDelta }}>
+        <FullScreen handle={handle}> 
+        <EditorStyleProvider>
           <SnackbarProvider>
             <div className="App">
                 <Background src={background} />
@@ -180,13 +183,10 @@ function App() {
                             <Box sx={{
                                 bgcolor: editorInnerColor,
                             }}>
-                              <EditorStyleProvider>
                                 <Quilljs
                                     editorBgColor={editorBgColor}
                                     editorToolbarColor={editorToolbarColor}
-                                    setExportFunctions={setExportFunctions}
                                 />
-                              </EditorStyleProvider>
                             </Box>
                         </Box>
                     </ThemeProvider>
@@ -215,7 +215,9 @@ function App() {
             onChangeBackground={changeBackground}
             onChangeKeystrokeSfx={changeKeystrokeSfx}
             onChangeSoundscape={changeSoundscape}
+            delta={delta}
           />
+        </EditorStyleProvider>
         </FullScreen>
       </ContextHandler.Provider>
     );
