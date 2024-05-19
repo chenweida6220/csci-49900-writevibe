@@ -85,7 +85,6 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
 
   return (
     <div className={styles.wrapper}>
-      <label className={styles.label}>WriteVibe</label>
       <EditorToolbar editorToolbarColor= {editorToolbarColor } />
       <QuillEditor
         ref={(el) => (quill.current = el)}
