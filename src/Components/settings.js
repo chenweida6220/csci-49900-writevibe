@@ -60,7 +60,7 @@ function SettingsOption({ label, options, value, onChange }) {
 }
 
 
-const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}) => {
+const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape, onChangePageColor, onChangeOuterBorder, onChangeInnerBorder, onChangeToolbarColor}) => {
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const [background, setBackground] = useState('default');
@@ -146,6 +146,33 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
     setOpen(false);
   }
 
+  const handlePageColorChange = (event) => {
+    //onChangePageColor(event.target.value);
+    //console.log(document.getElementById('page-color-input').value);
+    onChangePageColor(document.getElementById('page-color-input').value);
+    
+    setIsOpen(false);
+    setOpen(false);
+  }
+
+  const handleOuterBorderChange = (event) => {
+    onChangeOuterBorder(document.getElementById('outer-color-input').value);
+    setIsOpen(false);
+    setOpen(false);
+  }
+
+  const handleInnerBorderChange = (event) => {
+    onChangeInnerBorder(document.getElementById('inner-color-input').value);
+    setIsOpen(false);
+    setOpen(false);
+  }
+
+  const handleToolbarColorChange = (event) => {
+    onChangeToolbarColor(document.getElementById('toolbar-color-input').value);
+    setIsOpen(false);
+    setOpen(false);
+  }
+
   const handleWordGoal = () => {
     setWordGoal(document.getElementById('goalvalue').value);
     setGoalEnabled(true);
@@ -217,16 +244,6 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
           </Tabs>
           { tab === 0 && 
             <Grid container rowSpacing={0.5} columnSpacing={5} justifyContent="center" alignItems="center">
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Word Count Goal</HarmattanTypography>
-                <TextField
-                  variant="outlined"
-                  sx={{ width: '80%' }}
-                  type="number"
-                  id='goalvalue'
-                />
-                <button onClick={handleWordGoal}>Set Goal</button>
-              </Grid>
               <SettingsOption
                 label="Theme"
                 options={themes}
@@ -239,24 +256,51 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
                 value={background}
                 onChange={handleBackgroundChange}
               />
+              {/*
               <SettingsOption 
                 label="Canvas"
                 options={canvasOptions}
                 value={canvas}
                 onChange={setCanvas}
               />
-              <SettingsOption
-                label="Page Color"
-                options={pageColorOptions}
-                value={pageColor}
-                onChange={setPageColor}
-              />
-              <SettingsOption
-                label="Font"
-                options={fontOptions}
-                value={font}
-                onChange={setFont}
-              />
+              */}
+              <Grid item xs={12} md={6}>
+                <HarmattanTypography variant="h6">Set Outer Border Color</HarmattanTypography>
+                <TextField 
+                    id="outer-color-input" 
+                    label="Outlined" 
+                    variant="outlined"
+                /> 
+                <button onClick={handleOuterBorderChange}>Set Color</button>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <HarmattanTypography variant="h6">Set Inner Border Color</HarmattanTypography>
+                <TextField 
+                    id="inner-color-input" 
+                    label="Outlined" 
+                    variant="outlined"
+                /> 
+                <button onClick={handleInnerBorderChange}>Set Color</button>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <HarmattanTypography variant="h6">Set Toolbar Color</HarmattanTypography>
+                <TextField 
+                    id="toolbar-color-input" 
+                    label="Outlined" 
+                    variant="outlined"
+                /> 
+                <button onClick={handleToolbarColorChange}>Set Color</button>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <HarmattanTypography variant="h6">Set Page Color</HarmattanTypography>
+                <TextField 
+                    id="page-color-input" 
+                    label="Outlined" 
+                    variant="outlined"
+                    //value={pageColor}
+                /> 
+                <button onClick={handlePageColorChange}>Set Color</button>
+              </Grid>
               <SettingsOption
                 label="Typing Sound"
                 options={typingSoundOptions}
@@ -269,6 +313,16 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape}
                 value={soundscape}
                 onChange={handleSoundscapeChange}
               />
+              <Grid item xs={12} md={6}>
+                <HarmattanTypography variant="h6">Word Count Goal</HarmattanTypography>
+                <TextField
+                  variant="outlined"
+                  sx={{ width: '80%' }}
+                  type="number"
+                  id='goalvalue'
+                />
+                <button onClick={handleWordGoal}>Set Goal</button>
+              </Grid>
             </Grid>
           } {/* tab === 0 */}
       {/* General Tab */}

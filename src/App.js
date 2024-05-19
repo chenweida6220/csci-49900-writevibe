@@ -116,16 +116,32 @@ function App() {
     };
 
     const changeBackground = (theme) => {
-      setBackground(themeColors[theme].background);
+        setBackground(themeColors[theme].background);
     };
 
     const changeKeystrokeSfx = (theme) => {
-      setKeystrokeSfx(themeColors[theme].keystrokeSfx);
+        setKeystrokeSfx(themeColors[theme].keystrokeSfx);
     };
 
     const changeSoundscape = (theme) => {
-      setBgAudio(themeColors[theme].bgAudio);
+        setBgAudio(themeColors[theme].bgAudio);
     };
+
+    const changePageColor = (color) => {
+        setEditorBgColor(color);
+    }
+
+    const changeOuterBorder = (color) => {
+        setEditorOuterColor(color);
+    }
+
+    const changeInnerBorder = (color) => {
+        setEditorInnerColor(color);
+    }
+
+    const changeToolbarColor = (color) => {
+        setToolbarColor(color);
+    }
 
     const handleOpacity = (opacity) => {
     if (typeof opacity === 'number') {
@@ -224,6 +240,10 @@ function App() {
             onChangeBackground={changeBackground}
             onChangeKeystrokeSfx={changeKeystrokeSfx}
             onChangeSoundscape={changeSoundscape}
+            onChangePageColor={changePageColor}
+            onChangeOuterBorder={changeOuterBorder}
+            onChangeInnerBorder={changeInnerBorder}
+            onChangeToolbarColor={changeToolbarColor}
             delta={delta}
           />
         </EditorStyleProvider>
