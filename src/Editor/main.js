@@ -98,6 +98,7 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
         onChange={handleChange} //Use the handle change function
         placeholder={"Write something awesome..."}
       />      
+      <Progress wordCount={wordCount}/>
     </div>
   );
 };
