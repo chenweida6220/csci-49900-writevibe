@@ -89,9 +89,3 @@
   
   /* You need to dynamically update the `--value` custom property in your React component */
   
-.Logo {
-    position: fixed;
-    top: 1vh;
-    left: 50vw;
-    transform: translateX(-50%);
-}

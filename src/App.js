@@ -187,9 +187,6 @@ function App() {
                 {/*<audio id='audio' src={enterSfx}></audio>*/}
                 <header className="App-header" style={{ opacity: opacity / 100 }}>
                   <div className="ContainerSurrounder" style={{ width: '75%' }}>
-                    <div className='Logo'>
-                        <img src="/images/WriteVibe.png"/>
-                    </div>
                     <ThemeProvider
                         theme={{
                             palette: {
