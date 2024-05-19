@@ -41,6 +41,7 @@ function App() {
     const [goalEnabled, setGoalEnabled] = useState(false);
 
     const [delta, setDelta] = useState(null);
+    const [value, setValue] = useState('');
 
     //function to update the editor's background depending on the theme
     const themeColors = {
@@ -172,7 +173,7 @@ function App() {
     <ContextHandler.Provider 
       value={{ handleThemes, handleOpacity, wordGoal, setWordGoal, 
               goalEnabled, setGoalEnabled, delta, setDelta, quillEditor, 
-              setQuillEditor, handleBgVolume, handleSfxVolume }}>
+              setQuillEditor, handleBgVolume, handleSfxVolume, value, setValue }}>
         <FullScreen handle={handle}> 
         <EditorStyleProvider>
           <SnackbarProvider>
