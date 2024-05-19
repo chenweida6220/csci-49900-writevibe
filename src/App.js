@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react'; // Make sure to import useState
+import React, { useState, useEffect, useRef } from 'react'; // Make sure to import useState
 import Quilljs from './Editor/main.js';
 import Background from './Background/Background';
 import { Box, ThemeProvider, IconButton } from '@mui/material';
@@ -110,10 +110,24 @@ function App() {
 
 
     const handleThemes = (newFormat) => {
-        console.log("Theme changed to:", newFormat);
         setFormat(newFormat);
         changeEditorTheme(newFormat);
+        changeTextColor(newFormat);
     };
+
+    const changeTextColor = (theme) => {
+      const length = quillEditor.getLength();
+      const currentPos = quillEditor.getSelection();
+      const currentColor = quillEditor.getFormat(currentPos).color;
+      quillEditor.setSelection(0, length);
+      if (theme === 'warm' || theme === 'space') {
+        quillEditor.format('color', '#FFFFFF');
+      }
+      else {
+        quillEditor.format('color', currentColor);
+      } 
+      quillEditor.setSelection(currentPos);
+    }
 
     const changeBackground = (theme) => {
       setBackground(themeColors[theme].background);
