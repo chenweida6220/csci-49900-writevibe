@@ -60,7 +60,7 @@ function SettingsOption({ label, options, value, onChange }) {
 }
 
 
-const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape, onChangePageColor, onChangeOuterBorder, onChangeInnerBorder, onChangeToolbarColor}) => {
+const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape, onChangePageColor, onChangeOuterBorder, onChangeInnerBorder, onChangeToolbarColor, onChangeCustomBg}) => {
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const [background, setBackground] = useState('default');
@@ -172,6 +172,11 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
     onChangeToolbarColor(document.getElementById('toolbar-color-input').value);
     setIsOpen(false);
     setOpen(false);
+  }
+
+  const bgUploadHandle = (event) => {
+    //console.log(event.target.value);
+    onChangeCustomBg();
   }
 
   const handleWordGoal = () => {
@@ -328,6 +333,10 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
                   id='goalvalue'
                 />
                 <button onClick={handleWordGoal}>Set Goal</button>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <HarmattanTypography variant="h6">Upload Background Image</HarmattanTypography>
+                <input type="file" id="custom-bg" accept="image/png, image/jpeg, video/*" onChange={bgUploadHandle} />    
               </Grid>
             </Grid>
           } {/* tab === 0 */}

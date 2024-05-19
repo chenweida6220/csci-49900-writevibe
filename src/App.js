@@ -158,6 +158,18 @@ function App() {
         setToolbarColor(color);
     }
 
+    const handleBgUpload = (event) => {
+        const image = document.getElementById('custom-bg').files[0];
+        //const bgUrl = URL.createObjectUrl(image);
+        //const bgUrl = window.URL.createObjectURL(image);
+        //console.log(image.type);
+        //console.log(bgUrl);
+        
+        //setBackground(bgUrl);
+        setBackground(image);
+
+    }
+
     const handleOpacity = (opacity) => {
     if (typeof opacity === 'number') {
         setOpacity(opacity);
@@ -262,6 +274,7 @@ function App() {
             onChangeOuterBorder={changeOuterBorder}
             onChangeInnerBorder={changeInnerBorder}
             onChangeToolbarColor={changeToolbarColor}
+            onChangeCustomBg={handleBgUpload}
             delta={delta}
           />
         </EditorStyleProvider>
