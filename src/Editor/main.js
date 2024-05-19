@@ -18,15 +18,15 @@ import Progress from "../Progress/Progress";
 
 const Editor = ({ editorBgColor, editorToolbarColor }) => {
   // Editor state
-  const [value, setValue] = useState("");
+   // Editor Style Context
+  const { editorStyle } = useContext(EditorStyleContext);
+  const { setDelta, setQuillEditor, value, setValue } = useContext(ContextHandler);
 
   const wordCount = value
     .split(/\s+/)
     .filter(Boolean).length;
 
-  // Editor Style Context
-  const { editorStyle } = useContext(EditorStyleContext);
-  const { setDelta, setQuillEditor } = useContext(ContextHandler);
+ 
   // Editor ref
   const quill = useRef();
   // Handler to handle button clicked
@@ -85,7 +85,6 @@ const Editor = ({ editorBgColor, editorToolbarColor }) => {
 
   return (
     <div className={styles.wrapper}>
-      <label className={styles.label}>WriteVibe</label>
       <EditorToolbar editorToolbarColor= {editorToolbarColor } />
       <QuillEditor
         ref={(el) => (quill.current = el)}

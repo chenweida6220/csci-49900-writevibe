@@ -1,61 +1,78 @@
-import React, { useCallback } from "react";
-import mammoth from 'mammoth';
+import React, { useCallback, useState } from "react";
 import './Import.css';
 import { ContextHandler } from '../Context/ContextProvider';
 import { Grid, Button } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import ConvertApi from 'convertapi-js';
 
 const Import = () => {
-    const { quillEditor } = React.useContext(ContextHandler);
+    const { quillEditor, value, setValue } = React.useContext(ContextHandler);
     const fileInput = React.useRef(null);
+    const [file, setFile] = useState(null);
+    const convertApi = ConvertApi.auth('wmigeWMXxVJojbqk'); // Api key
+    
 
-
-    const handleButtonClick = () => {
-      fileInput.current.click();
-    };
-    //Function to handle read of the file
-    const handleFileChange = useCallback((event) => {
+    const handleFileChange = async (event) => { 
         const file = event.target.files[0];
-        if(!file) {
+        setFile(file);
+        
+        if (!file) {
+            alert('Please select a file first.');
             return;
         }
 
-        if(file.type === "text/plain") {    //if the import is a txt file
+        const fileType = file.type;
+
+        // Handling text files
+        if (fileType === "text/plain") {
             const reader = new FileReader();
             reader.onload = function (e) {
-                quillEditor.clipboard.dangerouslyPasteHTML(e.target.result);
+                const formattedHtml = `<div class="preformatted-text">${e.target.result}</div>`; // Preserves formatting of .txt files
+                setValue(formattedHtml); // Pass the formatted HTML to onContentChange
             };
             reader.readAsText(file);
+            return;
         }
-        else if (file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {     //if the import is a docx
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                mammoth.convertToHtml({ arrayBuffer: e.target.result })
-                .then((result) => {
-                    quillEditor.clipboard.dangerouslyPasteHTML(result.value);
-                })
-                .catch((err) => console.error(err));
-            };
-            reader.readAsArrayBuffer(file);
+
+        // Handling DOCX files using convertAPI
+        if (fileType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+            const params = convertApi.createParams();
+            params.add('file', file);
+
+            try {
+                const result = await convertApi.convert('docx', 'html', params);
+                const url = result.files[0].Url;
+                fetchHtmlContent(url); // Fetch the HTML content from ConvertAPI result
+            } catch (error) {
+                console.error('Error during conversion:', error);
+                alert('Conversion failed.');
+            }
+            return;
         }
-        else {
-            alert("File type not supported! Only .docx and .txt are supported.");
+
+        alert("Unsupported file type. Only .txt and .docx files are supported.");
+    };
+
+    const handleConvert = async () => {
+        fileInput.current.click();
+        
+    };
+
+    const fetchHtmlContent = async (url) => {
+        try {
+            const response = await fetch(url);
+            const htmlContent = await response.text();
+            setValue(htmlContent); // Update the content in the Editor component
+        } catch (error) {
+            console.error('Failed to fetch HTML content:', error);
+            alert('Failed to load the HTML content.');
         }
-    }, [quillEditor]);
+    };
 
     return (
         <>
-          {/*  
-          <input
-            type="file"
-            id="fileInput"
-            className="customFileInput"
-            accept=".docx,.txt"         //file types allowed
-            onChange={handleFileChange}
-            />
-            */}
             <Grid item xs={12} htmlFor="fileInput" className="customFileInputButton">
-              <Button variant='contained' startIcon={<CloudUploadIcon />} onClick={handleButtonClick}>Upload File </Button>
+              <Button variant='contained' startIcon={<CloudUploadIcon />} onClick={handleConvert}>Upload File </Button>
             </Grid>
             <input
                 type="file"
@@ -66,11 +83,6 @@ const Import = () => {
                 style={{ display: 'none' }} // hide the default file input
                 ref={fileInput}
             />
-            {/*
-            <label htmlFor="fileInput" className="customFileInputLabel">
-                Upload File
-            </label>
-            */}
         </>
     );
 };
