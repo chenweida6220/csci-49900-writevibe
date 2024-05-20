@@ -241,7 +241,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
 
   const typingSoundOptions = [
     { value: 'default', label: 'None' },
-    { value: 'space', label: 'Sparkly' },
+    { value: 'space', label: 'Imposter' },
     { value: 'warm', label: 'Typewriter' },
     { value: 'rain', label: 'Keyboard 1' },
     { value: 'cafe', label: 'Keyboard 2' },
