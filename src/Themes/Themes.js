@@ -94,6 +94,20 @@ const Themes = ({ onChangeTheme }) => {
                         >
                             Cafe
                         </option>
+                        <option 
+                            value="forest"
+                            className={format === 'forest' ? 'active' : ''}
+                            onClick={() => handleThemes('forest')}
+                        >
+                            Forest
+                        </option>
+                        <option 
+                            value="lofi"
+                            className={format === 'lofi' ? 'active' : ''}
+                            onClick={() => handleThemes('lofi')}
+                        >
+                            lofi
+                        </option>
                     </select>
                     <br />
                 </Typography>

@@ -25,6 +25,9 @@ const Export = ({ selectedButton, setSelectedButton}) => {
         if(userFileName) {
             setFileName(userFileName);
         }
+        else {
+            return;
+        }
         
         const quilToWordConfig = {
             exportAs: 'blob',
@@ -57,6 +60,9 @@ const Export = ({ selectedButton, setSelectedButton}) => {
         if(userFileName) {
             setFileName(userFileName);
         }
+        else {
+            return;
+        }
 
         //convert delta to plain text
         let text = delta.ops.map(op => op.insert).join("");
@@ -75,6 +81,9 @@ const Export = ({ selectedButton, setSelectedButton}) => {
         const userFileName = prompt("Please enter a name for your file: (.pdf)", fileName);
         if(userFileName) {
             setFileName(userFileName);
+        }
+        else {
+            return;
         }
 
         //generate the pdf as a blob
