@@ -58,7 +58,7 @@ const Progress = ({wordCount}) => {
             }
             {/*isLargeExploding && <ConfettiExplosion {...largeProps} />*/}
             <div>
-                <sub style={{position: 'relative', right: '32%'}}>Word Count: {wordCount}</sub>
+                <sub style={{position: 'relative', right: '32%', color: 'black'}}>Word Count: {wordCount}</sub>
                 
                 {goalEnabled ? 
                     <sub id='wordgoal' style={{position: 'relative', left: '32%'}}>Word Goal: {wordGoal}</sub> :
