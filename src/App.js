@@ -12,188 +12,197 @@ import Audio from './Audio/Audio.js';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 
 function App() {
-    const handle = useFullScreenHandle();
+  const handle = useFullScreenHandle();
 
-    //opacity slider
-    const [opacity, setOpacity] = useState(90);  //100 is default opacity
+  //opacity slider
+  const [opacity, setOpacity] = useState(90);  //100 is default opacity
 
-    const [background, setBackground] = useState('/images/default.jpg'); // Default background
+  const [background, setBackground] = useState('/images/default.jpg'); // Default background
 
-    const [editorBgColor, setEditorBgColor] = useState('#EEEEEE'); // Default Quill Editor Background Color
+  const [editorBgColor, setEditorBgColor] = useState('#EEEEEE'); // Default Quill Editor Background Color
 
-    const [editorOuterColor, setEditorOuterColor] = useState('#EEEEEE'); // Default Outer Box Color
+  const [editorOuterColor, setEditorOuterColor] = useState('#EEEEEE'); // Default Outer Box Color
 
-    const [editorInnerColor, setEditorInnerColor] = useState('white'); // Default Inner Box Color
+  const [editorInnerColor, setEditorInnerColor] = useState('white'); // Default Inner Box Color
 
-    const [editorToolbarColor, setToolbarColor] = useState('grey'); // Default Toolbar Color
+  const [editorToolbarColor, setToolbarColor] = useState('grey'); // Default Toolbar Color
 
-    const [keystrokeSfx, setKeystrokeSfx] = useState('/audio/empty.wav');
-    const [sfxVolume, setSfxVolume] = useState(0.5); 
+  const [keystrokeSfx, setKeystrokeSfx] = useState('/audio/empty.wav');
+  const [sfxVolume, setSfxVolume] = useState(0.5);
 
-    const [bgAudio, setBgAudio] = useState('null.mp3'); //Default background audio
-    const [bgVolume, setBgVolume] = useState(0.5);
+  const [bgAudio, setBgAudio] = useState('null.mp3'); //Default background audio
+  const [bgVolume, setBgVolume] = useState(0.5);
 
-    // Lifting up the state to change the theme
-    const [format, setFormat] = useState('default');
-    const [ quillEditor, setQuillEditor] = useState(null);
+  // Lifting up the state to change the theme
+  const [format, setFormat] = useState('default');
+  const [quillEditor, setQuillEditor] = useState(null);
 
-    const [wordGoal, setWordGoal] = useState(0);
-    const [goalEnabled, setGoalEnabled] = useState(false);
+  const [wordGoal, setWordGoal] = useState(0);
+  const [goalEnabled, setGoalEnabled] = useState(false);
 
-    const [delta, setDelta] = useState(null);
-    const [value, setValue] = useState('');
+  const [delta, setDelta] = useState(null);
+  const [value, setValue] = useState('');
 
-    //function to update the editor's background depending on the theme
-    const themeColors = {
-        default: {
-            background: '/images/default.jpg',
-            editorBgColor: '#EEEEEE',
-            editorOuterColor: '#EEEEEE',
-            editorInnerColor: 'white',
-            editorToolbarColor: 'grey',
-            keystrokeSfx: '/audio/empty.wav',
-            
-        },
-        space: {
-            background: '/videos/deep-space.mp4',
-            editorBgColor: 'blue',
-            editorOuterColor: 'darkblue',
-            editorInnerColor: '#20122B',
-            editorToolbarColor: 'darkblue',
-            keystrokeSfx: '/audio/purple.wav', 
-            bgAudio: '/audio/empty.wav'
-        },
-        warm: {
-            background: '/videos/fireplace.mp4',
-            editorBgColor: 'red',
-            editorOuterColor: 'black',
-            editorInnerColor: 'darkred',
-            editorToolbarColor: 'black',
-            keystrokeSfx: '/audio/keystroke.wav',
-            bgAudio: '/audio/fireplace.mp3',
-        },
-        rain: {
-            background: '/videos/rainy-window.mp4',
-            editorBgColor: 'steelblue',
-            editorOuterColor: 'steelblue',
-            editorInnerColor: 'lightblue',
-            editorToolbarColor: '#5CA9AC',
-            keystrokeSfx: '/audio/purple.wav',
-            bgAudio: '/audio/rain.mp3',
-        },
-        cafe: {
-            background: '/images/cafe.jpg',
-            editorBgColor: '#AC835C',
-            editorOuterColor: 'tan',
-            editorInnerColor: '#A28C6B',
-            editorToolbarColor: 'tan',
-            keystrokeSfx: '/audio/f.wav',
-            bgAudio: '/audio/cafe.mp3',
-        },
-        lofi: {
-          background: '/videos/lofi-girl.mp4',
-          editorBgColor: '#AC835C',
-          editorOuterColor: '#AC835C',
-          editorInnerColor: '#A28C6B',
-          editorToolbarColor: '#AC835C',
-          keystrokeSfx: '/audio/f.wav',
-          bgAudio: '/audio/lo-fi.mp3',
-      },
-    };
+  //function to update the editor's background depending on the theme
+  const themeColors = {
+    default: {
+      background: '/images/default.jpg',
+      editorBgColor: '#EEEEEE',
+      editorOuterColor: '#EEEEEE',
+      editorInnerColor: 'white',
+      editorToolbarColor: 'grey',
+      keystrokeSfx: '/audio/empty.wav',
 
-    const changeEditorTheme = (theme) => {
-        //update the background video
-        setBackground(themeColors[theme].background || '/videos/deep-space.mp4');
-        //update the background color
-        setEditorBgColor(themeColors[theme].editorBgColor || '#20122b');
-        //update the outer box of the theme
-        setEditorOuterColor(themeColors[theme].editorOuterColor || 'darkblue');
-        //update the inner box of the theme
-        setEditorInnerColor(themeColors[theme].editorInnerColor || '#20122b');
-        //update the toolbar color
-        setToolbarColor(themeColors[theme].editorToolbarColor || 'darkblue');
-        //update the typing sound
-        setKeystrokeSfx(themeColors[theme].keystrokeSfx || '/audio/f.wav');
-        //console.log(themeColors[theme]);
-        setBgAudio(themeColors[theme].bgAudio || '');
+    },
+    space: {
+      background: '/videos/deep-space.mp4',
+      editorBgColor: 'blue',
+      editorOuterColor: 'darkblue',
+      editorInnerColor: '#20122B',
+      editorToolbarColor: 'darkblue',
+      keystrokeSfx: '/audio/purple.wav',
+      bgAudio: '/audio/empty.wav'
+    },
+    warm: {
+      background: '/videos/fireplace.mp4',
+      editorBgColor: 'red',
+      editorOuterColor: 'black',
+      editorInnerColor: 'darkred',
+      editorToolbarColor: 'black',
+      keystrokeSfx: '/audio/keystroke.wav',
+      bgAudio: '/audio/fireplace.mp3',
+    },
+    rain: {
+      background: '/videos/rainy-window.mp4',
+      editorBgColor: 'steelblue',
+      editorOuterColor: 'steelblue',
+      editorInnerColor: 'lightblue',
+      editorToolbarColor: '#5CA9AC',
+      keystrokeSfx: '/audio/purple.wav',
+      bgAudio: '/audio/rain.mp3',
+    },
+    cafe: {
+      background: '/images/cafe.jpg',
+      editorBgColor: '#AC835C',
+      editorOuterColor: 'tan',
+      editorInnerColor: '#A28C6B',
+      editorToolbarColor: 'tan',
+      keystrokeSfx: '/audio/f.wav',
+      bgAudio: '/audio/cafe.mp3',
+    },
+    forest: {
+      background: '/videos/forest.mp4',
+      editorBgColor: '#70a718',
+      editorOuterColor: '#283b2b',
+      editorInnerColor: 'green',
+      editorToolbarColor: '#4d8911',
+      keystrokeSfx: '/audio/f.wav',
+      bgAudio: '/audio/forest.mp3',
+    },
+    lofi: {
+      background: '/videos/lofi-girl.mp4',
+      editorBgColor: '#cc8366',
+      editorOuterColor: '#7b2d25',
+      editorInnerColor: '#804435',
+      editorToolbarColor: '#754a35',
+      keystrokeSfx: '/audio/f.wav',
+      bgAudio: '/audio/lo-fi.mp3',
     }
+  };
+
+  const changeEditorTheme = (theme) => {
+    //update the background video
+    setBackground(themeColors[theme].background || '/videos/deep-space.mp4');
+    //update the background color
+    setEditorBgColor(themeColors[theme].editorBgColor || '#20122b');
+    //update the outer box of the theme
+    setEditorOuterColor(themeColors[theme].editorOuterColor || 'darkblue');
+    //update the inner box of the theme
+    setEditorInnerColor(themeColors[theme].editorInnerColor || '#20122b');
+    //update the toolbar color
+    setToolbarColor(themeColors[theme].editorToolbarColor || 'darkblue');
+    //update the typing sound
+    setKeystrokeSfx(themeColors[theme].keystrokeSfx || '/audio/f.wav');
+    //console.log(themeColors[theme]);
+    setBgAudio(themeColors[theme].bgAudio || '');
+  }
 
 
-    const handleThemes = (newFormat) => {
-        setFormat(newFormat);
-        changeEditorTheme(newFormat);
-        changeTextColor(newFormat);
-    };
+  const handleThemes = (newFormat) => {
+    setFormat(newFormat);
+    changeEditorTheme(newFormat);
+    changeTextColor(newFormat);
+  };
 
-    const changeTextColor = (theme) => {
-      const length = quillEditor.getLength();
-      const currentPos = quillEditor.getSelection();
-      const currentColor = quillEditor.getFormat(currentPos).color;
-      quillEditor.setSelection(0, length);
-      if (theme === 'warm' || theme === 'space') {
-        quillEditor.format('color', '#FFFFFF');
-      }
-      else {
-        quillEditor.format('color', currentColor);
-      } 
-      quillEditor.setSelection(currentPos);
+  const changeTextColor = (theme) => {
+    const length = quillEditor.getLength();
+    const currentPos = quillEditor.getSelection();
+    const currentColor = quillEditor.getFormat(currentPos).color;
+    quillEditor.setSelection(0, length);
+    if (theme === 'warm' || theme === 'space') {
+      quillEditor.format('color', '#FFFFFF');
     }
-
-    const changeTextColorDynamic = (inputColor) => {
-      const length = quillEditor.getLength();
-      const currentPos = quillEditor.getSelection();
-      
-      quillEditor.setSelection(0, length);
-      quillEditor.format('color', inputColor);
-      quillEditor.setSelection(currentPos);
+    else {
+      quillEditor.format('color', currentColor);
     }
+    quillEditor.setSelection(currentPos);
+  }
 
-    const changeBackground = (theme) => {
-        setBackground(themeColors[theme].background);
-    };
+  const changeTextColorDynamic = (inputColor) => {
+    const length = quillEditor.getLength();
+    const currentPos = quillEditor.getSelection();
 
-    const changeKeystrokeSfx = (theme) => {
-        setKeystrokeSfx(themeColors[theme].keystrokeSfx);
-    };
+    quillEditor.setSelection(0, length);
+    quillEditor.format('color', inputColor);
+    quillEditor.setSelection(currentPos);
+  }
 
-    const changeSoundscape = (theme) => {
-        setBgAudio(themeColors[theme].bgAudio);
-    };
+  const changeBackground = (theme) => {
+    setBackground(themeColors[theme].background);
+  };
 
-    const changePageColor = (color) => {
-        setEditorBgColor(color);
-    }
+  const changeKeystrokeSfx = (theme) => {
+    setKeystrokeSfx(themeColors[theme].keystrokeSfx);
+  };
 
-    const changeOuterBorder = (color) => {
-        setEditorOuterColor(color);
-    }
+  const changeSoundscape = (theme) => {
+    setBgAudio(themeColors[theme].bgAudio);
+  };
 
-    const changeInnerBorder = (color) => {
-        setEditorInnerColor(color);
-    }
+  const changePageColor = (color) => {
+    setEditorBgColor(color);
+  }
 
-    const changeToolbarColor = (color) => {
-        setToolbarColor(color);
-    }
+  const changeOuterBorder = (color) => {
+    setEditorOuterColor(color);
+  }
 
-    const handleBgUpload = (event) => {
-        const image = document.getElementById('custom-bg').files[0];
-        //const bgUrl = URL.createObjectUrl(image);
-        //const bgUrl = window.URL.createObjectURL(image);
-        //console.log(image.type);
-        //console.log(bgUrl);
-        
-        //setBackground(bgUrl);
-        setBackground(image);
+  const changeInnerBorder = (color) => {
+    setEditorInnerColor(color);
+  }
 
-    }
+  const changeToolbarColor = (color) => {
+    setToolbarColor(color);
+  }
 
-    const handleOpacity = (opacity) => {
+  const handleBgUpload = (event) => {
+    const image = document.getElementById('custom-bg').files[0];
+    //const bgUrl = URL.createObjectUrl(image);
+    //const bgUrl = window.URL.createObjectURL(image);
+    //console.log(image.type);
+    //console.log(bgUrl);
+
+    //setBackground(bgUrl);
+    setBackground(image);
+
+  }
+
+  const handleOpacity = (opacity) => {
     if (typeof opacity === 'number') {
-        setOpacity(opacity);
+      setOpacity(opacity);
     }
     else if (opacity && opacity.target) {
-        setOpacity(opacity.target.value);
+      setOpacity(opacity.target.value);
     }
   }
 
@@ -205,7 +214,7 @@ function App() {
       setBgVolume(volume.target.value);
     }
   }
-  
+
   const handleSfxVolume = (volume) => {
     if (typeof volume === 'number') {
       setSfxVolume(volume);
@@ -215,76 +224,80 @@ function App() {
     }
   }
 
-    return (
-    <ContextHandler.Provider 
-      value={{ handleThemes, handleOpacity, wordGoal, setWordGoal, 
-              goalEnabled, setGoalEnabled, delta, setDelta, quillEditor, 
-              setQuillEditor, handleBgVolume, handleSfxVolume, value, setValue }}>
-        <FullScreen handle={handle}> 
+  return (
+    <ContextHandler.Provider
+      value={{
+        handleThemes, handleOpacity, wordGoal, setWordGoal,
+        goalEnabled, setGoalEnabled, delta, setDelta, quillEditor,
+        setQuillEditor, handleBgVolume, handleSfxVolume, value, setValue
+      }}>
+      <FullScreen handle={handle}>
         <EditorStyleProvider>
           <SnackbarProvider>
             <div className="App">
-                <Background src={background} />
-                <Audio
-                    keystrokeSfx={keystrokeSfx}
-                    sfxVolume={sfxVolume}
-                    bgAudio={bgAudio}
-                    bgVolume={bgVolume}
-                />
-                {/*<audio id='audio' src={enterSfx}></audio>*/}
-                <header className="App-header" style={{ opacity: opacity / 100 }}>
-                  <div className="ContainerSurrounder" style={{ width: '75%' }}>
-                    <div className='Logo'>
-                        <img src="/images/WriteVibe.png"/>
-                    </div>
-                    <ThemeProvider
-                        theme={{
-                            palette: {
-                                primary: {
-                                    border: 'black',
-                                    //main: '#65B6EF',
-                                    main: format === "default" ? '#EEEEEE':
-                                          format === "space" ? '#422ee8':
-                                          format === "warm" ? '#AA0000':
-                                          format === "rain" ? '#8eeffd':
-                                          format === "cafe" ? '#fde494': ''
-                                },
-                            },
-                        }}
-                    >
-                        {/*first box is for the outer border surrounding the editor */}
-                        <Box
-                            sx={{
-                                //width: "50%",
-                                height: "100%",
-                                margin: 1,
-                                borderRadius: 2,
-                                border: '3px solid primary.border',
-                                bgcolor: editorOuterColor,
-                                padding: 3,
-                                //   opacity: .95,
-                            }}
-                        >
-                            {/*second box contains the actual editor */}
-                            <Box sx={{
-                                bgcolor: editorInnerColor,
-                            }}>
-                                <Quilljs
-                                    editorBgColor={editorBgColor}
-                                    editorToolbarColor={editorToolbarColor}
-                                />
-                            </Box>
-                        </Box>
-                    </ThemeProvider>
+              <Background src={background} />
+              <Audio
+                keystrokeSfx={keystrokeSfx}
+                sfxVolume={sfxVolume}
+                bgAudio={bgAudio}
+                bgVolume={bgVolume}
+              />
+              {/*<audio id='audio' src={enterSfx}></audio>*/}
+              <header className="App-header" style={{ opacity: opacity / 100 }}>
+                <div className="ContainerSurrounder" style={{ width: '75%' }}>
+                  <div className='Logo'>
+                    <img src="/images/WriteVibe.png" />
                   </div>
-                </header>
-                <IconButton id="fullscreentoggle" aria-label="Keystroke Volume 0%">
-                  <FullscreenIcon onClick={!handle.active ? handle.enter : handle.exit} />
-                </IconButton>
-                <Themes onChangeTheme={changeEditorTheme}></Themes>
+                  <ThemeProvider
+                    theme={{
+                      palette: {
+                        primary: {
+                          border: 'black',
+                          //main: '#65B6EF',
+                          main: format === "default" ? '#EEEEEE' :
+                            format === "space" ? '#422ee8' :
+                              format === "warm" ? '#AA0000' :
+                                format === "rain" ? '#8eeffd' :
+                                  format === "cafe" ? '#fde494' :
+                                    format === "forest" ? "#70a718" :
+                                      format === "lofi" ? "#cc8366" : ''
+                        },
+                      },
+                    }}
+                  >
+                    {/*first box is for the outer border surrounding the editor */}
+                    <Box
+                      sx={{
+                        //width: "50%",
+                        height: "100%",
+                        margin: 1,
+                        borderRadius: 2,
+                        border: '3px solid primary.border',
+                        bgcolor: editorOuterColor,
+                        padding: 3,
+                        //   opacity: .95,
+                      }}
+                    >
+                      {/*second box contains the actual editor */}
+                      <Box sx={{
+                        bgcolor: editorInnerColor,
+                      }}>
+                        <Quilljs
+                          editorBgColor={editorBgColor}
+                          editorToolbarColor={editorToolbarColor}
+                        />
+                      </Box>
+                    </Box>
+                  </ThemeProvider>
+                </div>
+              </header>
+              <IconButton id="fullscreentoggle" aria-label="Keystroke Volume 0%">
+                <FullscreenIcon onClick={!handle.active ? handle.enter : handle.exit} />
+              </IconButton>
+              <Themes onChangeTheme={changeEditorTheme}></Themes>
             </div>
-            </SnackbarProvider>
-          <Settings 
+          </SnackbarProvider>
+          <Settings
             onChangeBackground={changeBackground}
             onChangeKeystrokeSfx={changeKeystrokeSfx}
             onChangeSoundscape={changeSoundscape}
@@ -297,9 +310,9 @@ function App() {
             delta={delta}
           />
         </EditorStyleProvider>
-        </FullScreen>
-      </ContextHandler.Provider>
-    );
+      </FullScreen>
+    </ContextHandler.Provider>
+  );
 }
 
 export default App;

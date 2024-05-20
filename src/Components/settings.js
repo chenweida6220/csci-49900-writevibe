@@ -221,6 +221,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
     { value: 'warm', label: 'Warm' },
     { value: 'rain', label: 'Rain' },
     { value: 'cafe', label: 'Cafe' },
+    { value: 'forest', label: 'Forest' },
     { value: 'lofi', label: 'Lo-Fi' },
     // Add more themes here
   ];
@@ -231,6 +232,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
     { value: 'warm', label: 'Warm' },
     { value: 'rain', label: 'Rain' },
     { value: 'cafe', label: 'Cafe' },
+    { value: 'forest', label: 'Forest' },
     { value: 'lofi', label: 'Lo-Fi' },
   ];
 
@@ -244,6 +246,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
     { value: 'warm', label: 'Typewriter' },
     { value: 'rain', label: 'Keyboard 1' },
     { value: 'cafe', label: 'Keyboard 2' },
+    { value: 'forest', label: 'Forest' },
     { value: 'lofi', label: 'Lo-Fi' },
   ];
 
@@ -253,6 +256,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
     { value: 'warm', label: 'Fireplace' },
     { value: 'rain', label: 'Raindrops' },
     { value: 'cafe', label: 'Cafe Interior' },
+    { value: 'forest', label: 'Forest' },
     { value: 'lofi', label: 'Lo-Fi' },
   ];
 
