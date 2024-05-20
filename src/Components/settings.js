@@ -310,8 +310,8 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                 <BoldHarmattanTypography variant="h6">Set Inner Border Color</BoldHarmattanTypography>
                 <TextField 
-                    id="toolbar-color-input" 
-                    label="Toolbar Color" 
+                    id="inner-color-input" 
+                    label="Inner Border Color" 
                     variant="outlined"
                 /> 
                 <button onClick={handleInnerBorderChange}>Set Color</button>
@@ -332,7 +332,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                 <BoldHarmattanTypography variant="h6">Set Page Color</BoldHarmattanTypography>
                 <TextField 
-                    id="toolbar-color-input" 
+                    id="page-color-input" 
                     label="Page Color" 
                     variant="outlined"
                 /> 
