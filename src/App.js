@@ -130,6 +130,16 @@ function App() {
       quillEditor.setSelection(currentPos);
     }
 
+    const changeTextColorDynamic = (inputColor) => {
+      //console.log('hi');
+      const length = quillEditor.getLength();
+      const currentPos = quillEditor.getSelection();
+      
+      quillEditor.setSelection(0, length);
+      quillEditor.format('color', inputColor);
+      quillEditor.setSelection(currentPos);
+    }
+
     const changeBackground = (theme) => {
         setBackground(themeColors[theme].background);
     };
@@ -275,6 +285,7 @@ function App() {
             onChangeInnerBorder={changeInnerBorder}
             onChangeToolbarColor={changeToolbarColor}
             onChangeCustomBg={handleBgUpload}
+            changeTextColorDynamic={changeTextColorDynamic}
             delta={delta}
           />
         </EditorStyleProvider>

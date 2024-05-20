@@ -60,7 +60,7 @@ function SettingsOption({ label, options, value, onChange }) {
 }
 
 
-const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape, onChangePageColor, onChangeOuterBorder, onChangeInnerBorder, onChangeToolbarColor, onChangeCustomBg}) => {
+const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape, onChangePageColor, onChangeOuterBorder, onChangeInnerBorder, onChangeToolbarColor, onChangeCustomBg, changeTextColorDynamic}) => {
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const [background, setBackground] = useState('default');
@@ -150,8 +150,28 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
   const handlePageColorChange = (event) => {
     //onChangePageColor(event.target.value);
     //console.log(document.getElementById('page-color-input').value);
-    onChangePageColor(document.getElementById('page-color-input').value);
+    const newColor = document.getElementById('page-color-input').value;
+    onChangePageColor(newColor);
     
+    if (newColor.includes('#')) {
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(newColor);
+      const red = parseInt(result[1], 16);
+      const green = parseInt(result[2], 16);
+      const blue = parseInt(result[3], 16);
+
+      const testColor = Math.round(((parseInt(red) * 299) + 
+                                    (parseInt(green) * 587) + 
+                                    (parseInt(blue) * 114)) / 1000); 
+
+      if (testColor > 125) {
+        changeTextColorDynamic('black');
+      }
+      else {
+        changeTextColorDynamic('white');
+      }                           
+    }
+    
+
     setIsOpen(false);
     setOpen(false);
   }
