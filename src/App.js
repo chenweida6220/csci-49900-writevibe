@@ -60,7 +60,7 @@ function App() {
       editorOuterColor: 'darkblue',
       editorInnerColor: '#20122B',
       editorToolbarColor: 'darkblue',
-      keystrokeSfx: '/audio/purple.wav',
+      keystrokeSfx: '/audio/spacey.wav',
       bgAudio: '/audio/empty.wav'
     },
     warm: {
@@ -96,7 +96,7 @@ function App() {
       editorOuterColor: '#283b2b',
       editorInnerColor: 'green',
       editorToolbarColor: '#4d8911',
-      keystrokeSfx: '/audio/f.wav',
+      keystrokeSfx: '/audio/forest-click.wav',
       bgAudio: '/audio/forest.mp3',
     },
     lofi: {
@@ -105,7 +105,7 @@ function App() {
       editorOuterColor: '#7b2d25',
       editorInnerColor: '#804435',
       editorToolbarColor: '#754a35',
-      keystrokeSfx: '/audio/f.wav',
+      keystrokeSfx: '/audio/lofi-click.wav',
       bgAudio: '/audio/lo-fi.mp3',
     }
   };

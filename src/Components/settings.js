@@ -226,7 +226,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
   ];
   
   const backgroundOptions = [
-    { value: 'default' , label: 'Default' },
+    { value: 'default' , label: 'None' },
     { value: 'space', label: 'Space' },
     { value: 'warm', label: 'Warm' },
     { value: 'rain', label: 'Rain' },
@@ -240,17 +240,17 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
   ];
 
   const typingSoundOptions = [
-    { value: 'default', label: 'Default' },
+    { value: 'default', label: 'None' },
     { value: 'space', label: 'Sparkly' },
     { value: 'warm', label: 'Typewriter' },
     { value: 'rain', label: 'Keyboard 1' },
     { value: 'cafe', label: 'Keyboard 2' },
-    { value: 'forest', label: 'Forest' },
-    { value: 'lofi', label: 'Lo-Fi' },
+    { value: 'forest', label: 'Keyboard 3' },
+    { value: 'lofi', label: 'Keyboard 4' },
   ];
 
   const soundscapeOptions = [
-    { value: 'default', label: 'Default' },
+    { value: 'default', label: 'None' },
     { value: 'space', label: 'Space (No Sound)' },
     { value: 'warm', label: 'Fireplace' },
     { value: 'rain', label: 'Raindrops' },
