@@ -134,19 +134,32 @@ function App() {
     changeTextColor(newFormat);
   };
 
-  const changeTextColor = (theme) => {
-    const length = quillEditor.getLength();
-    const currentPos = quillEditor.getSelection();
-    const currentColor = quillEditor.getFormat(currentPos).color;
-    quillEditor.setSelection(0, length);
-    if (theme === 'warm' || theme === 'space') {
-      quillEditor.format('color', '#FFFFFF');
-    }
-    else {
-      quillEditor.format('color', currentColor);
-    }
-    quillEditor.setSelection(currentPos);
-  }
+    const changeTextColor = (theme) => {
+        if (quillEditor) {
+            const length = quillEditor.getLength();
+            const currentPos = quillEditor.getSelection();
+
+            // Make sure that currentPos is not null
+            if (currentPos) {
+                const currentFormat = quillEditor.getFormat(currentPos);
+
+                // Make sure currentFormat and currentFormat.color are not null
+                const currentColor = currentFormat && currentFormat.color ? currentFormat.color : '#000000'; // Default to black if no color is found
+
+                quillEditor.setSelection(0, length);
+                if (theme === 'warm' || theme === 'space') {
+                    quillEditor.format('color', '#FFFFFF');
+                }
+                else if (theme === 'default') {
+                    quillEditor.format('color', '#000000');
+                }
+                else {
+                    quillEditor.format('color', currentColor);
+                }
+                quillEditor.setSelection(currentPos);
+            }
+        }
+    };
 
   const changeTextColorDynamic = (inputColor) => {
     const length = quillEditor.getLength();
