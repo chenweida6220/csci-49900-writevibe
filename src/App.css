@@ -91,7 +91,7 @@
   
 .Logo {
     position: fixed;
-    top: 1vh;
-    left: 50vw;
+    top: 2vh;
+    left: 49vw;
     transform: translateX(-50%);
 }

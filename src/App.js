@@ -90,6 +90,15 @@ function App() {
             keystrokeSfx: '/audio/f.wav',
             bgAudio: '/audio/cafe.mp3',
         },
+        lofi: {
+          background: '/videos/lofi-girl.mp4',
+          editorBgColor: '#AC835C',
+          editorOuterColor: '#AC835C',
+          editorInnerColor: '#A28C6B',
+          editorToolbarColor: '#AC835C',
+          keystrokeSfx: '/audio/f.wav',
+          bgAudio: '/audio/lo-fi.mp3',
+      },
     };
 
     const changeEditorTheme = (theme) => {
@@ -131,7 +140,6 @@ function App() {
     }
 
     const changeTextColorDynamic = (inputColor) => {
-      //console.log('hi');
       const length = quillEditor.getLength();
       const currentPos = quillEditor.getSelection();
       

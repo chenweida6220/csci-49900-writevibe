@@ -221,6 +221,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
     { value: 'warm', label: 'Warm' },
     { value: 'rain', label: 'Rain' },
     { value: 'cafe', label: 'Cafe' },
+    { value: 'lofi', label: 'Lo-Fi' },
     // Add more themes here
   ];
   
@@ -230,6 +231,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
     { value: 'warm', label: 'Warm' },
     { value: 'rain', label: 'Rain' },
     { value: 'cafe', label: 'Cafe' },
+    { value: 'lofi', label: 'Lo-Fi' },
   ];
 
   const canvasOptions = [
@@ -242,6 +244,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
     { value: 'warm', label: 'Typewriter' },
     { value: 'rain', label: 'Keyboard 1' },
     { value: 'cafe', label: 'Keyboard 2' },
+    { value: 'lofi', label: 'Lo-Fi' },
   ];
 
   const soundscapeOptions = [
@@ -250,6 +253,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
     { value: 'warm', label: 'Fireplace' },
     { value: 'rain', label: 'Raindrops' },
     { value: 'cafe', label: 'Cafe Interior' },
+    { value: 'lofi', label: 'Lo-Fi' },
   ];
 
   const pageColorOptions = [
