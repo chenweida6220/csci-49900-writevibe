@@ -33,12 +33,11 @@ const SettingsDiv = styled('div')({
   margin: '10px',
   padding: '10px',
   '&:hover': {
-  backgroundColor: 'rgba(50,135,164,0.7)', // change this to the color you want
+  backgroundColor: 'rgba(50,135,164,0.7)', 
   },
 });
 
-
-const HarmattanTypography = styled(Typography)({
+const BoldHarmattanTypography = styled(Typography)({
   fontFamily: 'Harmattan, sans-serif',
   fontWeight: 600,
   fontStyle: 'bold',
@@ -46,8 +45,9 @@ const HarmattanTypography = styled(Typography)({
 
 function SettingsOption({ label, options, value, onChange }) {
   return (
-    <Grid className="settingsGridItem" item xs={12} md={6}>
-      <HarmattanTypography variant="h6">{label}</HarmattanTypography>
+    <Grid className="settingsGridItem" item xs={12} md={6}
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <BoldHarmattanTypography variant="h6">{label}</BoldHarmattanTypography>
       <Select sx={{ width: '80%' }} value={value} onChange={onChange}>
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>
@@ -58,7 +58,6 @@ function SettingsOption({ label, options, value, onChange }) {
     </Grid>
   );
 }
-
 
 const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape, onChangePageColor, onChangeOuterBorder, onChangeInnerBorder, onChangeToolbarColor, onChangeCustomBg, changeTextColorDynamic}) => {
   const [open, setOpen] = useState(false);
@@ -295,51 +294,51 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
                 value={background}
                 onChange={handleBackgroundChange}
               />
-              {/*
-              <SettingsOption 
-                label="Canvas"
-                options={canvasOptions}
-                value={canvas}
-                onChange={setCanvas}
-              />
-              */}
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Set Outer Border Color</HarmattanTypography>
+
+              <Grid className="settingsGridItem" item xs={12} md={6}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <BoldHarmattanTypography variant="h6">Set Outer Border Color</BoldHarmattanTypography>
                 <TextField 
                     id="outer-color-input" 
-                    label="Outlined" 
+                    label="Outer Border Color" 
                     variant="outlined"
                 /> 
                 <button onClick={handleOuterBorderChange}>Set Color</button>
               </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Set Inner Border Color</HarmattanTypography>
+
+              <Grid className="settingsGridItem" item xs={12} md={6}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <BoldHarmattanTypography variant="h6">Set Inner Border Color</BoldHarmattanTypography>
                 <TextField 
-                    id="inner-color-input" 
-                    label="Outlined" 
+                    id="toolbar-color-input" 
+                    label="Toolbar Color" 
                     variant="outlined"
                 /> 
                 <button onClick={handleInnerBorderChange}>Set Color</button>
               </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Set Toolbar Color</HarmattanTypography>
+
+              <Grid className="settingsGridItem" item xs={12} md={6}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <BoldHarmattanTypography variant="h6">Set Toolbar Color</BoldHarmattanTypography>
                 <TextField 
                     id="toolbar-color-input" 
-                    label="Outlined" 
+                    label="Toolbar Color" 
                     variant="outlined"
                 /> 
                 <button onClick={handleToolbarColorChange}>Set Color</button>
               </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Set Page Color</HarmattanTypography>
+
+              <Grid className="settingsGridItem" item xs={12} md={6}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <BoldHarmattanTypography variant="h6">Set Page Color</BoldHarmattanTypography>
                 <TextField 
-                    id="page-color-input" 
-                    label="Outlined" 
+                    id="toolbar-color-input" 
+                    label="Page Color" 
                     variant="outlined"
-                    //value={pageColor}
                 /> 
                 <button onClick={handlePageColorChange}>Set Color</button>
               </Grid>
+
               <SettingsOption
                 label="Typing Sound"
                 options={typingSoundOptions}
@@ -352,21 +351,33 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
                 value={soundscape}
                 onChange={handleSoundscapeChange}
               />
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Word Count Goal</HarmattanTypography>
+
+              <Grid className="settingsGridItem" item xs={12} md={6}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <BoldHarmattanTypography variant="h6">Word Count Goal</BoldHarmattanTypography>
                 <TextField
-                  variant="outlined"
-                  sx={{ width: '80%' }}
-                  type="number"
-                  id='goalvalue'
-                />
+                    variant="outlined"
+                    sx={{ width: '80%' }}
+                    type="number"
+                    id='goalvalue'
+                    label="Word Count Goal" 
+                    value={wordGoalInputValue}
+                    onChange={handleInputChange}
+                  />
                 <button onClick={handleWordGoal}>Set Goal</button>
               </Grid>
-              <Grid item xs={12} md={6}>
-                <HarmattanTypography variant="h6">Upload Background Image</HarmattanTypography>
+
+              <Grid className="settingsGridItem" item xs={12}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <BoldHarmattanTypography variant="h6">Upload Background Image</BoldHarmattanTypography>
                 <input type="file" id="custom-bg" accept="image/png, image/jpeg, video/*" onChange={bgUploadHandle} />    
               </Grid>
+
             </Grid>
+
+
+
+
           } {/* tab === 0 */}
       {/* General Tab */}
       { tab === 1 && 
@@ -385,6 +396,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
            </IconButton>
            
           </Stack>
+          
           <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
             <IconButton aria-label="Background Volume 0%">
               <MusicOffIcon onClick={() => handleBg({ target : {value: 0}})} />
@@ -396,6 +408,7 @@ const Settings = ({onChangeBackground, onChangeKeystrokeSfx, onChangeSoundscape,
               <AudiotrackIcon onClick={() => handleBg({ target : {value: 1}})}/>
            </IconButton> 
           </Stack>
+
           <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
             <IconButton aria-label="Keystroke Volume 0%">
               <PianoOffIcon onClick={() => handleSfx({ target : {value: 0}})} />
