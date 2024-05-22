@@ -44,5 +44,6 @@ In the project directory, you can run:
 The application is currently not deployed so if you'd like to try it out for yourself do the following:
 1. Open your terminal and run `git clone <link here>`
 2. Change directories to the newly cloned directory
-3. Run `npm start`
-4. Enjoy!
+3. Install the required packages by running `npm install`
+4. After the packages are installed run `npm start`
+5. Enjoy!
