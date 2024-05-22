@@ -40,7 +40,7 @@ Started on another writing application but want to move your existing work here?
 
 In the project directory, you can run:
 
-### Installing and running 
+## Installing and running 
 
 The application is currently not deployed so if you'd like to try it out for yourself do the following:
 1. Open your terminal and run `git clone <link here>`
