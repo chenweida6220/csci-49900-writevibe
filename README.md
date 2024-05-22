@@ -72,22 +72,22 @@ This web application is designed to serve a specific demographic, namely individ
 <details>
 <summary>Packages</summary>
 <br>
-* @mui/icons-material: ^5.15.14
-* @mui/material: ^5.15.13
-* @testing-library/jest-dom: ^5.17.0
-* @testing-library/react: ^13.4.0
-* @testing-library/user-event: ^13.5.0
-* convertapi-js: ~1.1
-* file-saver: ^2.0.5
-* notistack: ^3.0.1
-* path-browserify: ^1.0.1
-* quill-to-pdf: ^1.0.7
-* quill-to-word: ^1.3.0
-* react: ^18.2.0
-* react-confetti-explosion: ^2.1.2
-* react-dom: ^18.2.0
-* react-full-screen: ^1.1.1
-* react-quill: ^2.0.012
+- @mui/icons-material: ^5.15.14
+- @mui/material: ^5.15.13
+- @testing-library/jest-dom: ^5.17.0
+- @testing-library/react: ^13.4.0
+- @testing-library/user-event: ^13.5.0
+- convertapi-js: ~1.1
+- file-saver: ^2.0.5
+- notistack: ^3.0.1
+- path-browserify: ^1.0.1
+- quill-to-pdf: ^1.0.7
+- quill-to-word: ^1.3.0
+- react: ^18.2.0
+- react-confetti-explosion: ^2.1.2
+- react-dom: ^18.2.0
+- react-full-screen: ^1.1.1
+- react-quill: ^2.0.012
 </details>
 
 
