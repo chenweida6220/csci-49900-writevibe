@@ -65,25 +65,26 @@ This web application is designed to serve a specific demographic, namely individ
 
 <details>
 <summary>Packages</summary>
-<br>
-- @mui/icons-material: ^5.15.14
-- @mui/material: ^5.15.13
-- @testing-library/jest-dom: ^5.17.0
-- @testing-library/react: ^13.4.0
-- @testing-library/user-event: ^13.5.0
-- convertapi-js: ~1.1
-- file-saver: ^2.0.5
-- notistack: ^3.0.1
-- path-browserify: ^1.0.1
-- quill-to-pdf: ^1.0.7
-- quill-to-word: ^1.3.0
-- react: ^18.2.0
-- react-confetti-explosion: ^2.1.2
-- react-dom: ^18.2.0
-- react-full-screen: ^1.1.1
-- react-quill: ^2.0.012
-</details>
+    <ol>
+        <li>@mui/icons-material: ^5.15.14</a></li>
+        <li>@mui/material: ^5.15.13</a></li>
+        <li>@testing-library/jest-dom: ^5.17.0</a></li>
+        <li>@testing-library/react: ^13.4.0</a></li>
+        <li>@testing-library/user-event: ^13.5.0</a></li>
+        <li>convertapi-js: ~1.1</a></li>
+        <li>file-saver: ^2.0.5</a></li>
+        <li>notistack: ^3.0.1</a></li>
+        <li>path-browserify: ^1.0.1</a></li>
+        <li>quill-to-pdf: ^1.0.7</a></li>
+        <li>quill-to-word: ^1.3.0</a></li>
+        <li>react: ^18.2.0</a></li>
+        <li>react-confetti-explosion: ^2.1.2</a></li>
+        <li>react-dom: ^18.2.0</a></li>
+        <li>react-full-screen: ^1.1.1</a></li>
+        <li>react-quill: ^2.0.012</a></li>
+    </ol>
 
+</details>
 
 
 <!-- GETTING STARTED -->
@@ -181,7 +182,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 * Uriel Trejo - <uriel.trejo71@myhunter.cuny.edu>
 * Wei Da Chen - <weida.chen27@myhunter.cuny.edu>
 
-Project Link: [Project Link](https://github.com/chenweida6220/csci-49900-writevibe)
+Project Link: https://github.com/chenweida6220/csci-49900-writevibe
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
