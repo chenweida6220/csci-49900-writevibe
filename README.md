@@ -38,8 +38,6 @@ Started on another writing application but want to move your existing work here?
 - react-full-screen: ^1.1.1
 - react-quill: ^2.0.012
 
-In the project directory, you can run:
-
 ## Installing and running 
 
 The application is currently not deployed so if you'd like to try it out for yourself do the following:
