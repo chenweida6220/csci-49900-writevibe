@@ -46,5 +46,6 @@ The application is currently not deployed so if you'd like to try it out for you
 1. Open your terminal and run `git clone <link here>`
 2. Change directories to the newly cloned directory
 3. Install the required packages by running `npm install`
-4. After the packages are installed run `npm start`
-5. Enjoy!
+4. Install one last package manually by running `npm i convertapi-js@~1.1`
+5. After the packages are installed run `npm start`
+6. Enjoy!
