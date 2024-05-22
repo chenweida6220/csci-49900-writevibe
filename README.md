@@ -17,10 +17,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/chenweida6220/csci-49900-writevibe">
-    <img src="public/favicon.ico" alt="Logo" width="80" height="80">
+    <img src="public/images/WriteVibe.png" alt="Logo" width="auto" height="80">
+    <img src="public/images/icon.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Most Fun Writing Application</h3>
   <p align="center">
     WriteVibe is the place to go if you're sick and tired of your boring writing applications... you know which ones I'm talking about. Enojoy a full suite of text formatting options as well as complete writing enviroment control!
     <br />
@@ -47,8 +47,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![WriteVibe Demo](public/images/CapstoneDemo_trimmed.gif)
 
 This web application is designed to serve a specific demographic, namely individuals within the neurodivergent spectrum, particularly those diagnosed with Attention-Deficit/Hyperactivity Disorder (ADHD), who frequently struggle to maintain focus during mundane or unstimulating tasks. While individuals categorized as neurotypical can generally concentrate sufficiently on tasks at hand, those within the neurodivergent spectrum may necessitate additional stimuli to initiate and maintain focus. The primary objective of this web application is to provide tailored cognitive stimulation, particularly applicable to prolonged writing activities. thereby ensuring sustained engagement among individuals with ADHD. Beyond addressing the challenges associated with ADHD, the application’s functionality extends to a broader user base seeking enhanced levels of customization, personalization, and overall enjoyment in their writing endeavors. In doing so, it surpasses the capabilities offered by conventional word processors like Microsoft Word and Google Docs.
 
@@ -217,4 +216,3 @@ Project Link: https://github.com/chenweida6220/csci-49900-writevibe
 [HTML]: https://img.shields.io/badge/HTML-3c3434?logo=html5
 [CSS]: https://img.shields.io/badge/CSS-3c3434?logo=css3
 [JavaScript]: https://img.shields.io/badge/JavaScript-3c3434?logo=javascript
-
