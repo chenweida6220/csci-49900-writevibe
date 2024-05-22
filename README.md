@@ -17,6 +17,7 @@ Started on another writing application but want to move your existing work here?
 - React
 - HTML/CSS
 - Quill JS
+- Material UI
 - ConvertAPI
   
 ### Packages:
