@@ -47,7 +47,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![WriteVibe Demo](public/images/CapstoneDemo_trimmed.gif)
+<div align="center">
+    <img src="public/images/CapstoneDemo_trimmed.gif" alt="WriteVibe Demo" width="80%">
+</div>
 
 This web application is designed to serve a specific demographic, namely individuals within the neurodivergent spectrum, particularly those diagnosed with Attention-Deficit/Hyperactivity Disorder (ADHD), who frequently struggle to maintain focus during mundane or unstimulating tasks. While individuals categorized as neurotypical can generally concentrate sufficiently on tasks at hand, those within the neurodivergent spectrum may necessitate additional stimuli to initiate and maintain focus. The primary objective of this web application is to provide tailored cognitive stimulation, particularly applicable to prolonged writing activities. thereby ensuring sustained engagement among individuals with ADHD. Beyond addressing the challenges associated with ADHD, the application’s functionality extends to a broader user base seeking enhanced levels of customization, personalization, and overall enjoyment in their writing endeavors. In doing so, it surpasses the capabilities offered by conventional word processors like Microsoft Word and Google Docs.
 
