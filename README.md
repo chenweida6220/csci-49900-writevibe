@@ -22,13 +22,7 @@
 
 <h3 align="center">Most Fun Writing Application</h3>
   <p align="center">
-    WriteVibe is the place to go if you're sick and tired of your boring writing applications... you know which ones I'm talking about. Enojoy a full suite of text formatting options as well as complete writing enviroment control! Customizations include:
-    - Preset themes
-    - Custom backgrounds
-    - Ambient sound
-    - Keystroke sound
-    - Page color
-    - And more!  
+    WriteVibe is the place to go if you're sick and tired of your boring writing applications... you know which ones I'm talking about. Enojoy a full suite of text formatting options as well as complete writing enviroment control!
     <br />
     <a href="https://github.com/chenweida6220/csci-49900-the-most-fun-writing-app"><strong>Explore the docs »</strong></a>
     <br />
@@ -42,12 +36,12 @@
 <!-- TABLE OF CONTENTS -->
 **Table of Contents**
 1. [About The Project](#about-the-project)
-- [Built With](#built-with)
-2. [Installing and Running](#installing-and-running)
-3. [Roadmap](#roadmap)
-4. [License](#license)
-5. [Contact](#contact)
-6. [Acknowledgments](#acknowledgments)
+2. [Built With](#built-with)
+3. [Installing and Running](#installing-and-running)
+4. [Roadmap](#roadmap)
+5. [License](#license)
+6. [Contact](#contact)
+7. [Acknowledgments](#acknowledgments)
 
 
 
@@ -60,7 +54,7 @@ This web application is designed to serve a specific demographic, namely individ
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Built With
+## Built With
 * [![ReactJs][React.dev]](https://react.dev/)
 * [![Material UI][Material UI]](https://shields.io/badge/materialui-white?logo=mui&style=for-the-badge)
 * QuillJS
@@ -107,6 +101,10 @@ This web application is designed to serve a specific demographic, namely individ
     ```sh
    npm i convertapi-js@~1.1
    ```
+4. Deploy the application
+    ```sh
+   npm start
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -114,12 +112,38 @@ This web application is designed to serve a specific demographic, namely individ
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/chenweida6220/csci-49900-writevibe/issues) for a full list of proposed features (and known issues).
+- [x] Core Writing Features
+    - [x] Text Input
+        - [x] Ability to add text by typing.
+        - [x] Real-time display of characters as they are typed.
+    - [x] Text Deletion
+        - [x] Ability to delete text using backspace/delete key.
+        - [x] Continuous deletion when the backspace/delete is held down.
+    - [x] Basic Formatting
+        - [x] Bold, Italics, Underline.
+        - [x] Apply multiple formatting styles (e.g., bold and underlined).
+        - [x] Change font style/type from dropdown menu.
+        - [x] Apply font size from a dropdown menu.
+        - [x] Apply changes to all text or selected text.
+        - [x] Change text color from a selection in a dropdown menu.
+        - [x] Apply color changes to all text or selected text.
+        - [x] Highlight text using different colors.
+        - [x] Indent text using the tab key.
+        - [x] Create bullet and numbered lists with one-tab spacing.
+        - [x] Adjust line spacing (single, 1.5 lines, double).
+- [x] Embedding Images
+    - [x] Embed images in JPEG, JPG, PNG, BMP formats.
+    - [x] Paste images from import file.
+- [x] Settings Customization
+    - [x] Open existing files and save as a new file.
+    - [x] Change themes
+        - [x] Themes
+            - [x] Choose from a variety of animated themes.
+            - [x] Themes with preset music and ambient sounds.
+            - [x] Change background color or set a background image.
+            - [x] Change page color.
+            - [x] Set custom sounds for typing, word count goals, and ambient writing sounds.
+    - [x] Adjust various settings from a settings overlay menu.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
